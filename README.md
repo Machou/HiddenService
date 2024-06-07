@@ -22,6 +22,7 @@
   - [Installation et configuration de Tor](#-8)
   - [Configuration du Hidden Service](#-9)
   - [Générer une adresse .onion personnalisée](#-10)
+  - [FAQ Debug Tor](#faq-debug-tor)
 - [Facultatif](#-12)
   - [Configuration de la langue](#configuration-de-la-langue)
   - [Configuration de la date et heure](#configuration-de-la-date-et-heure)
@@ -788,6 +789,58 @@ sudo chown -R tor: /var/lib/tor/hidden_service
 sudo chmod -R u+rwX,og-rwx /var/lib/tor/hidden_service
 ```
 
+## FAQ Debug Tor
+
+On vérifie l'état du service Tor :
+
+`sudo systemctl status tor`
+
+Si le service n'est pas actif, on le redémarre :
+
+`sudo systemctl restart tor`
+
+On vérifie la configuration du Hidden Service et est correcte dans le fichier `/etc/tor/torrc`. Voici un exemple de configuration :
+
+```sh
+HiddenServiceDir /var/lib/tor/hidden_service/
+HiddenServicePort 80 127.0.0.1:8080
+```
+
+On vérifie que le répertoire spécifié (`/var/lib/tor/hidden_service/`) existe et que Tor a les permissions nécessaires pour y accéder :
+
+`sudo ls -la /var/lib/tor/hidden_service/`
+
+On s’assure que le propriétaire du répertoire et de ses fichiers est **tor** :
+
+`sudo chown -R tor:tor /var/lib/tor/hidden_service`
+
+On vérifie que votre service web fonctionne :
+
+`curl http://127.0.0.1:8080`
+
+*Cela doit renvoyer la page d'accueil de votre service web. Si ce n'est pas le cas, vérifiez que votre service web est démarré et configuré correctement.*
+
+On vérifie les journaux de Tor :
+
+`sudo journalctl -u tor`
+
+*Les journaux de Tor peuvent fournir des informations supplémentaires sur ce qui ne va pas; on recherche des messages d'erreur ou des avertissements qui pourraient indiquer ce qui ne va pas.*
+
+On vérifie les permissions du répertoire et des fichiers :
+
+```sh
+sudo chmod 700 /var/lib/tor/hidden_service
+sudo chmod 600 /var/lib/tor/hidden_service/*
+```
+
+*On s’assure que la machine peut accéder à Internet et que les ports nécessaires sont ouverts et non bloqués par un pare-feu.*
+
+Une fois toutes les vérifications effectuées, on redémarre Tor :
+
+`sudo systemctl restart tor`
+
+----------
+
 Si vous avez cette erreur :
 
 `chown: utilisateur incorrect: « tor:tor »`
@@ -814,7 +867,6 @@ On redémarre Tor :
 On vérifie que Tor fonctionne correctement :
 
 `sudo systemctl status tor`
-
 
 ## ![](https://i.imgur.com/g5k59dd.png)
 
@@ -864,8 +916,6 @@ Une fois que toutes ces opérations sont effectuées, on redémarre le serveur :
 On se rend, via le [Navigateur Tor](https://www.torproject.org/download/) sur notre service `machou********************************.onion` !
 
 Et voilà, c’est terminé !
-
-
 
 Maintenant, lancez Tor sur votre ordinateur et connectez-vous au Hidden Service que vous avez généré plus haut !
 
@@ -1134,4 +1184,5 @@ Je vous recommande ces tutoriels :
 > Concernant les logs, 2 solutions, sur des machines dites “ sécurisées ” :
 > - soit de ne pas en émettre
 > - soit de les traiter avec logrotate (et le paramètre shred — 3 max.)
+
 Si vous avez des idées ou des améliorations à proposer, n’hésitez pas à postez un commentaire ci-dessous.
