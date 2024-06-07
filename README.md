@@ -11,7 +11,7 @@
 **Sommaire**
 
 - [Créer un Hidden Service sécurisé avec Tor sur Debian](#créer-un-hidden-service-sécurisé-avec-tor-sur-debian)
-- [Qu’est-ce que Tor et un Hidden Service ?](#-1)
+- Qu’est-ce que Tor et un Hidden Service ?
   - [Quelques règles importantes](#quelques-règles-importantes)
 - [Configuration du serveur](#-1)
 - [Installation d’un serveur LAMP](#-3)
@@ -1108,4 +1108,5 @@ Je vous recommande ces tutoriels :
 > Concernant les logs, 2 solutions, sur des machines dites “ sécurisées ” :
 > - soit de ne pas en émettre
 > - soit de les traiter avec logrotate (et le paramètre shred — 3 max.)
-Si vous avez des idées ou des améliorations à proposer, n’hésitez pas à postez un commentaire ci-dessous
+
+Si vous avez des idées ou des améliorations à proposer, n’hésitez pas à postez un commentaire ci-dessous.
