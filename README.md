@@ -305,12 +305,12 @@ On installe / désinstalle quelques logiciels pour la pratique et la sécurité,
 
 ***Suppressions***
 ----------
-- [ntp](https://packages.debian.org/fr/bookworm/ntp) : il s'agit d'un package de transition factice pour passer à NTPsec. Il peut être retiré en toute sécurité.
-- [rsyslog](https://packages.debian.org/fr/bookworm/rsyslog) : rsyslog est une implémentation à unités d'exécution multiples de syslogd (un outil système qui fournit une journalisation de message).
-- [exim4](https://packages.debian.org/fr/bookworm/exim4) : exim (version 4) est un agent de transport de courrier. Exim4 est le métapaquet sur lequel dépendent les composants essentiels d'une installation de base d'exim4.
-- [postfix](https://packages.debian.org/fr/bookworm/postfix) : postfix est l'agent de transport de courriel de Wietse Venema qui a commencé son existence comme une alternative au très utilisé programme Sendmail. Postfix vise à être rapide, facile à administrer et sécuritaire, tout en restant assez compatible avec Sendmail pour ne pas frustrer ses utilisateurs. Ainsi, l'externe ressemble à Sendmail, alors que la structure interne est complètement différente.
+- [ntp](https://packages.debian.org/fr/bookworm/ntp) : il s’agit d’un package de transition factice pour passer à NTPsec. Il peut être retiré en toute sécurité.
+- [rsyslog](https://packages.debian.org/fr/bookworm/rsyslog) : rsyslog est une implémentation à unités d’exécution multiples de syslogd (un outil système qui fournit une journalisation de message).
+- [exim4](https://packages.debian.org/fr/bookworm/exim4) : exim (version 4) est un agent de transport de courrier. Exim4 est le métapaquet sur lequel dépendent les composants essentiels d’une installation de base d’exim4.
+- [postfix](https://packages.debian.org/fr/bookworm/postfix) : postfix est l’agent de transport de courriel de Wietse Venema qui a commencé son existence comme une alternative au très utilisé programme Sendmail. Postfix vise à être rapide, facile à administrer et sécuritaire, tout en restant assez compatible avec Sendmail pour ne pas frustrer ses utilisateurs. Ainsi, l’externe ressemble à Sendmail, alors que la structure interne est complètement différente.
 - [sendmail](https://packages.debian.org/fr/bookworm/sendmail) : sendmail est un agent de transmission de courriels (MTA) alternatif pour Debian. Il est adapté pour le traitement des configurations de messagerie sophistiquées, quoique cela signifie aussi que sa configuration peut être complexe.
-- [samba](https://packages.debian.org/fr/bookworm/samba) : samba est une implémentation du protocole SMB/CIFS pour les systèmes Unix, offrant la prise en charge du partage de fichiers et d'imprimantes multiplateforme avec Microsoft Windows, OS X et d'autres systèmes Unix. Samba peut également fonctionner comme un contrôleur de domaine de style Active Directory ou NT4 et peut s'intégrer aux domaines Active Directory ou aux domaines NT4 en tant que serveur membre.
+- [samba](https://packages.debian.org/fr/bookworm/samba) : samba est une implémentation du protocole SMB/CIFS pour les systèmes Unix, offrant la prise en charge du partage de fichiers et d’imprimantes multiplateforme avec Microsoft Windows, OS X et d’autres systèmes Unix. Samba peut également fonctionner comme un contrôleur de domaine de style Active Directory ou NT4 et peut s'intégrer aux domaines Active Directory ou aux domaines NT4 en tant que serveur membre.
 
 ## ![Le serveur est configuré](https://i.imgur.com/CyiIlQx.png)
 
@@ -736,22 +736,20 @@ Redémarrer Tor va créer le répertoire **/var/lib/tor/hidden_service** ainsi q
 **hostname** : le nom de votre hidden service : *ujgftyuiolrmez3lotccipshtkleegetolb73fuirgj7r4o4vfu7ozyd.onion*, par exemple
 **private_key** : la clé privée de votre hidden service
 
-[color=red]Notez le contenu de **hostname** quelque part, on l’utilisera plus tard ![/color]
+*Notez le contenu de **hostname** quelque part, on l’utilisera plus tard !*
 
 ## ![Générer une adresse .onion personnalisée](https://i.imgur.com/oqHR9BC.png)
 
+Si vous souhaitez une adresse .onion personnalisée, lisez la suite, sinon on passe directement à la [Partie Apache2](#-11).
 
-[color=#1726ff]Si vous souhaitez une adresse .onion personnalisée, lisez la suite, sinon on passe directement à la **Partie Apache2**.[/color]
+Les adresses en .onion sont générées aléatoirement par un algorithme intégré à Tor et n’a pas d’identité propre, en revanche vous pouvez personnaliser les premiers caractères de l’adresse .onion. Le nombre de caractères dépendra de votre puissance de calcul liée à votre carte graphique ou processeur. On va utiliser le logiciel [mkp224o](https://github.com/cathugger/mkp224o) pour générer les adresses.
 
-Les adresses en .onion sont générées aléatoirement par un algorithme intégré à Tor et n’a pas d’identité propre, en revanche vous pouvez personnaliser les 5 – 9 premiers caractères de l’adresse .onion, au dessus de 9 ça prendra plusieurs années, voir siècles à générer :). Le nombre de caractères dépendra de votre puissance de calcul liée à votre carte graphique ou processeur. On va utiliser le logiciel [mkp224o](https://github.com/cathugger/mkp224o) pour générer les adresses.
+Temps moyen pour générer un alias personnalisé sur une carte graphique *nVidia GeForce GTX 4070* :
 
-Le temps pour générer un alias personnalisé sur une carte graphique *nVidia GeForce GTX 1070 Ti* :
-
-5 lettres : 7 minutes > monde-
-6 lettres : 3.5 heures > monded-
-7 lettres : 5 jours > mondedi-
-8 lettres : 22.5 semaines > mondedie-
-9 lettres : 14 années > mondedie.-
+5 lettres : 1 seconde
+6 lettres : 10 secondes
+7 lettres : 15 secondes
+8 lettres : 1 minute
 
 On installe les pré-requis :
 
@@ -965,9 +963,9 @@ end script' > sudo tee /etc/init/memory_wipe.conf
 
 `sudo find /var/log -type f -print0 | sudo xargs -0 shred -fuzv -n 35`
 
-Le logiciel [shred](https://doc.ubuntu-fr.org/shred) est un utilitaire de ligne de commande sous Linux et Unix qui permet de supprimer définitivement des fichiers en écrivant de manière aléatoire des données sur les emplacements de stockage correspondants. Il est généralement utilisé pour supprimer des fichiers sensibles ou confidentiels de manière sécurisée afin de s'assurer qu'ils ne peuvent pas être récupérés.
+Le logiciel [shred](https://doc.ubuntu-fr.org/shred) est un utilitaire de ligne de commande sous Linux et Unix qui permet de supprimer définitivement des fichiers en écrivant de manière aléatoire des données sur les emplacements de stockage correspondants. Il est généralement utilisé pour supprimer des fichiers sensibles ou confidentiels de manière sécurisée afin de s’assurer qu’ils ne peuvent pas être récupérés.
 
-Il est important de noter que l'utilisation de shred ne garantit pas à 100% que les données sont totalement irrécupérables, car il est toujours possible qu'une partie des données soit récupérée à l'aide de techniques de récupération avancées. Cependant, shred offre une méthode simple et efficace pour supprimer de manière sécurisée des fichiers sur un système Linux ou Unix.
+Il est important de noter que l’utilisation de shred ne garantit pas à 100% que les données sont totalement irrécupérables, car il est toujours possible qu’une partie des données soit récupérée à l’aide de techniques de récupération avancées. Cependant, shred offre une méthode simple et efficace pour supprimer de manière sécurisée des fichiers sur un système Linux ou Unix.
 
 ### Alias utiles pour le serveur
 
