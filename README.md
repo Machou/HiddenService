@@ -20,8 +20,8 @@
   - [Accéder aux tables SQL](#-7)
   - [Installation et configuration de Tor](#-8)
   - [Configuration du Hidden Service](#-9)
-  - [Générer une adresse .onion personnalisée](#-11)
-- [Facultatif](#13)
+  - [Générer une adresse .onion personnalisée](#-10)
+- [Facultatif](#-12)
   - [Configuration de la langue](#configuration-de-la-langue)
   - [Configuration de la date et heure](#configuration-de-la-date-et-heure)
   - [Rediriger le trafic réseau du serveur vers Tor](#rediriger-le-trafic-réseau-du-serveur-vers-tor)
@@ -695,7 +695,7 @@ On installe Tor :
 
 ## ![Configuration du Hidden Service](https://i.imgur.com/cOE7bYM.png)
 
-## ![](https://i.imgur.com/qUNWD7L.png)
+![](https://i.imgur.com/qUNWD7L.png)
 
 On configure Tor :
 
