@@ -11,7 +11,7 @@
 **Sommaire**
 
 - [Qu’est-ce que Tor et un Hidden Service ?](#)
-  - [Quelques règles importantes](#)
+  - [Quelques règles importantes](#quelques-r%C3%A8gles-importantes)
 - [Configuration du serveur](#)
 - [Installation d’un serveur LAMP](#)
   - [Apache](#)
@@ -64,7 +64,7 @@ Plusieurs choses :
 
 Malheureusement, qui dit anonymisation des utilisateurs, dit criminalité en tout genre, vente de drogue, d’arme, trafic d’être humain, de fausse monnaie, etc. et j’en passe. Il a des côtés positifs et des côtés négatifs. Que ça soit dans la vraie vie ou sur internet, on sera toujours embêté par les vilains… Le but de ce tutoriel n’est pas de vous montrer comment acheter de la drogue mais d’apprendre le fonctionnement d’un serveur web utilisant le service de cryptage de Tor.
 
-## [Quelques règles importantes](#Quelquesreglesimportantes)
+## Quelques règles importantes
 
 *Ce tutoriel est un exemple, en aucun cas on pousse à faire des choses illégales. De par les exemples, vous pouvez (je vous le conseil) d’adapter en fonction de vos besoins.*
 
