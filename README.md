@@ -963,8 +963,6 @@ end script' > sudo tee /etc/init/memory_wipe.conf
 
 ### On supprime ses traces
 
-*Cette opération est à effectuer en root.*
-
 `sudo find /var/log -type f -print0 | sudo xargs -0 shred -fuzv -n 35`
 
 Le logiciel [shred](https://doc.ubuntu-fr.org/shred) est un utilitaire de ligne de commande sous Linux et Unix qui permet de supprimer définitivement des fichiers en écrivant de manière aléatoire des données sur les emplacements de stockage correspondants. Il est généralement utilisé pour supprimer des fichiers sensibles ou confidentiels de manière sécurisée afin de s'assurer qu'ils ne peuvent pas être récupérés.
@@ -1097,15 +1095,16 @@ Une fois que toutes ces opérations sont effectuées, on redémarre le serveur :
 
 Je vous recommande ces tutoriels :
 
-- (Bien débuter sur Debian)[https://mondedie.fr/d/5438] [ Tutoriel réalisé par (Meister)[https://mondedie.fr/u/Meister] ]
-- (Changer le mot de passe d’un utilisateur)[https://mondedie.fr/d/5312] [ Tutoriel réalisé par (Magicalex)[https://mondedie.fr/u/Magicalex] ]
-- (Installation et configuration de PortSentry)[https://mondedie.fr/d/5318/3] [ Tutoriel réalisé par (ex_rat)[https://mondedie.fr/u/ex_rat] ]
-- (Installation et configuration de Fail2ban)[https://mondedie.fr/d/5318/2] [ Tutoriel réalisé par (ex_rat)[https://mondedie.fr/u/ex_rat] ]
-- (How To Secure A Linux Server)[https://github.com/imthenachoman/How-To-Secure-A-Linux-Server] (en)
-- (The Onion Diaries)[https://github.com/alecmuffett/the-onion-diaries/tree/master] (en)
+- [Bien débuter sur Debian](https://mondedie.fr/d/5438) [ Tutoriel réalisé par (Meister)[https://mondedie.fr/u/Meister] ] (🇫🇷)
+- [Changer le mot de passe d’un utilisateur](https://mondedie.fr/d/5312) [ Tutoriel réalisé par (Magicalex)[https://mondedie.fr/u/Magicalex] ] (🇫🇷)
+- [Installation et configuration de PortSentry](https://mondedie.fr/d/5318/3) [ Tutoriel réalisé par (ex_rat)[https://mondedie.fr/u/ex_rat] ] (🇫🇷)
+- [Installation et configuration de Fail2ban](https://mondedie.fr/d/5318/2) [ Tutoriel réalisé par (ex_rat)[https://mondedie.fr/u/ex_rat] ] (🇫🇷)
+- [How To Secure A Linux Server](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server) (🇺🇸)
+- [The Onion Diaries](https://github.com/alecmuffett/the-onion-diaries/tree/master) (🇺🇸)
 
 > À faire :
-> - bloquer les Ports inutiles
+> - heberger le site directement dans la ram
+> - bloquer les ports inutiles
 > - chiffrer le disque dur
 > - stocker les clés dans le CPU plutôt que dans la RAM (qui peut être copiée) par exemple via TRESOR
 > - SSH par clé avec accès selon IP ou par PortKnocking
