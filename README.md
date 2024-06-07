@@ -31,10 +31,10 @@
   - [Désactiver le transfert IP et le multi-hébergement](#désactiver-le-transfert-ip-et-le-multi-hébergement)
   - [Désactiver IPv6](#désactiver-ipv6)
   - [Quelques tutoriels utiles](#quelques-tutoriels-utiles)
-  
-## ![Configuration du serveur](https://i.imgur.com/X7vlrkf.png)
 
-## ![Tor et un Hidden Service](htthttps://i.ibb.co/XjgLzHc/Tor.png)
+# Créer un Hidden Service sécurisé avec Tor sur Debian
+
+## ![Tor et un Hidden Service](https://i.imgur.com/5osmxzl.png)
 
 Tor (acronyme de “ **The Onion Router** ”) est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœuds** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme "onion" (oignon) qui fait référence aux multiples couches de protection.
 
