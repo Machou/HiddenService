@@ -118,6 +118,8 @@ sudo su
 passwd
 ```
 
+----------
+
 > **Solution n°1 : Clés SSH**
 
 On génère les clés SSH avec l’algorithme de chiffrement [ed25519](https://fr.wikipedia.org/wiki/EdDSA) :
@@ -181,6 +183,8 @@ Entrez votre mot de passe de clé générée ci-dessus, voilà, vous êtes maint
 
 Source : [LeCrabe.info](https://lecrabeinfo.net/se-connecter-en-ssh-par-echange-de-cles-ssh.html#etape-1-generer-des-cles-ssh)
 *Vous y trouverez comment se connecter avec des clés SSH pour Windows, Mac et Linux*
+
+----------
 
 > **Solution n°2 : Mot de passe**
 
