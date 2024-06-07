@@ -305,11 +305,11 @@ On installe / désinstalle quelques logiciels pour la pratique et la sécurité,
 - [sendmail](https://packages.debian.org/fr/bookworm/sendmail) : sendmail est un agent de transmission de courriels (MTA) alternatif pour Debian. Il est adapté pour le traitement des configurations de messagerie sophistiquées, quoique cela signifie aussi que sa configuration peut être complexe.
 - [samba](https://packages.debian.org/fr/bookworm/samba) : samba est une implémentation du protocole SMB/CIFS pour les systèmes Unix, offrant la prise en charge du partage de fichiers et d'imprimantes multiplateforme avec Microsoft Windows, OS X et d'autres systèmes Unix. Samba peut également fonctionner comme un contrôleur de domaine de style Active Directory ou NT4 et peut s'intégrer aux domaines Active Directory ou aux domaines NT4 en tant que serveur membre.
 
-![](https://i.imgur.com/CyiIlQx.png)
+## ![Le serveur est configuré](https://i.imgur.com/CyiIlQx.png)
 
-![](https://i.imgur.com/lcwfXBO.png)
+## ![Installation d’un serveur LAMP](https://i.imgur.com/lcwfXBO.png)
 
-![](https://i.imgur.com/fuZ98Ii.png)
+## ![Installation et configuration d’Apache2](https://i.imgur.com/fuZ98Ii.png)
 
 On installe Apache2 :
 
@@ -559,7 +559,7 @@ On sauvegarde le fichier **php.ini** et on redémarre Apache2 :
 
 `sudo service apache2 restart`
 
-![](https://i.imgur.com/M0oAHgF.png)
+## ![Installation et configuration de MySQL](https://i.imgur.com/M0oAHgF.png)
 
 MariaDB est un système de gestion de base de données édité sous licence GPL. Il s’agit d’un embranchement communautaire de MySQL : la gouvernance du projet est assurée par la fondation MariaDB, et sa maintenance par la société Monty Program AB, créateur du projet. Cette gouvernance confère au logiciel l’assurance de rester libre.
 
@@ -620,7 +620,7 @@ On redémarre le VPS !
 
 `sudo reboot`
 
-![](https://i.imgur.com/HxJYAuC.png)
+## ![Accéder aux tables SQL](https://i.imgur.com/HxJYAuC.png)
 
 Pour accéder à vos données enregistrer dans vos tables SQL, il va nous falloir un outil de gestion de base de données complet, simple et efficace.
 
@@ -655,7 +655,7 @@ On renomme logiquement le fichier aléatoirement, pour éviter, si vous oubliez 
 -[Site officiel d’Adminer](https://www.adminer.org/)
 -[Dépôt GitHub officiel](https://github.com/vrana/adminer)
 
-![](https://i.imgur.com/JFk1F4l.png)
+## ![Installation de Tor](https://i.imgur.com/JFk1F4l.png)
 
 Tor est un réseau informatique superposé mondial et décentralisé. Il se compose de serveurs, appelés nœuds du réseau et dont la liste est publique. Ce réseau permet d’anonymiser l’origine de connexions TCP. Cela peut entre autres servir à anonymiser la source d’une session de navigation Web ou de messagerie instantanée. Cependant, l’anonymisation du flux n’est pas totale, car l’application peut transmettre des informations annexes permettant d’identifier la personne, c’est pourquoi le projet Tor développe également un navigateur Web fondé sur Firefox, Tor Browser, ainsi que d’autres applications spécialement modifiées pour préserver l’anonymat de leurs usagers. L’implémentation de référence du protocole s’appelle « tor », c’est un logiciel libre sous licence BSD révisée.
 
@@ -692,9 +692,9 @@ On installe Tor :
 
 `sudo apt install tor deb.torproject.org-keyring`
 
-[center][img]https://i.imgur.com/cOE7bYM.png[/img][/center]
+## ![Configuration du Hidden Service](https://i.imgur.com/cOE7bYM.png)
 
-[center][img]https://i.imgur.com/qUNWD7L.png[/img][/center]
+## ![](https://i.imgur.com/qUNWD7L.png)
 
 On configure Tor :
 
@@ -731,10 +731,10 @@ Redémarrer Tor va créer le répertoire **/var/lib/tor/hidden_service** ainsi q
 
 [color=red]Notez le contenu de **hostname** quelque part, on l’utilisera plus tard ![/color]
 
+## ![Générer une adresse .onion personnalisée](https://i.imgur.com/oqHR9BC.png)
 
-[center][img]https://i.imgur.com/oqHR9BC.png[/img][/center]
 
-[color=#1726ff]Si vous souhaitez une adresse .onion personnalisée, lisez la suite, sinon on passe directement à la **Partie Apache 2**.[/color]
+[color=#1726ff]Si vous souhaitez une adresse .onion personnalisée, lisez la suite, sinon on passe directement à la **Partie Apache2**.[/color]
 
 Les adresses en .onion sont générées aléatoirement par un algorithme intégré à Tor et n’a pas d’identité propre, en revanche vous pouvez personnaliser les 5 – 9 premiers caractères de l’adresse .onion, au dessus de 9 ça prendra plusieurs années, voir siècles à générer :). Le nombre de caractères dépendra de votre puissance de calcul liée à votre carte graphique ou processeur. On va utiliser le logiciel [mkp224o](https://github.com/cathugger/mkp224o) pour générer les adresses.
 
@@ -777,13 +777,13 @@ sudo chown -R tor: /var/lib/tor/hidden_service
 sudo chmod -R u+rwX,og-rwx /var/lib/tor/hidden_service
 ```
 
-[center][img]https://i.imgur.com/g5k59dd.png[/img][/center]
+## ![](https://i.imgur.com/g5k59dd.png)
 
-**Partie Apache 2**
+**Partie Apache2**
 
-*On doit configurer Apache 2 afin de se connecter au **Hidden Service**, cette opération a été mentionnée plus haut, donc si vous ne l’avez pas effectuée, faites-le maintenant !*
+*On doit configurer Apache2 afin de se connecter au **Hidden Service**, cette opération a été mentionnée plus haut, donc si vous ne l’avez pas effectuée, faites-le maintenant !*
 
-On modifie le port d’écoute d’Apache 2 :
+On modifie le port d’écoute d’Apache2 :
 
 `sudo nano /etc/apache2/ports.conf`
 
@@ -807,7 +807,7 @@ par
 
 `<VirtualHost 127.0.0.1:80>`
 
-On ajoute le nom du Hidden Service (**Contenu dans /var/lib/tor/hidden_service/hostname**) pour qu’Apache 2 le reconnaisse :
+On ajoute le nom du Hidden Service (**Contenu dans /var/lib/tor/hidden_service/hostname**) pour qu’Apache2 le reconnaisse :
 
 `ServerName VOTREHIDDENSERVICE.onion`
 
@@ -839,9 +839,9 @@ Et voilà, c’est terminé !
 
 Maintenant, lancez Tor sur votre ordinateur et connectez-vous au Hidden Service que vous avez généré plus haut !
 
-[center][img]https://i.imgur.com/fhSskNA.png[/img][/center]
+## ![Facultatif](https://i.imgur.com/fhSskNA.png)
 
-***Configuration de la langue***
+### Configuration de la langue
 
 On peut changer la langue pour brouiller un peu les pistes :
 
@@ -860,7 +860,7 @@ Generation complete.
 
 La langue française a été choisie, mais libre à vous de configurer celle que vous souhaitez, c’est d’ailleurs fortement recommandé de ne pas choisir votre langue maternelle, sinon laissez celle par défaut.
 
-***Configuration de la date et heure***
+### Configuration de la date et heure
 
 On peut changer la date et heure pour brouiller un peu les pisteurs :
 
@@ -878,7 +878,7 @@ Universal Time is now:  Mon Aug 22 15:11:16 UTC 2022.
 
 Le fuseau horaire de Paris a été choisi, mais libre à vous de configurer celui que vous souhaitez, c’est d’ailleurs fortement recommandé de ne pas choisir celui où vous logez (pays ou ville), sinon laissez celui par défaut.
 
-***Rediriger le trafic réseau du serveur vers Tor***
+### Rediriger le trafic réseau du serveur vers Tor
 
 **Nipe** est un script pour faire de Tor Network votre passerelle réseau par défaut.
 
@@ -932,7 +932,7 @@ Démo : ![](https://heitorgouvea.me/images/projects/nipe/demo.gif)
 
 - [Dépôt GitHub officiel du projet Nipe](https://github.com/GouveaHeitor/nipe)
 
-***Réécrire la RAM avant un arrêt / redémarrage du serveur***
+### Réécrire la RAM avant un arrêt / redémarrage du serveur
 
 On va réécrire la RAM avant chaque arrêt / redémarrage serveur, pour éviter les attaques type [attaque par démarrage à froid](https://fr.wikipedia.org/wiki/Attaque_par_d%C3%A9marrage_%C3%A0_froid).
 
@@ -954,7 +954,7 @@ script
 end script' > sudo tee /etc/init/memory_wipe.conf
 ```
 
-***On supprime ses traces***
+### On supprime ses traces
 
 *Cette opération est à effectuer en root.*
 
@@ -964,7 +964,7 @@ Le logiciel [shred](https://doc.ubuntu-fr.org/shred) est un utilitaire de ligne 
 
 Il est important de noter que l'utilisation de shred ne garantit pas à 100% que les données sont totalement irrécupérables, car il est toujours possible qu'une partie des données soit récupérée à l'aide de techniques de récupération avancées. Cependant, shred offre une méthode simple et efficace pour supprimer de manière sécurisée des fichiers sur un système Linux ou Unix.
 
-***Alias utiles pour le serveur***
+### Alias utiles pour le serveur
 
 On édite notre fichier **~/.bashrc** :
 
@@ -986,7 +986,7 @@ On recharge le fichier **~/.bashrc** :
 
 `source ~/.bashrc`
 
-***Désactiver le transfert IP et le multi-hébergement***
+### Désactiver le transfert IP et le multi-hébergement
 
 `sudo nano /etc/sysctl.conf`
 
@@ -1008,7 +1008,7 @@ On redémarre le serveur :
 
 `sudo reboot`
 
-***Désactiver IPv6***
+### Désactiver IPv6
 
 Si vous souhaitez désactiver l’IPv6, on procède comme cela :
 
@@ -1086,15 +1086,16 @@ Une fois que toutes ces opérations sont effectuées, on redémarre le serveur :
 
 `sudo reboot`
 
-***Quelques tutoriels utiles***
+### Quelques tutoriels utiles
 
-Je vous recommande ces tutoriels, ce n’est pas obligatoire, mais fortement recommandé :
+Je vous recommande ces tutoriels :
 
 - (Bien débuter sur Debian)[https://mondedie.fr/d/5438] [ Tutoriel réalisé par (Meister)[https://mondedie.fr/u/Meister] ]
 - (Changer le mot de passe d’un utilisateur)[https://mondedie.fr/d/5312] [ Tutoriel réalisé par (Magicalex)[https://mondedie.fr/u/Magicalex] ]
 - (Installation et configuration de PortSentry)[https://mondedie.fr/d/5318/3] [ Tutoriel réalisé par (ex_rat)[https://mondedie.fr/u/ex_rat] ]
 - (Installation et configuration de Fail2ban)[https://mondedie.fr/d/5318/2] [ Tutoriel réalisé par (ex_rat)[https://mondedie.fr/u/ex_rat] ]
 - (How To Secure A Linux Server)[https://github.com/imthenachoman/How-To-Secure-A-Linux-Server] (en)
+- (The Onion Diaries)[https://github.com/alecmuffett/the-onion-diaries/tree/master] (en)
 
 > À faire :
 > - bloquer les Ports inutiles
