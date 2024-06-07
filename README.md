@@ -311,7 +311,7 @@ On installe / désinstalle quelques logiciels pour la pratique et la sécurité,
 - [exim4](https://packages.debian.org/fr/bookworm/exim4) : exim (version 4) est un agent de transport de courrier. Exim4 est le métapaquet sur lequel dépendent les composants essentiels d’une installation de base d’exim4.
 - [postfix](https://packages.debian.org/fr/bookworm/postfix) : postfix est l’agent de transport de courriel de Wietse Venema qui a commencé son existence comme une alternative au très utilisé programme Sendmail. Postfix vise à être rapide, facile à administrer et sécuritaire, tout en restant assez compatible avec Sendmail pour ne pas frustrer ses utilisateurs. Ainsi, l’externe ressemble à Sendmail, alors que la structure interne est complètement différente.
 - [sendmail](https://packages.debian.org/fr/bookworm/sendmail) : sendmail est un agent de transmission de courriels (MTA) alternatif pour Debian. Il est adapté pour le traitement des configurations de messagerie sophistiquées, quoique cela signifie aussi que sa configuration peut être complexe.
-- [samba](https://packages.debian.org/fr/bookworm/samba) : samba est une implémentation du protocole SMB/CIFS pour les systèmes Unix, offrant la prise en charge du partage de fichiers et d’imprimantes multiplateforme avec Microsoft Windows, OS X et d’autres systèmes Unix. Samba peut également fonctionner comme un contrôleur de domaine de style Active Directory ou NT4 et peut s'intégrer aux domaines Active Directory ou aux domaines NT4 en tant que serveur membre.
+- [samba](https://packages.debian.org/fr/bookworm/samba) : samba est une implémentation du protocole SMB/CIFS pour les systèmes Unix, offrant la prise en charge du partage de fichiers et d’imprimantes multiplateforme avec Microsoft Windows, OS X et d’autres systèmes Unix. Samba peut également fonctionner comme un contrôleur de domaine de style Active Directory ou NT4 et peut s’intégrer aux domaines Active Directory ou aux domaines NT4 en tant que serveur membre.
 
 ## ![Le serveur est configuré](https://i.imgur.com/CyiIlQx.png)
 
@@ -791,11 +791,11 @@ sudo chmod -R u+rwX,og-rwx /var/lib/tor/hidden_service
 
 ## FAQ Debug Tor
 
-On vérifie l'état du service Tor :
+On vérifie l’état du service Tor :
 
 `sudo systemctl status tor`
 
-Si le service n'est pas actif, on le redémarre :
+Si le service n’est pas actif, on le redémarre :
 
 `sudo systemctl restart tor`
 
@@ -818,13 +818,13 @@ On vérifie que votre service web fonctionne :
 
 `curl http://127.0.0.1:8080`
 
-*Cela doit renvoyer la page d'accueil de votre service web. Si ce n'est pas le cas, vérifiez que votre service web est démarré et configuré correctement.*
+*Cela doit renvoyer la page d’accueil de votre service web. Si ce n’est pas le cas, vérifiez que votre service web est démarré et configuré correctement.*
 
 On vérifie les journaux de Tor :
 
 `sudo journalctl -u tor`
 
-*Les journaux de Tor peuvent fournir des informations supplémentaires sur ce qui ne va pas; on recherche des messages d'erreur ou des avertissements qui pourraient indiquer ce qui ne va pas.*
+*Les journaux de Tor peuvent fournir des informations supplémentaires sur ce qui ne va pas; on recherche des messages d’erreur ou des avertissements qui pourraient indiquer ce qui ne va pas.*
 
 On vérifie les permissions du répertoire et des fichiers :
 
