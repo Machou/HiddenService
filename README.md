@@ -40,7 +40,7 @@ Tor (acronyme de “ **The Onion Router** ”) est un réseau de communication a
 
 Un Hidden Service (ou service caché) est un service accessible uniquement via le réseau Tor. Ces services utilisent des adresses en ".onion" et permettent aux sites web, aux forums, aux messageries instantanées et à d’autres types de services de fonctionner de manière anonyme. Les utilisateurs peuvent accéder à ces services sans connaître l’emplacement physique du serveur, et le serveur ne connaît pas l’adresse IP des utilisateurs. Cela garantit une confidentialité et une sécurité accrues pour les deux parties. Les Hidden Services sont souvent utilisés pour protéger la vie privée des utilisateurs, mais ils peuvent aussi être utilisés à des fins malveillantes en raison de l’anonymat qu’ils offrent.
 
-[![](https://i.ibb.co/fY6VCzk/Geographies-of-Tor.png)
+![](https://i.ibb.co/fY6VCzk/Geographies-of-Tor.png)
 
 > *Cartographie des utilisateurs Tor, par pays.* [Les statistiques officielles du projet Tor](https://metrics.torproject.org/)
 
