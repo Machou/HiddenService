@@ -376,7 +376,6 @@ Les fichiers :
 - **/etc/apache2/sites-available/** : répertoire pour les fichiers de configuration des sites disponibles.
 - **/etc/apache2/sites-enabled/** : répertoire pour les fichiers de configuration des sites activés.
 
-
 On supprime le dossier **/var/www/html** :
 
 `sudo rm -rf /var/www/html`
@@ -389,39 +388,40 @@ sudo chmod 775 /var/www
 sudo usermod -aG www-data salameche
 ```
 
-On bloque l’accès direct à l’IP du serveur :
-
-On crée un fichier **direct.conf**
-
-`sudo nano /etc/apache2/sites-available/direct.conf`
-
-On insère :
-
-```sh
-<VirtualHost *:80>
-	ServerName 127.2.2.2
-	Redirect 403
-	DocumentRoot /dev/null
-</VirtualHost>
-```
-
-*127.2.2.2 correspond à l’IP du serveur.*
-
 **Le VirtualHost**
 
 > Un **VirtualHost** est une configuration qui permet à un serveur unique de répondre à des requêtes pour plusieurs noms de domaine. Cette fonctionnalité est particulièrement utile pour les serveurs web qui hébergent plusieurs sites web, permettant ainsi à chaque site d’avoir ses propres configurations et paramètres, tout en partageant les mêmes ressources serveur.
 
-On active le VirtualHost :
-
-`sudo a2ensite direct`
-
-On désactive le [mod_autoindex](https://httpd.apache.org/docs/2.4/fr/mod/mod_autoindex.html) :
+On désactive le [mod_autoindex](https://httpd.apache.org/docs/2.4/fr/mod/mod_autoindex.html) et le [mod_status](https://httpd.apache.org/docs/2.4/fr/mod/mod_status.html) :
 
 `sudo a2dismod autoindex status`
 
+- **mod_autoindex** : fournit une fonctionnalité de génération de listes de répertoires automatiques lorsque le serveur web reçoit une requête pour un répertoire qui ne contient pas de fichier index (comme index.html, index.php, etc.).
+
+En d’autres termes, lorsque vous accédez à un répertoire sur un serveur web Apache et qu’aucun fichier d’index n’est présent dans ce répertoire, le module **mod_autoindex** génère automatiquement une liste des fichiers et répertoires contenus dans ce répertoire et la renvoie au client (le navigateur web) sous forme de page HTML. Cette page affiche généralement le nom, la taille et la date de modification des fichiers, ainsi que des liens pour naviguer dans les répertoires.
+
+Le module **mod_autoindex** offre également des fonctionnalités de personnalisation permettant de modifier l’apparence et le comportement de ces listes de répertoires, comme la possibilité de masquer certains fichiers, d’ajouter des en-têtes et des pieds de page personnalisés, ou encore de définir des icônes pour différents types de fichiers.
+
+En résumé, le module Apache **mod_autoindex** simplifie la gestion des répertoires sur un serveur web en générant automatiquement des listes de fichiers et de répertoires lorsque nécessaire, offrant ainsi une manière pratique de naviguer dans la structure des fichiers sur un site web.
+
+- **mod_status** : Le module Apache **mod_status** est un module optionnel pour le serveur web Apache qui fournit des informations en temps réel sur la performance et l’utilisation du serveur. Il expose ces informations via une page HTML accessible via une URL spécifique.
+
+Voici quelques-unes des informations que **mod_status** peut fournir :
+
+- Statut du serveur : Il indique si le serveur est en cours d’exécution ou s’il est arrêté.
+- Nombre de requêtes en cours : Combien de requêtes sont actuellement en cours de traitement par le serveur.
+- Statistiques sur les requêtes : Nombre total de requêtes traitées depuis le démarrage du serveur, ainsi que des statistiques détaillées telles que le nombre de requêtes traitées par seconde.
+- Statistiques sur les processus : Nombre de processus Apache en cours d’exécution, leur état (actif, en attente, etc.) et leur utilisation de la mémoire.
+- Connexions : Informations sur les connexions actives et les connexions en attente.
+- Détails sur les workers : Pour les configurations avec plusieurs workers (travailleurs), **mod_status** peut fournir des détails sur chaque worker, y compris leur état et leur utilisation des ressources.
+
+Le module **mod_status** est souvent utilisé pour surveiller et diagnostiquer la performance du serveur Apache, ainsi que pour détecter tout problème éventuel. Il peut être particulièrement utile pour les administrateurs système chargés de gérer et de surveiller un serveur web Apache en temps réel.
+
+Il convient de noter que, comme tout module Apache, **mod_status** doit être activé et configuré dans le fichier de configuration d’Apache pour être utilisé, et il est généralement recommandé de restreindre l’accès à la page de statut pour des raisons de sécurité.
+
 On active différents modules utiles pour Apache2 :
 
-`sudo a2enmod deflate headers rewrite ssl`
+`sudo a2enmod deflate headers rewrite`
 
 On quitte et on redémarre Apache2 :
 
@@ -486,76 +486,58 @@ On configure PHP :
 On remplace et / ou rajoute :
 
 ```ini
-# https://www.php.net/manual/fr/ini.core.php#ini.short-open-tag
+; https://www.php.net/manual/fr/ini.core.php#ini.short-open-tag
 short_open_tag = Off
 
 ; https://www.php.net/manual/fr/ini.core.php#ini.open-basedir
 open_basedir = /var/www
 
-disable_functions = fonctions précédentes
-# on y ajoute : ,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,highlight_file,show_source,mail,phpinfo,passthru,eval,proc_get_status,proc_nice,proc_open,proc_terminate,ftp_alloc,ftp_cdup,ftp_chdir,ftp_close,ftp_connect,ftp_delete,ftp_exec,ftp_fget,ftp_fput,ftp_get,ftp_put,ftp_nlist,imap_open
+disable_functions = fonctions précédentes + ,passthru,shell_exec,system,proc_open,popen,curl_exec,curl_multi_exec,parse_ini_file,highlight_file,show_source,mail,phpinfo,passthru,eval,proc_get_status,proc_nice,proc_open,proc_terminate,ftp_alloc,ftp_cdup,ftp_chdir,ftp_close,ftp_connect,ftp_delete,ftp_exec,ftp_fget,ftp_fput,ftp_get,ftp_put,ftp_nlist,imap_open
 
-# https://www.php.net/manual/fr/info.configuration.php#ini.max-execution-time
+; https://www.php.net/manual/fr/info.configuration.php#ini.max-execution-time
 max_execution_time = 60
 
-# https://www.php.net/manual/fr/info.configuration.php#ini.max-input-time
+; https://www.php.net/manual/fr/info.configuration.php#ini.max-input-time
 max_input_time = -1
 
-# https://www.php.net/manual/fr/errorfunc.configuration.php#ini.display-errors
+; https://www.php.net/manual/fr/errorfunc.configuration.php#ini.display-errors
 display_errors = Off
 
-# https://www.php.net/manual/fr/errorfunc.configuration.php#ini.display-startup-errors
+; https://www.php.net/manual/fr/errorfunc.configuration.php#ini.display-startup-errors
 display_startup_errors = Off
 
-# https://www.php.net/manual/fr/errorfunc.configuration.php#ini.log-errors
+; https://www.php.net/manual/fr/errorfunc.configuration.php#ini.log-errors
 log_errors = On
 
-# https://www.php.net/manual/fr/ini.core.php#ini.post-max-size
+; https://www.php.net/manual/fr/ini.core.php#ini.post-max-size
 post_max_size = 8M
 
-# https://www.php.net/manual/fr/ini.core.php#ini.upload-max-filesize
+; https://www.php.net/manual/fr/ini.core.php#ini.upload-max-filesize
 upload_max_filesize = 8M
 
-# https://www.php.net/manual/fr/ini.core.php#ini.max-file-uploads
-max_file_uploads = 1
+; https://www.php.net/manual/fr/ini.core.php#ini.max-file-uploads
+max_file_uploads = 0
 
-# https://www.php.net/manual/fr/ini.core.php#ini.file-uploads
-file_uploads = On
+; https://www.php.net/manual/fr/ini.core.php#ini.file-uploads
+file_uploads = Off
 
-# https://www.php.net/manual/fr/datetime.configuration.php#ini.date.timezone
+; https://www.php.net/manual/fr/datetime.configuration.php#ini.date.timezone
 date.timezone = Australia/Melbourne
-# A changer pour brouiller les pistes
 
-# https://www.php.net/manual/fr/ini.core.php#ini.expose-php
+; https://www.php.net/manual/fr/ini.core.php#ini.expose-php
 expose_php = Off
 
-# https://www.php.net/manual/fr/filesystem.configuration.php#ini.allow-url-fopen
+; https://www.php.net/manual/fr/filesystem.configuration.php#ini.allow-url-fopen
 allow_url_fopen = Off
 
-# https://www.php.net/manual/fr/filesystem.configuration.php#ini.allow-url-include
+; https://www.php.net/manual/fr/filesystem.configuration.php#ini.allow-url-include
 allow_url_include = Off
 
-# https://www.php.net/manual/fr/mysqlnd.config.php#ini.mysqlnd.collect-statistics
+; https://www.php.net/manual/fr/mysqlnd.config.php#ini.mysqlnd.collect-statistics
 mysqlnd.collect_statistics = Off
 
-# https://www.php.net/manual/fr/mysqlnd.config.php#ini.mysqlnd.collect-memory-statistics
+; https://www.php.net/manual/fr/mysqlnd.config.php#ini.mysqlnd.collect-memory-statistics
 mysqlnd.collect_memory_statistics = Off
-
-# https://www.php.net/manual/fr/context.http.php
-user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/118.0"
-# Liste de tous les user_agent disponibles : https://developers.whatismybrowser.com/useragents/explore/
-
-# https://www.php.net/manual/fr/opcache.configuration.php#ini.opcache.enable
-opcache.enable = 1
-
-# https://www.php.net/manual/fr/opcache.configuration.php#ini.opcache.memory-consumption
-opcache.memory_consumption = 128
-
-# https://www.php.net/manual/fr/opcache.configuration.php#ini.opcache.interned-strings-buffer
-opcache.interned_strings_buffer = 8
-
-# https://www.php.net/manual/fr/opcache.configuration.php#ini.opcache.revalidate-freq
-opcache.revalidate_freq = 2
 ```
 
 Ces fonctions sont à titre d’information, vous pouvez activer / désactiver celles que vous souhaitez.
@@ -898,9 +880,33 @@ Header set X-XSS-Protection "1; mode=block"
 Header always set Strict-Transport-Security "max-age=2592000; includeSubDomains; preload;"
 ```
 
-On active notre site par défaut :
+On active le VirtualHost par défaut :
 
 `sudo a2ensite 000-default`
+
+On récupère l’adresse IP de notre serveur, `185.141.102.27`, et on bloque l’accès direct à l’IP du serveur :
+
+On crée un fichier **direct.conf** :
+
+`sudo nano /etc/apache2/sites-available/direct.conf`
+
+On insère :
+
+```sh
+<VirtualHost *:80>
+	ServerName 185.141.102.27
+	Redirect 403
+	DocumentRoot /dev/null
+</VirtualHost>
+```
+
+On active le VirtualHost :
+
+`sudo a2ensite direct`
+
+On quitte et on redémarre Apache2 :
+
+`sudo service apache2 restart`
 
 On teste une page :
 
@@ -913,11 +919,11 @@ Une fois que toutes ces opérations sont effectuées, on redémarre le serveur :
 
 `sudo reboot`
 
-On se rend, via le [Navigateur Tor](https://www.torproject.org/download/) sur notre service `machou********************************.onion` !
-
 Et voilà, c’est terminé !
 
-Maintenant, lancez Tor sur votre ordinateur et connectez-vous au Hidden Service que vous avez généré plus haut !
+Maintenant, lancez le [Navigateur Tor](https://www.torproject.org/download/) sur votre ordinateur et connectez-vous au Hidden Service que vous avez généré plus haut !
+
+![](https://i.ibb.co/M267kK8/onion.png)
 
 ## ![Facultatif](https://i.imgur.com/fhSskNA.png)
 
