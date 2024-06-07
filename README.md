@@ -380,15 +380,12 @@ On supprime le dossier **/var/www/html** :
 
 `sudo rm -rf /var/www/html`
 
-On applique les droits **Apache2** sur le dossier du site :
+On applique les droits **Apache2** sur le dossier de notre futur Hidden Service :
 
 ```sh
-# Le groupe www-data devient propriétaire
 sudo chown -R www-data:www-data /var/www
-# Avoir tous les droits sur le répertoire
 sudo chmod 775 /var/www
-# Ajouter l’utilisateur salameche au groupe www-data
-sudo usermod -a -G www-data salameche
+sudo usermod -aG www-data salameche
 ```
 
 On bloque l’accès direct à l’IP du serveur :
@@ -714,7 +711,7 @@ HiddenServiceDir /var/lib/tor/hidden_service/
 HiddenServicePort 80 127.0.0.1:8080
 ```
 
-On limite l’accès à Tor SOCKS sur 127.0.0.0.1 :
+On limite l’accès à Tor SOCKS sur 127.0.0.1 :
 
 On recherche et ajoute / dé-commente ces lignes :
 
@@ -786,6 +783,34 @@ sudo chown -R tor: /var/lib/tor/hidden_service
 sudo chmod -R u+rwX,og-rwx /var/lib/tor/hidden_service
 ```
 
+Si vous avez cette erreur :
+
+`chown: utilisateur incorrect: « tor:tor »`
+
+On doit créer le groupe tor :
+
+`sudo groupadd tor`
+
+On créé l’utilisateur tor et on l’ajoute au groupe tor :
+
+`sudo useradd -g tor -s /bin/false tor`
+
+On définit les permissions du répertoire du Hidden Service :
+
+```sh
+sudo mkdir -p /var/lib/tor/hidden_service
+sudo chown -R tor:tor /var/lib/tor/hidden_service
+```
+
+On redémarre Tor :
+
+`sudo systemctl restart tor`
+
+On vérifie que Tor fonctionne correctement :
+
+`sudo systemctl status tor`
+
+
 ## ![](https://i.imgur.com/g5k59dd.png)
 
 **Partie Apache2**
@@ -851,7 +876,7 @@ Une fois que toutes ces opérations sont effectuées, on redémarre le serveur :
 
 `sudo reboot`
 
-On se rend, via le [Navigateur Tor](https://www.torproject.org/download/) sur notre service ***machou********************************.onion*** !
+On se rend, via le [Navigateur Tor](https://www.torproject.org/download/) sur notre service `machou********************************.onion` !
 
 Et voilà, c’est terminé !
 
@@ -1124,5 +1149,4 @@ Je vous recommande ces tutoriels :
 > Concernant les logs, 2 solutions, sur des machines dites “ sécurisées ” :
 > - soit de ne pas en émettre
 > - soit de les traiter avec logrotate (et le paramètre shred — 3 max.)
-
 Si vous avez des idées ou des améliorations à proposer, n’hésitez pas à postez un commentaire ci-dessous.
