@@ -14,14 +14,14 @@
   - [Quelques règles importantes](#quelques-régles-importantes)
 - [Configuration du serveur](#configuration-du-serveur)
 - [Installation d’un serveur LAMP](#installation-dun-serveur-lamp)
-  - [Apache](#apache)
-  - [PHP](#php)
-  - [MariaDB](#mariadb)
+  - [Apache](#3)
+  - [PHP](#4)
+  - [MariaDB](#5)
   - [Accéder aux tables SQL](#6)
-  - [Installation et configuration de Tor](#installation-et-configuration-de-tor)
+  - [Installation et configuration de Tor](#7)
   - [Configuration du Hidden Service](#-8)
   - [Générer une adresse .onion personnalisée](#-10)
-- [Facultatif](#Facultatif)
+- [Facultatif](#12)
   - [Configuration de la langue](#configuration-de-la-langue)
   - [Configuration de la date et heure](#configuration-de-la-date-et-heure)
   - [Rediriger le trafic réseau du serveur vers Tor](#rediriger-le-trafic-réseau-du-serveur-vers-tor)
@@ -32,7 +32,7 @@
   - [Désactiver IPv6](#désactiver-ipv6)
   - [Quelques tutoriels utiles](#quelques-tutoriels-utiles)
 
-## ![](https://image.ibb.co/gNRrh8/t_Qw_ZJd8_min.png)
+## ![Tor et un Hidden Service](https://image.ibb.co/gNRrh8/t_Qw_ZJd8_min.png)
 
 Tor (acronyme de “ **The Onion Router** ”) est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœuds** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme "onion" (oignon) qui fait référence aux multiples couches de protection.
 
