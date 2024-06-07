@@ -31,17 +31,18 @@
   - [Désactiver le transfert IP et le multi-hébergement](#désactiver-le-transfert-ip-et-le-multi-hébergement)
   - [Désactiver IPv6](#désactiver-ipv6)
   - [Quelques tutoriels utiles](#quelques-tutoriels-utiles)
+  
+## ![Configuration du serveur](https://i.imgur.com/X7vlrkf.png)
 
-## ![Tor et un Hidden Service](https://image.ibb.co/gNRrh8/t_Qw_ZJd8_min.png)
+## ![Tor et un Hidden Service](htthttps://i.ibb.co/XjgLzHc/Tor.png)
 
 Tor (acronyme de “ **The Onion Router** ”) est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœuds** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme "onion" (oignon) qui fait référence aux multiples couches de protection.
 
 Un Hidden Service (ou service caché) est un service accessible uniquement via le réseau Tor. Ces services utilisent des adresses en ".onion" et permettent aux sites web, aux forums, aux messageries instantanées et à d’autres types de services de fonctionner de manière anonyme. Les utilisateurs peuvent accéder à ces services sans connaître l’emplacement physique du serveur, et le serveur ne connaît pas l’adresse IP des utilisateurs. Cela garantit une confidentialité et une sécurité accrues pour les deux parties. Les Hidden Services sont souvent utilisés pour protéger la vie privée des utilisateurs, mais ils peuvent aussi être utilisés à des fins malveillantes en raison de l’anonymat qu’ils offrent.
 
 [![Cartographie des utilisateurs Tor, par pays.](https://i.ibb.co/fY6VCzk/Geographies-of-Tor.png)](https://i.ibb.co/fY6VCzk/Geographies-of-Tor.png)
-*Cartographie des utilisateurs Tor, par pays.*
 
-> [Les statistiques officielles du projet Tor](https://metrics.torproject.org/)
+> *Cartographie des utilisateurs Tor, par pays.* [Les statistiques officielles du projet Tor](https://metrics.torproject.org/)
 
 Tor est utilisé pour se protéger contre une certaine forme de surveillance sur Internet, connue sous le nom d’analyse de trafic. Cette analyse est utilisée pour déterminer qui communique avec qui sur un réseau public. Connaitre la source et la destination de votre trafic peut permettre à des personnes de traquer votre comportement et vos intérêts. Cartogramme de l’usage de Tor à l’international.
 
