@@ -767,13 +767,17 @@ On configure **mkp224o** :
 make
 ```
 
-On créé notre adresse personnalisée qui commence par **mondedi** :
+On créé notre adresse personnalisée qui commence par **machou** :
 
-`./mkp224o mondedi`
+`./mkp224o machou`
 
-On copie la configuration de l’adresse :
+Un répertoire a été créé :
 
-`sudo cp -r mondedias6d54....onion /var/lib/tor/hidden_service`
+`cd machou********************************.onion`
+
+On copie ce répertoire dans le dossier du **Hidden Service**, sur le serveur :
+
+`sudo cp -r machou********************************.onion /var/lib/tor/hidden_service`
 
 On ajuste les droits :
 
@@ -812,9 +816,9 @@ par
 
 `<VirtualHost 127.0.0.1:80>`
 
-On ajoute le nom du Hidden Service (**Contenu dans /var/lib/tor/hidden_service/hostname**) pour qu’Apache2 le reconnaisse :
+On ajoute le nom du Hidden Service (Contenu dans **/var/lib/tor/hidden_service/hostname**) pour qu’Apache2 le reconnaisse :
 
-`ServerName VOTREHIDDENSERVICE.onion`
+`ServerName machou********************************.onion`
 
 On modifie le répertoire par défaut du site :
 
@@ -836,11 +840,22 @@ On active notre site par défaut :
 
 `sudo a2ensite 000-default`
 
+On teste une page :
+
+```sh
+touch /var/www/index.html && nano /var/www/index.html
+Bienvenue sur mon Onion !
+```
+
 Une fois que toutes ces opérations sont effectuées, on redémarre le serveur :
 
 `sudo reboot`
 
+On se rend, via le [Navigateur Tor](https://www.torproject.org/download/) sur notre service ***machou********************************.onion*** !
+
 Et voilà, c’est terminé !
+
+
 
 Maintenant, lancez Tor sur votre ordinateur et connectez-vous au Hidden Service que vous avez généré plus haut !
 
