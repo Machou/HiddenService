@@ -32,9 +32,7 @@
   - Désactiver IPv6
   - Quelques tutoriels utiles
 
-![](https://image.ibb.co/gNRrh8/t_Qw_ZJd8_min.png)
-
-## Qu’est-ce que Tor et un Hidden Service ?
+## ![](https://image.ibb.co/gNRrh8/t_Qw_ZJd8_min.png "Qu’est-ce que Tor et un Hidden Service ?")
 
 Tor (acronyme de “ **The Onion Router** ”) est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœuds** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme "onion" (oignon) qui fait référence aux multiples couches de protection.
 
@@ -105,7 +103,7 @@ L’utilisation d’un proxy peut également être utile pour masquer votre adre
 
 Dans l’ensemble, l’utilisation de Tor est considérée comme la solution la plus sûre et la plus robuste pour protéger son anonymat en ligne, mais l’utilisation d’un VPN ou d’un proxy peut également être utile en complément. Si vous choisissez d’utiliser un VPN ou un proxy en plus de Tor, il est important de comprendre les risques et les limitations de chaque solution, et de prendre les mesures de sécurité nécessaires pour éviter toute compromission.
 
-M**Ma recommandation :** VPN + Tor
+**Ma recommandation :** VPN + Tor
 **VPNs recommandés :** [Mullvad](https://mullvad.net/) ou [ProtonVPN](https://protonvpn.com/)
 
 ## ![Configuration du serveur](https://i.imgur.com/X7vlrkf.png)
