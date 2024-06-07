@@ -12,9 +12,9 @@
 
 - [Qu’est-ce que Tor et un Hidden Service ?](#-1)
   - [Quelques règles importantes](#quelques-régles-importantes)
-- [Configuration du serveur](#configuration-du-serveur)
-- [Installation d’un serveur LAMP](#installation-dun-serveur-lamp)
-  - [Apache](#3)
+- [Configuration du serveur](#-1)
+- [Installation d’un serveur LAMP](#3)
+  - [Apache](#4)
   - [PHP](#4)
   - [MariaDB](#5)
   - [Accéder aux tables SQL](#6)
@@ -104,6 +104,7 @@ L’utilisation d’un proxy peut également être utile pour masquer votre adre
 Dans l’ensemble, l’utilisation de Tor est considérée comme la solution la plus sûre et la plus robuste pour protéger son anonymat en ligne, mais l’utilisation d’un VPN ou d’un proxy peut également être utile en complément. Si vous choisissez d’utiliser un VPN ou un proxy en plus de Tor, il est important de comprendre les risques et les limitations de chaque solution, et de prendre les mesures de sécurité nécessaires pour éviter toute compromission.
 
 **Ma recommandation :** VPN + Tor
+
 **VPNs recommandés :** [Mullvad](https://mullvad.net/) ou [ProtonVPN](https://protonvpn.com/)
 
 ## ![Configuration du serveur](https://i.imgur.com/X7vlrkf.png)
@@ -425,7 +426,7 @@ On quitte et on redémarre Apache2 :
 - [Site officiel d’Apache2](https://httpd.apache.org/)
 - [Dépôt GitHub officiel](https://github.com/apache/httpd)
 
-![](https://i.ibb.co/Kq6H8Jp/php.png)
+## ![Installation et configuration de PHP](https://i.ibb.co/Kq6H8Jp/php.png)
 
 On va installer PHP 8 via le dépôt d’[Ondřej Surý](https://deb.sury.org/) car les dernières versions de PHP ne sont pas disponibles sur Debian.
 
