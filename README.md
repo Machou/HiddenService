@@ -696,6 +696,10 @@ On installe Tor :
 
 `sudo apt install tor deb.torproject.org-keyring`
 
+On active Tor au démarrage :
+
+`sudo systemctl enable tor`
+
 ## ![Configuration du Hidden Service](https://i.imgur.com/cOE7bYM.png)
 
 ![](https://i.imgur.com/qUNWD7L.png)
@@ -708,7 +712,7 @@ Choisir le dossier de Tor :
 
 ```sh
 HiddenServiceDir /var/lib/tor/hidden_service/
-HiddenServicePort 80 127.0.0.1:8080
+HiddenServicePort 80 127.0.0.1:80
 ```
 
 On limite l’accès à Tor SOCKS sur 127.0.0.1 :
@@ -731,6 +735,7 @@ On vérifie que Tor fonctionne correctement :
 Redémarrer Tor va créer le répertoire **/var/lib/tor/hidden_service** ainsi que deux fichiers très importants :
 
 **hostname** : le nom de votre hidden service : *ujgftyuiolrmez3lotccipshtkleegetolb73fuirgj7r4o4vfu7ozyd.onion*, par exemple
+
 **private_key** : la clé privée de votre hidden service
 
 *Notez le contenu de **hostname** quelque part, on l’utilisera plus tard !*
@@ -817,29 +822,9 @@ On vérifie que Tor fonctionne correctement :
 
 *On doit configurer Apache2 afin de se connecter au **Hidden Service**, cette opération a été mentionnée plus haut, donc si vous ne l’avez pas effectuée, faites-le maintenant !*
 
-On modifie le port d’écoute d’Apache2 :
-
-`sudo nano /etc/apache2/ports.conf`
-
-On remplace :
-
-`Listen 80`
-
-par
-
-`Listen 127.0.0.1:80`
-
 On modifie le site à héberger :
 
 `sudo nano /etc/apache2/sites-enabled/000-default.conf`
-
-Remplacez :
-
-`<VirtualHost *:80>`
-
-par
-
-`<VirtualHost 127.0.0.1:80>`
 
 On ajoute le nom du Hidden Service (Contenu dans **/var/lib/tor/hidden_service/hostname**) pour qu’Apache2 le reconnaisse :
 
