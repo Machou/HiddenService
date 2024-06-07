@@ -10,17 +10,17 @@
 
 **Sommaire**
 
-- [Qu’est-ce que Tor et un Hidden Service ?](#)
+- Qu’est-ce que Tor et un Hidden Service ?
   - [Quelques règles importantes](#quelques-régles-importantes)
 - [Configuration du serveur](#configuration-du-serveur)
 - [Installation d’un serveur LAMP](#installation-dun-serveur-lamp)
   - [Apache](#apache)
   - [PHP](#php)
   - [MariaDB](#mariadb)
-  - [Accéder aux tables SQL](#acceder-aux-tables-sql)
+  - [Accéder aux tables SQL](#6)
   - [Installation et configuration de Tor](#installation-et-configuration-de-tor)
-  - [Configuration du Hidden Service](#configuration-du-hidden-service)
-  - [Générer une adresse .onion personnalisée](#générer-une-adresse-onion-personnalisée)
+  - [Configuration du Hidden Service](#-8)
+  - [Générer une adresse .onion personnalisée](#-10)
 - [Facultatif](#Facultatif)
   - [Configuration de la langue](#configuration-de-la-langue)
   - [Configuration de la date et heure](#configuration-de-la-date-et-heure)
@@ -32,7 +32,8 @@
   - [Désactiver IPv6](#désactiver-ipv6)
   - [Quelques tutoriels utiles](#quelques-tutoriels-utiles)
 
-## ![](https://image.ibb.co/gNRrh8/t_Qw_ZJd8_min.png)
+## ![](
+## ![Qu’est-ce que Tor et un Hidden Service ?](https://image.ibb.co/gNRrh8/t_Qw_ZJd8_min.png)
 
 Tor (acronyme de “ **The Onion Router** ”) est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœuds** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme "onion" (oignon) qui fait référence aux multiples couches de protection.
 
@@ -652,8 +653,8 @@ wget https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php
 
 On renomme logiquement le fichier aléatoirement, pour éviter, si vous oubliez de le supprimer, qu’un méchant robot attaque votre site. Dans tous les cas, je vous conseille de le supprimer une fois que vous avez terminé vos tâches avec MySQL.
 
--[Site officiel d’Adminer](https://www.adminer.org/)
--[Dépôt GitHub officiel](https://github.com/vrana/adminer)
+- [Site officiel d’Adminer](https://www.adminer.org/)
+- [Dépôt GitHub officiel](https://github.com/vrana/adminer)
 
 ## ![Installation de Tor](https://i.imgur.com/JFk1F4l.png)
 
