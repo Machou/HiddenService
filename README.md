@@ -34,6 +34,8 @@
 
 ![](https://image.ibb.co/gNRrh8/t_Qw_ZJd8_min.png)
 
+## Qu’est-ce que Tor et un Hidden Service ?
+
 Tor (acronyme de “ **The Onion Router** ”) est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœuds** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme "onion" (oignon) qui fait référence aux multiples couches de protection.
 
 Un Hidden Service (ou service caché) est un service accessible uniquement via le réseau Tor. Ces services utilisent des adresses en ".onion" et permettent aux sites web, aux forums, aux messageries instantanées et à d’autres types de services de fonctionner de manière anonyme. Les utilisateurs peuvent accéder à ces services sans connaître l’emplacement physique du serveur, et le serveur ne connaît pas l’adresse IP des utilisateurs. Cela garantit une confidentialité et une sécurité accrues pour les deux parties. Les Hidden Services sont souvent utilisés pour protéger la vie privée des utilisateurs, mais ils peuvent aussi être utilisés à des fins malveillantes en raison de l’anonymat qu’ils offrent.
@@ -64,7 +66,7 @@ Plusieurs choses :
 
 Malheureusement, qui dit anonymisation des utilisateurs, dit criminalité en tout genre, vente de drogue, d’arme, trafic d’être humain, de fausse monnaie, etc. et j’en passe. Il a des côtés positifs et des côtés négatifs. Que ça soit dans la vraie vie ou sur internet, on sera toujours embêté par les vilains… Le but de ce tutoriel n’est pas de vous montrer comment acheter de la drogue mais d’apprendre le fonctionnement d’un serveur web utilisant le service de cryptage de Tor.
 
-**Voici quelques règles fondamentales avant de commencer :**
+## Quelques règles importantes
 
 *Ce tutoriel est un exemple, en aucun cas on pousse à faire des choses illégales. De par les exemples, vous pouvez (je vous le conseil) d’adapter en fonction de vos besoins.*
 
@@ -103,10 +105,10 @@ L’utilisation d’un proxy peut également être utile pour masquer votre adre
 
 Dans l’ensemble, l’utilisation de Tor est considérée comme la solution la plus sûre et la plus robuste pour protéger son anonymat en ligne, mais l’utilisation d’un VPN ou d’un proxy peut également être utile en complément. Si vous choisissez d’utiliser un VPN ou un proxy en plus de Tor, il est important de comprendre les risques et les limitations de chaque solution, et de prendre les mesures de sécurité nécessaires pour éviter toute compromission.
 
-Ma recommandation :** VPN + Tor.
+M**Ma recommandation :** VPN + Tor
 **VPNs recommandés :** [Mullvad](https://mullvad.net/) ou [ProtonVPN](https://protonvpn.com/)
 
-[center][img]https://i.imgur.com/X7vlrkf.png[/img][/center]
+## ![Configuration du serveur](https://i.imgur.com/X7vlrkf.png)
 
 On se connecte au serveur via SSH et on change directement le mot de passe root :
 
@@ -115,9 +117,7 @@ sudo su
 passwd
 ```
 
-2 solutions, on se connecte directement via clés SSH (*recommandé*) ou par mot de passe, moins sécurisé.
-
-**Solution n°1 : Clés SSH**
+> **Solution n°1 : Clés SSH**
 
 On génère les clés SSH avec l’algorithme de chiffrement [ed25519](https://fr.wikipedia.org/wiki/EdDSA) :
 
@@ -181,7 +181,7 @@ Entrez votre mot de passe de clé générée ci-dessus, voilà, vous êtes maint
 Source : [LeCrabe.info](https://lecrabeinfo.net/se-connecter-en-ssh-par-echange-de-cles-ssh.html#etape-1-generer-des-cles-ssh)
 *Vous y trouverez comment se connecter avec des clés SSH pour Windows, Mac et Linux*
 
-**Solution n°2 : Mot de passe**
+> **Solution n°2 : Mot de passe**
 
 Je vous conseille de lire le début du [tutoriel pour apprendre à vous connecter à SSH]([https://mondedie.fr/d/11708).
 
@@ -630,7 +630,7 @@ Nous utilisons généralement [phpMyAdmin](https://www.phpmyadmin.net/) (d’aut
 
 **Pourquoi ?**
 
-- phpMyAdmin est lourd pour Tor et surtout [color=red]il utilise pleinement JavaScript, qui je le rappelle, est à proscrire lorsque que l’on navigue sur le réseau Tor[/color]
+- phpMyAdmin est lourd pour Tor et surtout ***il utilise pleinement JavaScript, qui je le rappelle, est à proscrire lorsque que l’on navigue sur le réseau Tor***
 - des failles de sécurités critiques peuvent être présentes
 - phpMyAdmin est surtout utilisé pour gérer des hébergements mutualisés, ce n’est pas notre cas
 
