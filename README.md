@@ -10,7 +10,7 @@
 
 **Sommaire**
 
-- Qu’est-ce que Tor et un Hidden Service ?
+- [Qu’est-ce que Tor et un Hidden Service ?](#-1)
   - [Quelques règles importantes](#quelques-régles-importantes)
 - [Configuration du serveur](#configuration-du-serveur)
 - [Installation d’un serveur LAMP](#installation-dun-serveur-lamp)
@@ -32,7 +32,6 @@
   - [Désactiver IPv6](#désactiver-ipv6)
   - [Quelques tutoriels utiles](#quelques-tutoriels-utiles)
 
-## ![](
 ## ![Qu’est-ce que Tor et un Hidden Service ?](https://image.ibb.co/gNRrh8/t_Qw_ZJd8_min.png)
 
 Tor (acronyme de “ **The Onion Router** ”) est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœuds** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme "onion" (oignon) qui fait référence aux multiples couches de protection.
