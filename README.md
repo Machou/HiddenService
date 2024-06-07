@@ -1095,12 +1095,12 @@ Une fois que toutes ces opérations sont effectuées, on redémarre le serveur :
 
 Je vous recommande ces tutoriels :
 
-- [Bien débuter sur Debian](https://mondedie.fr/d/5438) [ Tutoriel réalisé par (Meister)[https://mondedie.fr/u/Meister] ] (🇫🇷)
-- [Changer le mot de passe d’un utilisateur](https://mondedie.fr/d/5312) [ Tutoriel réalisé par (Magicalex)[https://mondedie.fr/u/Magicalex] ] (🇫🇷)
-- [Installation et configuration de PortSentry](https://mondedie.fr/d/5318/3) [ Tutoriel réalisé par (ex_rat)[https://mondedie.fr/u/ex_rat] ] (🇫🇷)
-- [Installation et configuration de Fail2ban](https://mondedie.fr/d/5318/2) [ Tutoriel réalisé par (ex_rat)[https://mondedie.fr/u/ex_rat] ] (🇫🇷)
-- [How To Secure A Linux Server](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server) (🇺🇸)
-- [The Onion Diaries](https://github.com/alecmuffett/the-onion-diaries/tree/master) (🇺🇸)
+- [Bien débuter sur Debian](https://mondedie.fr/d/5438) [ Tutoriel réalisé par (Meister)[https://mondedie.fr/u/Meister] ] 🇫🇷
+- [Changer le mot de passe d’un utilisateur](https://mondedie.fr/d/5312) [ Tutoriel réalisé par (Magicalex)[https://mondedie.fr/u/Magicalex] ] 🇫🇷
+- [Installation et configuration de PortSentry](https://mondedie.fr/d/5318/3) [ Tutoriel réalisé par (ex_rat)[https://mondedie.fr/u/ex_rat] ] 🇫🇷
+- [Installation et configuration de Fail2ban](https://mondedie.fr/d/5318/2) [ Tutoriel réalisé par (ex_rat)[https://mondedie.fr/u/ex_rat] ] 🇫🇷
+- [How To Secure A Linux Server](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server) 🇺🇸
+- [The Onion Diaries](https://github.com/alecmuffett/the-onion-diaries/tree/master) 🇺🇸
 
 > À faire :
 > - heberger le site directement dans la ram
