@@ -42,9 +42,11 @@ Tor (acronyme de “ **The Onion Router** ”) est un réseau de communication a
 
 Un Hidden Service (ou service caché) est un service accessible uniquement via le réseau Tor. Ces services utilisent des adresses en ".onion" et permettent aux sites web, aux forums, aux messageries instantanées et à d’autres types de services de fonctionner de manière anonyme. Les utilisateurs peuvent accéder à ces services sans connaître l’emplacement physique du serveur, et le serveur ne connaît pas l’adresse IP des utilisateurs. Cela garantit une confidentialité et une sécurité accrues pour les deux parties. Les Hidden Services sont souvent utilisés pour protéger la vie privée des utilisateurs, mais ils peuvent aussi être utilisés à des fins malveillantes en raison de l’anonymat qu’ils offrent.
 
+> Cartographie des utilisateurs Tor, par pays.
+
 ![](https://i.ibb.co/fY6VCzk/Geographies-of-Tor.png)
 
-> *Cartographie des utilisateurs Tor, par pays.* [Les statistiques officielles du projet Tor](https://metrics.torproject.org/)
+*[Statistiques officielles du projet Tor](https://metrics.torproject.org/)*
 
 Tor est utilisé pour se protéger contre une certaine forme de surveillance sur Internet, connue sous le nom d’analyse de trafic. Cette analyse est utilisée pour déterminer qui communique avec qui sur un réseau public. Connaitre la source et la destination de votre trafic peut permettre à des personnes de traquer votre comportement et vos intérêts. Cartogramme de l’usage de Tor à l’international.
 
@@ -78,13 +80,13 @@ Malheureusement, qui dit anonymisation des utilisateurs, dit criminalité en tou
 - Démarrer votre installation / configuration avec un VPS / serveur dont vous êtes certain de la source
 - Démarrer votre installation / configuration sur un système d’exploitation fraichement installé
 - Utiliser un courriel anonyme pour le service sur lequel vous allez louer votre VPS / serveur
-- *[quelques services de courriel très sécuritaires](url=https://www.privacytools.io/privacy-email)*
+- *[liste de quelques services de courriels sécurisés](https://www.privacytools.io/privacy-email)*
 - Payer votre VPS / serveur en [cryptomonnaie](https://fr.wikipedia.org/wiki/Cryptomonnaie) (Bitcoin, Monero, etc.)
 - Ne JAMAIS fournir votre identité lorsque vous payez via Cryptomonnaie
 - **Ne JAMAIS faire fonctionner un relais Tor sur le VPS / serveur, car ces adresses IPs sont rendues publiques**
 - Ne JAMAIS envoyer de courriel via le VPS / serveur (donc désactiver tous les logiciels / fonctions liées aux courriels)
 - Ne JAMAIS autoriser l’envoie de fichier sur le VPS / serveur où va être hébergé votre site
-- Ne JAMAIS autoriser l’ajout d’image distante (exemple, avec la balise [ img ] comme sur ce forum)
+- Ne JAMAIS autoriser l’ajout d’image distante (exemple, avec la balise <img src="">)
 - JavaScript est à BANNIR sur les applications Web que vous allez développer / héberger
 - Désactiver toutes les fonctions Apache2, nginx, PHP, etc. qui sont susceptibles de renvoyer des erreurs aux visiteurs et peuvent afficher votre adresse IP (une liste non-exhaustive sera fournie)
 - Ne pas inclure des fichiers distants via des CDNs, par exemple : jQuery, Bootstrap, etc.
@@ -183,6 +185,7 @@ Connectez-vous normalement en SSH via terminal par exemple :
 Entrez votre mot de passe de clé générée ci-dessus, voilà, vous êtes maintenant connecté à votre serveur !
 
 Source : [LeCrabe.info](https://lecrabeinfo.net/se-connecter-en-ssh-par-echange-de-cles-ssh.html#etape-1-generer-des-cles-ssh)
+
 *Vous y trouverez comment se connecter avec des clés SSH pour Windows, Mac et Linux*
 
 ----------
