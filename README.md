@@ -36,7 +36,7 @@
 
 # Créer un Hidden Service sécurisé avec Tor sur Debian
 
-## ![Tor et un Hidden Service](https://i.imgur.com/5osmxzl.png)
+## ![Qu’est-ce que Tor et un Hidden Service ?](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Qu%27est-ce%20que%20Tor%20et%20un%20Hidden%20Service%20?)
 
 Tor (acronyme de “ **The Onion Router** ”) est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœuds** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme "onion" (oignon) qui fait référence aux multiples couches de protection.
 
@@ -112,7 +112,7 @@ Dans l’ensemble, l’utilisation de Tor est considérée comme la solution la 
 
 **VPNs recommandés :** [Mullvad](https://mullvad.net/) ou [ProtonVPN](https://protonvpn.com/)
 
-## ![Configuration du serveur](https://i.imgur.com/X7vlrkf.png)
+## ![Configuration du serveur](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Configuration%20du%20serveur)
 
 On se connecte au serveur via SSH et on change directement le mot de passe root :
 
@@ -320,7 +320,7 @@ On installe / désinstalle quelques logiciels pour la pratique et la sécurité,
 
 ## ![Installation d’un serveur LAMP](https://i.imgur.com/lcwfXBO.png)
 
-## ![Installation et configuration d’Apache2](https://i.imgur.com/fuZ98Ii.png)
+## ![Installation et configuration d’Apache2](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20d’Apache2)
 
 On installe Apache2 :
 
@@ -433,7 +433,7 @@ On quitte et on redémarre Apache2 :
 - [Site officiel d’Apache2](https://httpd.apache.org/)
 - [Dépôt GitHub officiel](https://github.com/apache/httpd)
 
-## ![Installation et configuration de PHP](https://i.ibb.co/Kq6H8Jp/php.png)
+## ![Installation et configuration de PHP](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20de%20PHP)
 
 On va installer PHP 8 via le dépôt d’[Ondřej Surý](https://deb.sury.org/) car les dernières versions de PHP ne sont pas disponibles sur Debian.
 
@@ -549,7 +549,7 @@ On sauvegarde le fichier **php.ini** et on redémarre Apache2 :
 
 `sudo service apache2 restart`
 
-## ![Installation et configuration de MySQL](https://i.imgur.com/M0oAHgF.png)
+## ![Installation et configuration de MySQL](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20de%20MySQL)
 
 MariaDB est un système de gestion de base de données édité sous licence GPL. Il s’agit d’un embranchement communautaire de MySQL : la gouvernance du projet est assurée par la fondation MariaDB, et sa maintenance par la société Monty Program AB, créateur du projet. Cette gouvernance confère au logiciel l’assurance de rester libre.
 
@@ -610,7 +610,7 @@ On redémarre le VPS !
 
 `sudo reboot`
 
-## ![Accéder aux tables SQL](https://i.imgur.com/HxJYAuC.png)
+## ![Accéder aux tables SQL](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Accéder%20aux%20tables%20SQL)
 
 Pour accéder à vos données enregistrer dans vos tables SQL, il va nous falloir un outil de gestion de base de données complet, simple et efficace.
 
@@ -645,7 +645,7 @@ On renomme logiquement le fichier aléatoirement, pour éviter, si vous oubliez 
 - [Site officiel d’Adminer](https://www.adminer.org/)
 - [Dépôt GitHub officiel](https://github.com/vrana/adminer)
 
-## ![Installation de Tor](https://i.imgur.com/JFk1F4l.png)
+## ![Installation de Tor](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Installation%20de%20Tor)
 
 Tor est un réseau informatique superposé mondial et décentralisé. Il se compose de serveurs, appelés nœuds du réseau et dont la liste est publique. Ce réseau permet d’anonymiser l’origine de connexions TCP. Cela peut entre autres servir à anonymiser la source d’une session de navigation Web ou de messagerie instantanée. Cependant, l’anonymisation du flux n’est pas totale, car l’application peut transmettre des informations annexes permettant d’identifier la personne, c’est pourquoi le projet Tor développe également un navigateur Web fondé sur Firefox, Tor Browser, ainsi que d’autres applications spécialement modifiées pour préserver l’anonymat de leurs usagers. L’implémentation de référence du protocole s’appelle « tor », c’est un logiciel libre sous licence BSD révisée.
 
@@ -686,9 +686,7 @@ On active Tor au démarrage :
 
 `sudo systemctl enable tor`
 
-## ![Configuration du Hidden Service](https://i.imgur.com/cOE7bYM.png)
-
-![](https://i.imgur.com/qUNWD7L.png)
+## ![Configuration du Hidden Service](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Configuration%20du%20Hidden%20Service)
 
 On configure Tor :
 
@@ -726,7 +724,7 @@ Redémarrer Tor va créer le répertoire **/var/lib/tor/hidden_service** ainsi q
 
 *Notez le contenu de **hostname** quelque part, on l’utilisera plus tard !*
 
-## ![Générer une adresse .onion personnalisée](https://i.imgur.com/oqHR9BC.png)
+## ![Générer une adresse .onion personnalisée](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Générer%20une%20adresse%20.onion%20%personnalisée)
 
 Si vous souhaitez une adresse .onion personnalisée, lisez la suite, sinon on passe directement à la [Partie Apache2](#-11).
 
@@ -853,8 +851,6 @@ On vérifie que Tor fonctionne correctement :
 
 `sudo systemctl status tor`
 
-## ![](https://i.imgur.com/g5k59dd.png)
-
 **Partie Apache2**
 
 *On doit configurer Apache2 afin de se connecter au **Hidden Service**, cette opération a été mentionnée plus haut, donc si vous ne l’avez pas effectuée, faites-le maintenant !*
@@ -928,7 +924,7 @@ Maintenant, lancez le [Navigateur Tor](https://www.torproject.org/download/) sur
 
 ![](https://i.ibb.co/M267kK8/onion.png)
 
-## ![Facultatif](https://i.imgur.com/fhSskNA.png)
+## ![Facultatif](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Facultatif)
 
 ### Configuration de la langue
 
