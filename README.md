@@ -86,7 +86,7 @@ Malheureusement, qui dit anonymisation des utilisateurs, dit criminalité en tou
 - **Ne JAMAIS faire fonctionner un relais Tor sur le VPS / serveur, car ces adresses IPs sont rendues publiques**
 - Ne JAMAIS envoyer de courriel via le VPS / serveur (donc désactiver tous les logiciels / fonctions liées aux courriels)
 - Ne JAMAIS autoriser l’envoie de fichier sur le VPS / serveur où va être hébergé votre site
-- Ne JAMAIS autoriser l’ajout d’image distante (exemple, avec la balise <img src="">)
+- Ne JAMAIS autoriser l’ajout d’image distante (exemple, avec la balise <*img src=""*>)
 - JavaScript est à BANNIR sur les applications Web que vous allez développer / héberger
 - Désactiver toutes les fonctions Apache2, nginx, PHP, etc. qui sont susceptibles de renvoyer des erreurs aux visiteurs et peuvent afficher votre adresse IP (une liste non-exhaustive sera fournie)
 - Ne pas inclure des fichiers distants via des CDNs, par exemple : jQuery, Bootstrap, etc.
@@ -724,7 +724,7 @@ Redémarrer Tor va créer le répertoire **/var/lib/tor/hidden_service** ainsi q
 
 *Notez le contenu de **hostname** quelque part, on l’utilisera plus tard !*
 
-## ![Générer une adresse .onion personnalisée](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Générer%20une%20adresse%20.onion%20%personnalisée)
+## ![Générer une adresse .onion personnalisée](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Générer%20une%20adresse%20.onion%20personnalisée)
 
 Si vous souhaitez une adresse .onion personnalisée, lisez la suite, sinon on passe directement à la [Partie Apache2](#-11).
 
@@ -924,7 +924,7 @@ Maintenant, lancez le [Navigateur Tor](https://www.torproject.org/download/) sur
 
 ![](https://i.ibb.co/M267kK8/onion.png)
 
-## ![Facultatif](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Facultatif)
+## ![Facultatif](https://fakeimg.pl/200x100/ffffff/2c96f3/?text=Facultatif)
 
 ### Configuration de la langue
 
