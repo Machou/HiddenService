@@ -86,7 +86,7 @@ Malheureusement, qui dit anonymisation des utilisateurs, dit criminalité en tou
 - **Ne JAMAIS faire fonctionner un relais Tor sur le VPS / serveur, car ces adresses IPs sont rendues publiques**
 - Ne JAMAIS envoyer de courriel via le VPS / serveur (donc désactiver tous les logiciels / fonctions liées aux courriels)
 - Ne JAMAIS autoriser l’envoie de fichier sur le VPS / serveur où va être hébergé votre site
-- Ne JAMAIS autoriser l’ajout d’image distante (exemple, avec la balise <*img src=""*>)
+- Ne JAMAIS autoriser l’ajout d’image distante (exemple, avec la balise *img src=""*)
 - JavaScript est à BANNIR sur les applications Web que vous allez développer / héberger
 - Désactiver toutes les fonctions Apache2, nginx, PHP, etc. qui sont susceptibles de renvoyer des erreurs aux visiteurs et peuvent afficher votre adresse IP (une liste non-exhaustive sera fournie)
 - Ne pas inclure des fichiers distants via des CDNs, par exemple : jQuery, Bootstrap, etc.
@@ -300,15 +300,15 @@ On installe / désinstalle quelques logiciels pour la pratique et la sécurité,
 
 `sudo apt install ca-certificates curl gnupg locate && sudo apt purge ntp rsyslog exim* postfix* sendmail* samba* && sudo updatedb`
 
-***Ajouts***
-----------
+***Ajouts*** :
+
 - [ca-certificates](https://packages.debian.org/fr/bookworm/ca-certificates) : ce paquet inclut les autorités de certifications livrées avec les navigateurs Mozilla afin de permettre aux applications basées sur SSL de vérifier l’authenticité des connexions SSL.
 - [curl](https://packages.debian.org/fr/bookworm/curl) : curl est un outil en ligne de commande pour transférer des données avec une syntaxe URL qui prend en charge DICT, FILE, FTP, FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, POP3, POP3S, RTMP, RTSP, SCP, SFTP, SMTP, SMTPS, TELNET et TFTP.
 - [gnupg](https://packages.debian.org/fr/bookworm/gnupg) : GnuPG est l’outil GNU pour sécuriser les communications et le stockage de données. Il peut être utilisé pour chiffrer des données et créer des signatures numériques. Il inclut un mécanisme perfectionné de gestion de clés et est compatible avec la proposition de standard OpenPGP pour Internet tel que décrit dans la RFC 4880.
 - [locate](https://packages.debian.org/fr/bookworm/locate) : updatedb génère un index de fichiers et répertoires. GNU locate peut être utilisé pour effectuer des requêtes rapides sur cet index.
 
-***Suppressions***
-----------
+***Suppressions*** :
+
 - [ntp](https://packages.debian.org/fr/bookworm/ntp) : il s’agit d’un package de transition factice pour passer à NTPsec. Il peut être retiré en toute sécurité.
 - [rsyslog](https://packages.debian.org/fr/bookworm/rsyslog) : rsyslog est une implémentation à unités d’exécution multiples de syslogd (un outil système qui fournit une journalisation de message).
 - [exim4](https://packages.debian.org/fr/bookworm/exim4) : exim (version 4) est un agent de transport de courrier. Exim4 est le métapaquet sur lequel dépendent les composants essentiels d’une installation de base d’exim4.
