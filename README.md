@@ -1,13 +1,3 @@
-**Dans ce tutoriel, on part du principe que l’on commence avec les logiciels et versions suivantes :**
-
-- [Debian](https://www.debian.org/) — [version 12.5, liste des changements](https://www.debian.org/News/2024/20240210)
-- [Apache2](https://httpd.apache.org/) — [version 2.4.59, liste des changements](https://httpd.apache.org/security/vulnerabilities_24.html#2.4.59)
-- [PHP](https://www.php.net/) — [version 8.3.7, liste des changements](https://www.php.net/ChangeLog-8.php#8.3.7)
-- [MariaDB](https://mariadb.org/) — [version 10.11.6, liste des changements](https://mariadb.com/kb/en/mariadb-10-11-6-release-notes/)
-- [Tor](https://www.torproject.org/) — [version 0.4.8.12, liste des changements](https://gitlab.torproject.org/tpo/core/tor/-/commits/tor-0.4.8.12)
-
-*Dernière mise à jour le 7 juin 2024*
-
 **Sommaire**
 
 - [Créer un Hidden Service sécurisé avec Tor sur Debian](#créer-un-hidden-service-sécurisé-avec-tor-sur-debian)
@@ -36,11 +26,30 @@
 
 # Créer un Hidden Service sécurisé avec Tor sur Debian
 
+## [Liste des logiciels](#)
+
+**Dans ce tutoriel, on part du principe que l’on commence avec les logiciels et versions suivantes :**
+
+Nous utiliserons un serveur basé sur Apache2, PHP et SQL, ce type de serveur est plus communément appelé **LAMP**. LAMP est un acronyme désignant un ensemble de logiciels libres permettant de construire des serveurs de sites web. L'acronyme original se réfère aux logiciels suivants :
+
+- « **L**inux », le système d'exploitation ( GNU/Linux ) ;
+- « **A**pache », le serveur Web ;
+- « **M**ySQL ou **M**ariaDB », le serveur de base de données ;
+- À l'origine1, « **P**HP », « **P**erl » ou « **P**ython », les langages de script.
+
+- [Debian](https://www.debian.org/) — [version 12.5, liste des changements](https://www.debian.org/News/2024/20240210)
+- [Apache2](https://httpd.apache.org/) — [version 2.4.59, liste des changements](https://httpd.apache.org/security/vulnerabilities_24.html#2.4.59)
+- [PHP](https://www.php.net/) — [version 8.3.7, liste des changements](https://www.php.net/ChangeLog-8.php#8.3.7)
+- [MariaDB](https://mariadb.org/) — [version 10.11.6, liste des changements](https://mariadb.com/kb/en/mariadb-10-11-6-release-notes/)
+- [Tor](https://www.torproject.org/) — [version 0.4.8.12, liste des changements](https://gitlab.torproject.org/tpo/core/tor/-/commits/tor-0.4.8.12)
+
+*Dernière mise à jour le 7 juin 2024*
+
 ## ![Qu’est-ce que Tor et un Hidden Service ?](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Qu%27est-ce%20que%20Tor%20et%20un%20Hidden%20Service%20?)
 
-Tor (acronyme de “ **The Onion Router** ”) est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœuds** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme "onion" (oignon) qui fait référence aux multiples couches de protection.
+Tor (acronyme de “ **The Onion Router** ”) est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœuds** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme « onion » (oignon) qui fait référence aux multiples couches de protection.
 
-Un Hidden Service (ou service caché) est un service accessible uniquement via le réseau Tor. Ces services utilisent des adresses en ".onion" et permettent aux sites web, aux forums, aux messageries instantanées et à d’autres types de services de fonctionner de manière anonyme. Les utilisateurs peuvent accéder à ces services sans connaître l’emplacement physique du serveur, et le serveur ne connaît pas l’adresse IP des utilisateurs. Cela garantit une confidentialité et une sécurité accrues pour les deux parties. Les Hidden Services sont souvent utilisés pour protéger la vie privée des utilisateurs, mais ils peuvent aussi être utilisés à des fins malveillantes en raison de l’anonymat qu’ils offrent.
+Un Hidden Service (ou service caché) est un service accessible uniquement via le réseau Tor. Ces services utilisent des adresses en « .onion » et permettent aux sites web, aux forums, aux messageries instantanées et à d’autres types de services de fonctionner de manière anonyme. Les utilisateurs peuvent accéder à ces services sans connaître l’emplacement physique du serveur, et le serveur ne connaît pas l’adresse IP des utilisateurs. Cela garantit une confidentialité et une sécurité accrues pour les deux parties. Les Hidden Services sont souvent utilisés pour protéger la vie privée des utilisateurs, mais ils peuvent aussi être utilisés à des fins malveillantes en raison de l’anonymat qu’ils offrent.
 
 > Cartographie des utilisateurs Tor, par pays.
 
@@ -83,7 +92,7 @@ Malheureusement, qui dit anonymisation des utilisateurs, dit criminalité en tou
 - *[liste de quelques services de courriels sécurisés](https://www.privacytools.io/privacy-email)*
 - Payer votre VPS / serveur en [cryptomonnaie](https://fr.wikipedia.org/wiki/Cryptomonnaie) (Bitcoin, Monero, etc.)
 - Ne JAMAIS fournir votre identité lorsque vous payez via Cryptomonnaie
-- **Ne JAMAIS faire fonctionner un relais Tor sur le VPS / serveur, car ces adresses IPs sont rendues publiques**
+- **Ne JAMAIS faire fonctionner un relais Tor sur le VPS / serveur, car ces adresses IP sont rendues publiques**
 - Ne JAMAIS envoyer de courriel via le VPS / serveur (donc désactiver tous les logiciels / fonctions liées aux courriels)
 - Ne JAMAIS autoriser l’envoie de fichier sur le VPS / serveur où va être hébergé votre site
 - Ne JAMAIS autoriser l’ajout d’image distante (exemple, avec la balise *img src=""*)
@@ -211,7 +220,7 @@ deb https://deb.debian.org/debian bookworm-updates main
 deb-src https://deb.debian.org/debian bookworm-updates main
 ```
 
-On met à jour les paquets et on installe [nano](https://doc.ubuntu-fr.org/nano) (éditeur de texte) et [sudo](https://doc.ubuntu-fr.org/sudo) (permet à un utilisateur normal d’exécuter des commandes en tant que super-utilisateur (ou "root")).
+On met à jour les paquets et on installe [nano](https://doc.ubuntu-fr.org/nano) (éditeur de texte) et [sudo](https://doc.ubuntu-fr.org/sudo) (permet à un utilisateur normal d’exécuter des commandes en tant que super-utilisateur (ou « root »)).
 
 *Ces deux logiciels ne sont pas installés par défaut sur certains VPS, cela dépend du fournisseur et de la distribution, donc pour éviter des tout problème, on installe, si ils sont déjà présents sur le serveur, ça ne changera rien.*
 
@@ -227,7 +236,7 @@ On crée notre utilisateur principal :
 
 Pour plus de clarté dans ce tutoriel, j’utiliserai comme nom d’utilisateur : **salameche**
 
-Une fois notre utilisateur créé, on l’ajoute au groupe "*sudo*", cela permettra d’exécuter les commandes "*root*", sans être "*root*", cela améliore grandement la sécurité et évitera de faire des bêtises :
+Une fois notre utilisateur créé, on l’ajoute au groupe « *sudo* », cela permettra d’exécuter les commandes « *root* », sans être « *root* », cela améliore grandement la sécurité et évitera de faire des bêtises :
 
 `adduser salameche sudo`
 
@@ -239,7 +248,7 @@ Adding user salameche to group sudo
 Done.
 ```
 
-Une fois l’utilisateur ajouté au groupe "*sudo*", on se connecte sur notre compte utilisateur "*salameche*" :
+Une fois l’utilisateur ajouté au groupe « *sudo* », on se connecte sur notre compte utilisateur « *salameche* » :
 
 `su salameche`
 
@@ -253,9 +262,9 @@ On change le port SSH :
 
 C’est une forme de sécurité simple, mais étonnamment efficace.
 
-Les servuers utilisent généralement le port 22 pour se connecter à SSH, donc il est beaucoup moins susceptible d’être trouvé par des robots qui analysent les adresses IPs à la recherche de mot de passe faible sur les comptes par défaut. Si vous numérisez tout le réseau, vous ne pouvez pas vous permettre de vérifier tous les ports possibles (65 535 ports disponibles) pour trouver le serveur SSH.
+Les servuers utilisent généralement le port 22 pour se connecter à SSH, donc il est moins susceptible d’être trouvé par des robots qui analysent les adresses IP à la recherche de mot de passe faible sur les comptes par défaut. Si vous numérisez tout le réseau, vous ne pouvez pas vous permettre de vérifier tous les ports possibles (65 535 ports disponibles) pour trouver le serveur SSH.
 
-Cependant, si quelqu’un vous ciblera activement, cela ne fournit aucun bénéfice, car une simple analyse *nmap* unique révèlera le port sur lequel **SSH** fonctionne réellement (on utilisera **PortSentry** pour bloquer ces attaques, voir plus bas).
+Cependant, si quelqu’un vous ciblera activement, cela ne fournit aucun bénéfice, car une simple analyse *nmap* unique révèlera le port sur lequel **SSH** fonctionne réellement (on utilisera [PortSentry](PortSentry.md) pour bloquer ces attaques, voir plus bas).
 
 - **Le port doit être compris entre 0-65535**
 - **Le port utiliser ne doit pas être déjà utilisé par une application**
@@ -290,7 +299,7 @@ AllowUsers salameche
 - **UseDNS** : par défaut le serveur cherche à établir la résolution DNS inverse depuis votre IP. Cette requête peut être assez longue, c’est pour cela que nous désactivons cette fonctionnalité, plutôt inutile
 - **UsePAM** : PAM doit être désactivé si vous utilisez des clés d’authentifications, ce qui n’est pas notre cas, donc il doit être activé
 - **DebianBanner** : permet d’éviter que le serveur SSH n’affiche la distribution Linux Ubuntu ou Debian
-- **AllowUsers** : ajoute les utilisateurs autorisés à se connecter à SSH, pour notre cas, on ajoutera simplement "*salameche*"
+- **AllowUsers** : ajoute les utilisateurs autorisés à se connecter à SSH, pour notre cas, on ajoutera simplement « *salameche* »
 
 On quitte et on redémarre SSH :
 
@@ -612,38 +621,46 @@ On redémarre le VPS !
 
 ## ![Accéder aux tables SQL](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Accéder%20aux%20tables%20SQL)
 
-Pour accéder à vos données enregistrer dans vos tables SQL, il va nous falloir un outil de gestion de base de données complet, simple et efficace.
+Pour accéder à vos données enregistrer dans vos tables SQL, il va nous falloir un outil de gestion de base de données complet, simple et efficace, ce que nous retrouvons avec [AdminEvo](https://docs.adminerevo.org/).
 
-Nous utilisons généralement [phpMyAdmin](https://www.phpmyadmin.net/) (d’autres choix sont disponibles ici : [https://sql.sh/logiciels](https://sql.sh/logiciels). Malheureusement, ce gestionnaire n’est pas adapté à cette configuration.
+Généralement, on utilise [phpMyAdmin](https://www.phpmyadmin.net/), il est complet, simple d’utilisation mais malheureusement, ce gestionnaire n’est pas adapté à notre configuration. Vous trouverez les autres [logiciels SGBD sur sql.sh](https://sql.sh/logiciels).
 
-**Pourquoi ?**
+**Pourquoi pas phpMyAdmin ?**
 
-- phpMyAdmin est lourd pour Tor et surtout ***il utilise pleinement JavaScript, qui je le rappelle, est à proscrire lorsque que l’on navigue sur le réseau Tor***
+- phpMyAdmin est lourd, donc pour Tor ce n’ pas recommandé
+- **il utilise pleinement JavaScript**, qui je le rappelle, est à proscrire lorsque que l’on navigue sur le réseau Tor
 - des failles de sécurités critiques peuvent être présentes
 - phpMyAdmin est surtout utilisé pour gérer des hébergements mutualisés, ce n’est pas notre cas
 
-Nous n’allons pas installer de gestionnaire de base de données en ligne, trop risqué, mais dans le même style, comme on utiliserai un logiciel Portable (sans installation), à usage unique; la meilleure solution serai de passer directement par SSH en ligne de commande.
+Nous n’allons pas installer de gestionnaire de base de données à propremment parlé, c’est trop risqué, dans le même style on peut utiliser [AdminerEvo](https://docs.adminerevo.org/). Il vous suffira de télécharger le fichier lorsque vous aurez besoin d’accéder à votre base de données et de le supprimer une fois vos opérations terminées.
 
-Donc, je vous propose pour l’occasion, je vous propose d’utiliser [Adminer](https://www.adminer.org/). Il vous suffira de télécharger le fichier lorsque vous aurez besoin d’accéder à votre base de données et de le supprimer une fois vos opérations terminées.
+**Pourquoi AdminerEvo ?**
+
+- léger (fichier unique)
+- ne dépand pas de JavaScript
+- peut s’installer / désinstaller comme on le souhaite
 
 **Les pré-requis**
 
-- Fonctionne avec MySQL, PostgreSQL, SQLite, MS SQL, Oracle, Firebird, SimpleDB, Elasticsearch et MongoDB
-- Support de PHP 5+
-- Disponible en Français, Thai, Tamil, Romanian, Korean, Ukrainian, Dutch, Persian, Polish, Lithuanian, Slovene, Czech, Finnish, Italian, Hebrew, Catalan, Bengali, Vietnamese, English, Portuguese, Serbian, Slovak, Chinese (Traditional), Estonian, Turkish, Indonesian, Norwegian, Brazilian Portuguese, Chinese (Simplified), Danish, Bosnian, German, Japanese, Spanish, Russian, Arabic, Hungarian
-- Gratuit pour un usage commercial et non commercial (Apache License ou GPL 2)
+- fonctionne avec MySQL, MariaDB, PostgreSQL, SQLite, MS SQL, Oracle, Elasticsearch, MongoDB, SimpleDB (plugin), Firebird (plugin) et ClickHouse (plugin)
+- support à partir de PHP 5
+- disponible en Français, Thai, Tamil, Romanian, Korean, Ukrainian, Dutch, Persian, Polish, Lithuanian, Slovene, Czech, Finnish, Italian, Hebrew, Catalan, Bengali, Vietnamese, English, Portuguese, Serbian, Slovak, Chinese (Traditional), Estonian, Turkish, Indonesian, Norwegian, Brazilian Portuguese, Chinese (Simplified), Danish, Bosnian, German, Japanese, Spanish, Russian, Arabic, Hungarian
+- des dizaines de plugins pour toute sorte d’utilisation
+- gratuit (Apache License ou GPL 2)
 
-Pour la configuration, rien de plus simple, il vous suffit de [télécharger Adminer](https://www.adminer.org/#download) et de renommer le fichier, par exemple :
+Pour la configuration, rien de plus simple, il vous suffit de [télécharger AdminerEvo](https://download.adminerevo.org/4.8.4/adminer/adminer.zip) et de renommer le fichier, par exemple :
 
 ```sh
 mkdir /var/www/admin && cd /var/www/admin
-wget https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php -O "$(mktemp adminer-XXXXXXXXXXXXXXXXXXXX.php)"
+wget https://github.com/adminerevo/adminerevo/releases/download/v4.8.4/adminer-4.8.4.php -O "$(mktemp adminer-XXXXXXXXXXXXXXXXXXXX.php)"
 ```
 
 On renomme logiquement le fichier aléatoirement, pour éviter, si vous oubliez de le supprimer, qu’un méchant robot attaque votre site. Dans tous les cas, je vous conseille de le supprimer une fois que vous avez terminé vos tâches avec MySQL.
 
-- [Site officiel d’Adminer](https://www.adminer.org/)
-- [Dépôt GitHub officiel](https://github.com/vrana/adminer)
+*Note : AdminerEvo, comme son nom l’indique, est une nouvelle version de l’original qui n’était plus maintenu*
+
+- [Site officiel d’AdminerEvo](https://docs.adminerevo.org/)
+- [Dépôt GitHub officiel](https://github.com/adminerevo/adminerevo)
 
 ## ![Installation de Tor](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Installation%20de%20Tor)
 
@@ -1174,7 +1191,6 @@ Une fois que toutes ces opérations sont effectuées, on redémarre le serveur :
 Je vous recommande ces tutoriels :
 
 - [Bien débuter sur Debian](https://mondedie.fr/d/5438) [ Tutoriel réalisé par [Meister](https://mondedie.fr/u/Meister) ] 🇫🇷
-- [Installation et configuration de PortSentry](https://mondedie.fr/d/5318/3) [ Tutoriel réalisé par [ex_rat](https://mondedie.fr/u/ex_rat) ] 🇫🇷
 - [Installation et configuration de Fail2ban](https://mondedie.fr/d/5318/2) [ Tutoriel réalisé par [ex_rat](https://mondedie.fr/u/ex_rat) ] 🇫🇷
 - [How To Secure A Linux Server](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server) 🇺🇸
 - [The Onion Diaries](https://github.com/alecmuffett/the-onion-diaries/tree/master) 🇺🇸
