@@ -1287,5 +1287,5 @@ On redémarre le serveur :
 Si vous avez des idées ou des améliorations à proposer, n’hésitez pas à postez un commentaire ci-dessous.
 
 <p align="center">
-  <a href="#sommaire">Remonter la page</a>
+  [ <a href="#sommaire">Remonter la page</a> ]
 </p>
