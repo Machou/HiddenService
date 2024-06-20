@@ -29,14 +29,7 @@
 
 ## Liste des logiciels
 
-**Dans ce tutoriel, on part du principe que l’on commence avec les logiciels et versions suivantes :**
-
-Nous utiliserons un serveur basé sur Apache2, PHP et SQL, ce type de serveur est plus communément appelé **LAMP**. LAMP est un acronyme désignant un ensemble de logiciels libres permettant de construire des serveurs de sites web. L'acronyme original se réfère aux logiciels suivants :
-
-- « **L**inux », le système d'exploitation ( GNU/Linux ) ;
-- « **A**pache », le serveur Web ;
-- « **M**ySQL ou **M**ariaDB », le serveur de base de données ;
-- À l'origine, « **P**HP », « **P**erl » ou « **P**ython », les langages de script.
+Dans ce tutoriel, nous essayerons de garder les logiciels à jour avec leurs dernières versions. Voici la liste actuelle :
 
 - [Debian](https://www.debian.org/) — [version 12.5, liste des changements](https://www.debian.org/News/2024/20240210)
 - [Apache2](https://httpd.apache.org/) — [version 2.4.59, liste des changements](https://httpd.apache.org/security/vulnerabilities_24.html#2.4.59)
@@ -45,6 +38,15 @@ Nous utiliserons un serveur basé sur Apache2, PHP et SQL, ce type de serveur es
 - [Tor](https://www.torproject.org/) — [version 0.4.8.12, liste des changements](https://gitlab.torproject.org/tpo/core/tor/-/commits/tor-0.4.8.12)
 
 *Dernière mise à jour le 7 juin 2024*
+
+Nous allons configurer notre serveur, qui sera basé sur Apache2, PHP et SQL. Ce type de serveur est plus communément appelé **LAMP**. LAMP est un acronyme désignant un ensemble de logiciels libres permettant de construire des serveurs de sites web. L'acronyme original se réfère aux logiciels suivants :
+
+- « **L**inux », le système d'exploitation ( GNU/Linux ) ;
+- « **A**pache », le serveur Web ;
+- « **M**ySQL ou **M**ariaDB », le serveur de base de données ;
+- À l'origine, « **P**HP », « **P**erl » ou « **P**ython », les langages de script.
+
+Bien sûr, nous pourrions utiliser une [image Docker LAMP](https://hub.docker.com/r/mattrayner/lamp), mais le but est de se familiariser avec l'environnement Linux. Aussi, il existe d'autres logiciels pour le serveur web, comme [nginx](https://nginx.org/) ou [Caddy](https://caddyserver.com/). Cependant, j'ai choisi d'utiliser Apache2, mais vous êtes libre de changer.
 
 ## ![Qu’est-ce que Tor et un Hidden Service ?](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Qu%27est-ce%20que%20Tor%20et%20un%20Hidden%20Service%20?)
 
@@ -1197,6 +1199,7 @@ Je vous recommande ces tutoriels :
 - [The Onion Diaries](https://github.com/alecmuffett/the-onion-diaries/tree/master) 🇺🇸
 
 > À faire :
+> - ajouter nginx pour créer un proxy inverser
 > - heberger le site directement dans la ram
 > - bloquer les ports inutiles
 > - chiffrer le disque dur
