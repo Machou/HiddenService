@@ -1251,6 +1251,15 @@ On redémarre le serveur :
 
 ### Quelques liens / tutoriels utiles
 
+### Quelques liens / tutoriels utiles <p align="center"><a href="#">Remonter la page</a></p>
+
+### Quelques liens / tutoriels utiles <p align="right"><a href="#">Remonter la page</a>
+
+### Quelques liens / tutoriels utiles <p align="left"><a href="#">Remonter la page</a></p>
+
+### Quelques liens / tutoriels utiles [Remonter la page](#)
+
+
 #### Aide-mémoires / turoriels
 
 - [Aide-mémoire Bash](https://devhints.io/bash) 🇺🇸
@@ -1287,3 +1296,15 @@ On redémarre le serveur :
 > - soit de les traiter avec logrotate (et le paramètre shred — 3 max.)
 
 Si vous avez des idées ou des améliorations à proposer, n’hésitez pas à postez un commentaire ci-dessous.
+
+<p align="center">
+  <a href="#">Remonter la page</a>
+</p>
+
+<p align="right">
+  <a href="#">Remonter la page</a>
+</p>
+
+<p align="left">
+  <a href="#">Remonter la page</a>
+</p>
