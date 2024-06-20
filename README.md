@@ -328,8 +328,6 @@ On installe / désinstalle quelques logiciels pour la pratique et la sécurité,
 - [sendmail](https://packages.debian.org/fr/bookworm/sendmail) : sendmail est un agent de transmission de courriels (MTA) alternatif pour Debian. Il est adapté pour le traitement des configurations de messagerie sophistiquées, quoique cela signifie aussi que sa configuration peut être complexe.
 - [samba](https://packages.debian.org/fr/bookworm/samba) : samba est une implémentation du protocole SMB/CIFS pour les systèmes Unix, offrant la prise en charge du partage de fichiers et d’imprimantes multiplateforme avec Microsoft Windows, OS X et d’autres systèmes Unix. Samba peut également fonctionner comme un contrôleur de domaine de style Active Directory ou NT4 et peut s’intégrer aux domaines Active Directory ou aux domaines NT4 en tant que serveur membre.
 
-## ![Le serveur est configuré](https://i.postimg.cc/jjcP4KbZ/le-serveur-est-configur.png)
-
 ## ![Installation d’un serveur LAMP](https://i.postimg.cc/xjBJH57k/Installation-d-un-serveur-LAMP.png)
 
 ## ![Installation et configuration d’Apache2](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20d’Apache2)
@@ -656,7 +654,7 @@ On renomme logiquement le fichier aléatoirement, pour éviter, si vous oubliez 
 - [Site officiel d’AdminerEvo](https://docs.adminerevo.org/)
 - [Dépôt GitHub officiel](https://github.com/adminerevo/adminerevo)
 
-## ![Installation de Tor](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Installation%20de%20Tor)
+## ![Installation et configuration de Tor](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20de%20Tor)
 
 Tor est un réseau informatique superposé mondial et décentralisé. Il se compose de serveurs, appelés nœuds du réseau et dont la liste est publique. Ce réseau permet d’anonymiser l’origine de connexions TCP. Cela peut entre autres servir à anonymiser la source d’une session de navigation Web ou de messagerie instantanée. Cependant, l’anonymisation du flux n’est pas totale, car l’application peut transmettre des informations annexes permettant d’identifier la personne, c’est pourquoi le projet Tor développe également un navigateur Web fondé sur Firefox, Tor Browser, ainsi que d’autres applications spécialement modifiées pour préserver l’anonymat de leurs usagers. L’implémentation de référence du protocole s’appelle « tor », c’est un logiciel libre sous licence BSD révisée.
 
@@ -1122,9 +1120,9 @@ alias clog="find /var/log -type f -print0 | sudo xargs -0 shred -fuzv -n 35"
 alias update="sudo apt update && sudo apt upgrade && sudo apt full-upgrade && sudo apt dist-upgrade && sudo apt clean && sudo apt autoclean && sudo apt autoremove && sudo updatedb && sudo ldconfig && sudo chown www-data:www-data /var/www -R"
 ```
 
-- *cleany*, : sert à nettoyer les connexions et les logs
-- *clog* : sert à nettoyer tous les fichiers contenus dans le dossier /var/log
-- *update* : sert à mettre à jour et nettoyer votre serveur, mettre à jour le cache de recherche et la régénération des liens symboliques
+- *cleany* : nettoie les connexions et les logs
+- *clog* : nettoie en profondeur tous les fichiers contenus dans le dossier /var/log
+- *update* : met à jour, nettoie, et regénèredes les liens symboliques
 
 On recharge le fichier **~/.bashrc** :
 
