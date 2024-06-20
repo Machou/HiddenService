@@ -139,6 +139,6 @@ Si vous rencontrez une erreur avec une IP qui a été bannie alors qu’elle ne 
 `route del -host IP-PROBLEMATIQUE reject`
 
 <p align="center">
-  <a href="README.md">Retour à l’accueil</a>
-  <a href="#">Remonter la page</a>
+  [ <a href="README.md">Retour à l’accueil</a> ]
+  [ <a href="#portsentry">Remonter la page</a> ]
 </p>
