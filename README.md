@@ -1,6 +1,7 @@
 **Sommaire**
 
 - [Créer un Hidden Service sécurisé avec Tor sur Debian](#créer-un-hidden-service-sécurisé-avec-tor-sur-debian)
+- [Liste des logiciels](#liste-des-logiciel)
 - Qu’est-ce que Tor et un Hidden Service ?
   - [Quelques règles importantes](#quelques-règles-importantes)
 - [Configuration du serveur](#-1)
@@ -26,7 +27,7 @@
 
 # Créer un Hidden Service sécurisé avec Tor sur Debian
 
-## [Liste des logiciels](#)
+## Liste des logiciels
 
 **Dans ce tutoriel, on part du principe que l’on commence avec les logiciels et versions suivantes :**
 
@@ -35,7 +36,7 @@ Nous utiliserons un serveur basé sur Apache2, PHP et SQL, ce type de serveur es
 - « **L**inux », le système d'exploitation ( GNU/Linux ) ;
 - « **A**pache », le serveur Web ;
 - « **M**ySQL ou **M**ariaDB », le serveur de base de données ;
-- À l'origine1, « **P**HP », « **P**erl » ou « **P**ython », les langages de script.
+- À l'origine, « **P**HP », « **P**erl » ou « **P**ython », les langages de script.
 
 - [Debian](https://www.debian.org/) — [version 12.5, liste des changements](https://www.debian.org/News/2024/20240210)
 - [Apache2](https://httpd.apache.org/) — [version 2.4.59, liste des changements](https://httpd.apache.org/security/vulnerabilities_24.html#2.4.59)
@@ -57,13 +58,13 @@ Un Hidden Service (ou service caché) est un service accessible uniquement via l
 
 *[Statistiques officielles du projet Tor](https://metrics.torproject.org/)*
 
-Tor est utilisé pour se protéger contre une certaine forme de surveillance sur Internet, connue sous le nom d’analyse de trafic. Cette analyse est utilisée pour déterminer qui communique avec qui sur un réseau public. Connaitre la source et la destination de votre trafic peut permettre à des personnes de traquer votre comportement et vos intérêts. Cartogramme de l’usage de Tor à l’international.
+Tor est utilisé pour se protéger contre une certaine forme de surveillance sur Internet, connue sous le nom d’analyse de trafic. Cette analyse est utilisée pour déterminer qui communique avec qui sur un réseau public. Connaître la source et la destination de votre trafic peut permettre à des personnes de traquer votre comportement et vos intérêts. Cartogramme de l’usage de Tor à l’international.
 
 Tor est aussi un outil de contournement de la censure sur Internet. Il permet aux personnes l’utilisant d’accéder à des sites, contenus ou services bloqués dans certaines zones du monde.
 
 Tor fait circuler le trafic de ses utilisateurs et utilisatrices via une série de relais. Ce procédé permet de ne pas être tracé par les sites web consultés, d’accéder à des services, contenus ou sites bloqués par un FAI. Il est aussi possible pour chaque utilisateur de publier des contenus via les services *onion* de Tor, sans révéler la position de ces services.
 
-Ces avantages peuvent être utiles pour chaque personne qui souhaite maitriser ses traces laissées en ligne. Ils sont notamment mis en œuvre dans les échanges entre lanceurs d’alerte, journalistes, avocats, dissidents politiques, organisations non gouvernementales, pour échanger en maitrisant la sécurité de leurs données, de leur connexion, de leurs destinataires et de leur position.
+Ces avantages peuvent être utiles pour chaque personne qui souhaite maîtriser ses traces laissées en ligne. Ils sont notamment mis en œuvre dans les échanges entre lanceurs d’alerte, journalistes, avocats, dissidents politiques, organisations non gouvernementales, pour échanger en maîtrisant la sécurité de leurs données, de leur connexion, de leurs destinataires et de leur position.
 
 Pour faire simple, un *Hidden Service* va vous permettre d’avoir un serveur Jabber, SSH, d’héberger un site, etc. le tout en masquant complètement l’adresse IP et les informations du VPS / serveur aux utilisateurs, bots, aux gouvernements, etc.
 
@@ -76,18 +77,18 @@ Plusieurs choses :
 - discuter sur des messageries utilisant le proxy Tor
 - etc.
 
-Malheureusement, qui dit anonymisation des utilisateurs, dit criminalité en tout genre, vente de drogue, d’arme, trafic d’être humain, de fausse monnaie, etc. et j’en passe. Il a des côtés positifs et des côtés négatifs. Que ça soit dans la vraie vie ou sur internet, on sera toujours embêté par les vilains… Le but de ce tutoriel n’est pas de vous montrer comment acheter de la drogue mais d’apprendre le fonctionnement d’un serveur web utilisant le service de cryptage de Tor.
+Malheureusement, qui dit anonymisation des utilisateurs, dit criminalité en tout genre, vente de drogue, d’armes, trafic d’être humain, de fausse monnaie, etc. et j’en passe. Il a des côtés positifs et des côtés négatifs. Que ça soit dans la vraie vie ou sur internet, on sera toujours embêté par les vilains… Le but de ce tutoriel n’est pas de vous montrer comment acheter de la drogue mais d’apprendre le fonctionnement d’un serveur web utilisant le service de cryptage de Tor.
 
 ## Quelques règles importantes
 
-*Ce tutoriel est un exemple, en aucun cas on pousse à faire des choses illégales. De par les exemples, vous pouvez (je vous le conseil) d’adapter en fonction de vos besoins.*
+*Ce tutoriel est un exemple, en aucun cas on pousse à faire des choses illégales. Vous pouvez adapter en fonction de vos besoins.*
 
 - Toujours se connecter à vos services (SSH, sFTP, FTP, etc) via un proxy SOCK ⁵ de Tor
 - Ne JAMAIS installer de logiciel / script (PHP, Python, Bash, etc.), dont vous n’êtes pas certain de la source
 - Ne JAMAIS exécuter de logiciel / script / commande dont vous n’êtes pas certain de la source
 - Ne JAMAIS réaliser des tâches dont vous n’êtes pas certain de la source
 - Démarrer votre installation / configuration avec un VPS / serveur dont vous êtes certain de la source
-- Démarrer votre installation / configuration sur un système d’exploitation fraichement installé
+- Démarrer votre installation / configuration sur un système d’exploitation fraîchement installé
 - Utiliser un courriel anonyme pour le service sur lequel vous allez louer votre VPS / serveur
 - *[liste de quelques services de courriels sécurisés](https://www.privacytools.io/privacy-email)*
 - Payer votre VPS / serveur en [cryptomonnaie](https://fr.wikipedia.org/wiki/Cryptomonnaie) (Bitcoin, Monero, etc.)
@@ -222,7 +223,7 @@ deb-src https://deb.debian.org/debian bookworm-updates main
 
 On met à jour les paquets et on installe [nano](https://doc.ubuntu-fr.org/nano) (éditeur de texte) et [sudo](https://doc.ubuntu-fr.org/sudo) (permet à un utilisateur normal d’exécuter des commandes en tant que super-utilisateur (ou « root »)).
 
-*Ces deux logiciels ne sont pas installés par défaut sur certains VPS, cela dépend du fournisseur et de la distribution, donc pour éviter des tout problème, on installe, si ils sont déjà présents sur le serveur, ça ne changera rien.*
+*Ces deux logiciels ne sont pas installés par défaut sur certains VPS, cela dépend du fournisseur et de la distribution, donc pour éviter tout problème, on installe, s’ils sont déjà présents sur le serveur, ça ne changera rien.*
 
 `apt update && apt install apt-transport-https lsb-release ca-certificates nano sudo wget`
 
@@ -262,7 +263,7 @@ On change le port SSH :
 
 C’est une forme de sécurité simple, mais étonnamment efficace.
 
-Les servuers utilisent généralement le port 22 pour se connecter à SSH, donc il est moins susceptible d’être trouvé par des robots qui analysent les adresses IP à la recherche de mot de passe faible sur les comptes par défaut. Si vous numérisez tout le réseau, vous ne pouvez pas vous permettre de vérifier tous les ports possibles (65 535 ports disponibles) pour trouver le serveur SSH.
+Les serveurs utilisent généralement le port 22 pour se connecter à SSH, donc il est moins susceptible d’être trouvé par des robots qui analysent les adresses IP à la recherche de mot de passe faible sur les comptes par défaut. Si vous numérisez tout le réseau, vous ne pouvez pas vous permettre de vérifier tous les ports possibles (65 535 ports disponibles) pour trouver le serveur SSH.
 
 Cependant, si quelqu’un vous ciblera activement, cela ne fournit aucun bénéfice, car une simple analyse *nmap* unique révèlera le port sur lequel **SSH** fonctionne réellement (on utilisera [PortSentry](PortSentry.md) pour bloquer ces attaques, voir plus bas).
 
@@ -296,7 +297,7 @@ DebianBanner no
 AllowUsers salameche
 ```
 
-- **UseDNS** : par défaut le serveur cherche à établir la résolution DNS inverse depuis votre IP. Cette requête peut être assez longue, c’est pour cela que nous désactivons cette fonctionnalité, plutôt inutile
+- **UseDNS** : par défaut, le serveur cherche à établir la résolution DNS inverse depuis votre IP. Cette requête peut être assez longue, c’est pour cela que nous désactivons cette fonctionnalité, plutôt inutile
 - **UsePAM** : PAM doit être désactivé si vous utilisez des clés d’authentifications, ce qui n’est pas notre cas, donc il doit être activé
 - **DebianBanner** : permet d’éviter que le serveur SSH n’affiche la distribution Linux Ubuntu ou Debian
 - **AllowUsers** : ajoute les utilisateurs autorisés à se connecter à SSH, pour notre cas, on ajoutera simplement « *salameche* »
