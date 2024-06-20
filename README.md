@@ -19,7 +19,7 @@
   - [Configuration de la date et heure](#configuration-de-la-date-et-heure)
   - [Rediriger le trafic réseau du serveur vers Tor](#rediriger-le-trafic-réseau-du-serveur-vers-tor)
   - [Réécrire la RAM avant un arrêt / redémarrage du serveur](#réécrire-la-ram-avant-un-arrêt--redémarrage-du-serveur)
-  - [On supprime ses traces](#on-supprime-ses-traces)
+  - [Supprimez ses traces](#supprimez-ses-traces)
   - [Alias utiles (*~/.bashrc*)](#alias-utiles-pour-le-serveur)
   - [Désactiver IPv6](#désactiver-ipv6)
   - [Quelques tutoriels utiles](#quelques-liens--tutoriels-utiles)
@@ -29,7 +29,7 @@
 
 ## Liste des logiciels
 
-Dans ce tutoriel, nous essayerons de garder les logiciels à jour avec leurs dernières versions. Voici la liste actuelle :
+Dans ce tutoriel, nous tenterons de garder les logiciels à jour avec leurs dernières versions. Voici la liste actuelle :
 
 - [Debian](https://www.debian.org/) — [version 12.5, liste des changements](https://www.debian.org/News/2024/20240210)
 - [Apache2](https://httpd.apache.org/) — [version 2.4.59, liste des changements](https://httpd.apache.org/security/vulnerabilities_24.html#2.4.59)
@@ -50,7 +50,7 @@ Bien sûr, nous pourrions utiliser une [image Docker LAMP](https://hub.docker.co
 
 ## ![Qu’est-ce que Tor et un Hidden Service ?](https://fakeimg.pl/830x100/ffffff/2c96f3/?text=Qu%27est-ce%20que%20Tor%20et%20un%20Hidden%20Service%20?)
 
-Tor (acronyme de « **The Onion Router** ») est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœuds** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme « onion » (oignon) qui fait référence aux multiples couches de protection.
+Tor (acronyme de « **The Onion Router** ») est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœud** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme « onion » (oignon) qui fait référence aux multiples couches de protection.
 
 Un Hidden Service (ou service caché) est un service accessible uniquement via le réseau Tor. Ces services utilisent des adresses en « .onion » et permettent aux sites web, aux forums, aux messageries instantanées et à d’autres types de services de fonctionner de manière anonyme. Les utilisateurs peuvent accéder à ces services sans connaître l’emplacement physique du serveur, et le serveur ne connaît pas l’adresse IP des utilisateurs. Cela garantit une confidentialité et une sécurité accrues pour les deux parties. Les Hidden Services sont souvent utilisés pour protéger la vie privée des utilisateurs, mais ils peuvent aussi être utilisés à des fins malveillantes en raison de l’anonymat qu’ils offrent.
 
@@ -79,7 +79,7 @@ Plusieurs choses :
 - discuter sur des messageries utilisant le proxy Tor
 - etc.
 
-Malheureusement, qui dit anonymisation des utilisateurs, dit criminalité en tout genre, vente de drogue, d’armes, trafic d’être humain, de fausse monnaie, etc. et j’en passe. Il a des côtés positifs et des côtés négatifs. Que ça soit dans la vraie vie ou sur internet, on sera toujours embêté par les vilains… Le but de ce tutoriel n’est pas de vous montrer comment acheter de la drogue mais d’apprendre le fonctionnement d’un serveur web utilisant le service de cryptage de Tor.
+Malheureusement, qui dit anonymisation des utilisateurs, dit criminalité en tout genre, vente de drogue, d’armes, trafic d’être humains, de fausse monnaie, etc. et j’en passe. Il a des côtés positifs et des côtés négatifs. Que ça soit dans la vraie vie ou sur internet, on sera toujours embêté par les vilains… Le but de ce tutoriel n’est pas de vous montrer comment acheter de la drogue mais d’apprendre le fonctionnement d’un serveur web utilisant le service de cryptage de Tor.
 
 ## Quelques règles importantes
 
@@ -178,7 +178,7 @@ The key's randomart image is:
 +----[SHA256]-----
 ```
 
-Une fois vos clés générer sur votre PC, on les place sur le serveur distant :
+Une fois vos clés générées sur votre PC, on les place sur le serveur distant :
 
 `ssh-copy-id <username>@<hostname>`
 
@@ -1070,7 +1070,7 @@ On rend le script exécutable :
 
 Le script va lire des données aléatoires de `/dev/urandom` et les écrire dans `/dev/null`, ce qui force la mémoire RAM à être remplie avec des données aléatoires, réduisant ainsi la possibilité de récupération des données sensibles ou pour éviter les [attaque par démarrage à froid](https://fr.wikipedia.org/wiki/Attaque_par_d%C3%A9marrage_%C3%A0_froid).
 
-### On supprime ses traces
+### Supprimez ses traces
 
 Nous allons utiliser [shred](https://doc.ubuntu-fr.org/shred) pour supprimer les fichiers logs sur le serveur. Le logiciel shred est un utilitaire de ligne de commande sous Linux et Unix qui permet de supprimer définitivement des fichiers en écrivant de manière aléatoire des données sur les emplacements de stockage correspondants. Il est généralement utilisé pour supprimer des fichiers sensibles ou confidentiels de manière sécurisée afin de s’assurer qu’ils ne peuvent pas être récupérés.
 
