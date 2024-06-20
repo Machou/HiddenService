@@ -624,31 +624,22 @@ On redémarre le VPS !
 
 ## ![Accéder aux tables SQL](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Accéder%20aux%20tables%20SQL)
 
-Pour accéder à vos données enregistrer dans vos tables SQL, il va nous falloir un outil de gestion de base de données complet, simple et efficace, ce que nous retrouvons avec [AdminEvo](https://docs.adminerevo.org/).
+Pour accéder à votre base de données SQL, je vous propose d’utiliser le puissant [AdminEvo](https://docs.adminerevo.org/).
 
-Généralement, on utilise [phpMyAdmin](https://www.phpmyadmin.net/), il est complet, simple d’utilisation mais malheureusement, ce gestionnaire n’est pas adapté à notre configuration. Vous trouverez les autres [logiciels SGBD sur sql.sh](https://sql.sh/logiciels).
+Généralement, on utilise [phpMyAdmin](https://www.phpmyadmin.net/), complet et facile d’utilisation mais malheureusement, ce gestionnaire n’est pas adapté à notre configuration. Vous trouverez les autres [logiciels SGBD sur sql.sh](https://sql.sh/logiciels).
 
-**Pourquoi pas phpMyAdmin ?**
+Mais **phpMyAdmin** est gourmand en ressource, il utilise JavaScript (à proscrire sur le réseau Tor), il s’expose à des vulnérabilités connues, etc.
 
-- phpMyAdmin est lourd, donc pour Tor ce n’ pas recommandé
-- **il utilise pleinement JavaScript**, qui je le rappelle, est à proscrire lorsque que l’on navigue sur le réseau Tor
-- des failles de sécurités critiques peuvent être présentes
-- phpMyAdmin est surtout utilisé pour gérer des hébergements mutualisés, ce n’est pas notre cas
+Nous n’allons pas installer de gestionnaire de base de données à propremment parlé, mais on peut utiliser [AdminerEvo](https://docs.adminerevo.org/). Il vous suffira de télécharger le fichier lorsque vous aurez besoin d’accéder à votre base de données et de le supprimer une fois vos opérations terminées. Évidemment, la solution la plus sécurisée serait de manipuler les données SQL en ligne de commande.
 
-Nous n’allons pas installer de gestionnaire de base de données à propremment parlé, c’est trop risqué, dans le même style on peut utiliser [AdminerEvo](https://docs.adminerevo.org/). Il vous suffira de télécharger le fichier lorsque vous aurez besoin d’accéder à votre base de données et de le supprimer une fois vos opérations terminées.
-
-**Pourquoi AdminerEvo ?**
-
-- léger (fichier unique)
-- ne dépand pas de JavaScript
-- peut s’installer / désinstaller comme on le souhaite
+**AdminerEvo** est  léger (fichier unique), il ne dépand pas de JavaScript, il peut s’installer / désinstaller comme on le souhaite, etc.
 
 **Les pré-requis**
 
-- fonctionne avec MySQL, MariaDB, PostgreSQL, SQLite, MS SQL, Oracle, Elasticsearch, MongoDB, SimpleDB (plugin), Firebird (plugin) et ClickHouse (plugin)
-- support à partir de PHP 5
-- disponible en Français, Thai, Tamil, Romanian, Korean, Ukrainian, Dutch, Persian, Polish, Lithuanian, Slovene, Czech, Finnish, Italian, Hebrew, Catalan, Bengali, Vietnamese, English, Portuguese, Serbian, Slovak, Chinese (Traditional), Estonian, Turkish, Indonesian, Norwegian, Brazilian Portuguese, Chinese (Simplified), Danish, Bosnian, German, Japanese, Spanish, Russian, Arabic, Hungarian
-- des dizaines de plugins pour toute sorte d’utilisation
+- base de données type MySQL, MariaDB, PostgreSQL, SQLite, MS SQL, Oracle, Elasticsearch, MongoDB, SimpleDB (plugin), Firebird (plugin) ou ClickHouse (plugin)
+- PHP 5 minimum
+- disponible en Français, Anglais, Allemand, Espagnol, etc. (44 langues langues disponibles)
+- des dizaines de plugins disponibles
 - gratuit (Apache License ou GPL 2)
 
 Pour la configuration, rien de plus simple, il vous suffit de [télécharger AdminerEvo](https://download.adminerevo.org/4.8.4/adminer/adminer.zip) et de renommer le fichier, par exemple :
@@ -658,9 +649,9 @@ mkdir /var/www/admin && cd /var/www/admin
 wget https://github.com/adminerevo/adminerevo/releases/download/v4.8.4/adminer-4.8.4.php -O "$(mktemp adminer-XXXXXXXXXXXXXXXXXXXX.php)"
 ```
 
-On renomme logiquement le fichier aléatoirement, pour éviter, si vous oubliez de le supprimer, qu’un méchant robot attaque votre site. Dans tous les cas, je vous conseille de le supprimer une fois que vous avez terminé vos tâches avec MySQL.
+On renomme logiquement le fichier aléatoirement, pour éviter, si vous oubliez de le supprimer, qu’un méchant robot attaque votre site. Dans tous les cas, vous devez supprimer le fichier une fois que vous avez terminé vos tâches avec MySQL.
 
-*Note : AdminerEvo, comme son nom l’indique, est une nouvelle version de l’original qui n’était plus maintenu*
+*Note : AdminerEvo, comme son nom l’indique, est une nouvelle version de la [version originale d’Adminer](https://www.adminer.org/) qui n’était plus maintenue*
 
 - [Site officiel d’AdminerEvo](https://docs.adminerevo.org/)
 - [Dépôt GitHub officiel](https://github.com/adminerevo/adminerevo)
