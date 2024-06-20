@@ -48,7 +48,7 @@ Nous allons configurer notre serveur, qui sera basé sur Apache2, PHP et SQL. Ce
 
 Bien sûr, nous pourrions utiliser une [image Docker LAMP](https://hub.docker.com/r/mattrayner/lamp), mais le but est de se familiariser avec l’environnement Linux. Aussi, il existe d’autres logiciels pour le serveur web, comme [nginx](https://nginx.org/) ou [Caddy](https://caddyserver.com/). Cependant, j’ai choisi d’utiliser Apache2, mais vous êtes libre de changer.
 
-## ![Qu’est-ce que Tor et un Hidden Service ?](https://fakeimg.pl/830x100/ffffff/2c96f3/?text=Qu%27est-ce%20que%20Tor%20et%20un%20Hidden%20Service%20?)
+## ![Qu’est-ce que Tor et un Hidden Service ?](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Qu%27est-ce%20que%20Tor%20et%20un%20Hidden%20Service%20?)
 
 Tor (acronyme de « **The Onion Router** ») est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœud** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme « onion » (oignon) qui fait référence aux multiples couches de protection.
 
@@ -124,7 +124,7 @@ Dans l’ensemble, l’utilisation de Tor est considérée comme la solution la 
 
 **VPNs recommandés :** [Mullvad](https://mullvad.net/) ou [ProtonVPN](https://protonvpn.com/)
 
-## ![Configuration du serveur](https://fakeimg.pl/830x100/ffffff/2c96f3/?text=Configuration%20du%20serveur)
+## ![Configuration du serveur](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Configuration%20du%20serveur)
 
 On se connecte au serveur via SSH et on change directement le mot de passe root :
 
@@ -328,11 +328,11 @@ On installe / désinstalle quelques logiciels pour la pratique et la sécurité,
 - [sendmail](https://packages.debian.org/fr/bookworm/sendmail) : sendmail est un agent de transmission de courriels (MTA) alternatif pour Debian. Il est adapté pour le traitement des configurations de messagerie sophistiquées, quoique cela signifie aussi que sa configuration peut être complexe.
 - [samba](https://packages.debian.org/fr/bookworm/samba) : samba est une implémentation du protocole SMB/CIFS pour les systèmes Unix, offrant la prise en charge du partage de fichiers et d’imprimantes multiplateforme avec Microsoft Windows, OS X et d’autres systèmes Unix. Samba peut également fonctionner comme un contrôleur de domaine de style Active Directory ou NT4 et peut s’intégrer aux domaines Active Directory ou aux domaines NT4 en tant que serveur membre.
 
-## ![Le serveur est configuré](https://i.imgur.com/CyiIlQx.png)
+## ![Le serveur est configuré](https://i.postimg.cc/jjcP4KbZ/le-serveur-est-configur.png)
 
-## ![Installation d’un serveur LAMP](https://i.imgur.com/lcwfXBO.png)
+## ![Installation d’un serveur LAMP](https://i.postimg.cc/xjBJH57k/Installation-d-un-serveur-LAMP.png)
 
-## ![Installation et configuration d’Apache2](https://fakeimg.pl/830x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20d’Apache2)
+## ![Installation et configuration d’Apache2](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20d’Apache2)
 
 On installe Apache2 :
 
@@ -445,7 +445,7 @@ On quitte et on redémarre Apache2 :
 - [Site officiel d’Apache2](https://httpd.apache.org/)
 - [Dépôt GitHub officiel](https://github.com/apache/httpd)
 
-## ![Installation et configuration de PHP](https://fakeimg.pl/830x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20de%20PHP)
+## ![Installation et configuration de PHP](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20de%20PHP)
 
 On va installer PHP 8 via le dépôt d’[Ondřej Surý](https://deb.sury.org/) car les dernières versions de PHP ne sont pas disponibles sur Debian.
 
@@ -561,7 +561,7 @@ On sauvegarde le fichier **php.ini** et on redémarre Apache2 :
 
 `sudo service apache2 restart`
 
-## ![Installation et configuration de MySQL](https://fakeimg.pl/830x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20de%20MySQL)
+## ![Installation et configuration de MySQL](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20de%20MySQL)
 
 MariaDB est un système de gestion de base de données édité sous licence GPL. Il s’agit d’un embranchement communautaire de MySQL : la gouvernance du projet est assurée par la fondation MariaDB, et sa maintenance par la société Monty Program AB, créateur du projet. Cette gouvernance confère au logiciel l’assurance de rester libre.
 
@@ -622,7 +622,7 @@ On redémarre le serveur :
 
 `sudo reboot`
 
-## ![Accéder aux tables SQL](https://fakeimg.pl/830x100/ffffff/2c96f3/?text=Accéder%20aux%20tables%20SQL)
+## ![Accéder aux tables SQL](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Accéder%20aux%20tables%20SQL)
 
 Pour accéder à votre base de données SQL, je vous propose d’utiliser le puissant [AdminEvo](https://docs.adminerevo.org/).
 
@@ -656,7 +656,7 @@ On renomme logiquement le fichier aléatoirement, pour éviter, si vous oubliez 
 - [Site officiel d’AdminerEvo](https://docs.adminerevo.org/)
 - [Dépôt GitHub officiel](https://github.com/adminerevo/adminerevo)
 
-## ![Installation de Tor](https://fakeimg.pl/830x100/ffffff/2c96f3/?text=Installation%20de%20Tor)
+## ![Installation de Tor](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Installation%20de%20Tor)
 
 Tor est un réseau informatique superposé mondial et décentralisé. Il se compose de serveurs, appelés nœuds du réseau et dont la liste est publique. Ce réseau permet d’anonymiser l’origine de connexions TCP. Cela peut entre autres servir à anonymiser la source d’une session de navigation Web ou de messagerie instantanée. Cependant, l’anonymisation du flux n’est pas totale, car l’application peut transmettre des informations annexes permettant d’identifier la personne, c’est pourquoi le projet Tor développe également un navigateur Web fondé sur Firefox, Tor Browser, ainsi que d’autres applications spécialement modifiées pour préserver l’anonymat de leurs usagers. L’implémentation de référence du protocole s’appelle « tor », c’est un logiciel libre sous licence BSD révisée.
 
@@ -697,7 +697,7 @@ On active Tor au démarrage :
 
 `sudo systemctl enable tor`
 
-## ![Configuration du Hidden Service](https://fakeimg.pl/830x100/ffffff/2c96f3/?text=Configuration%20du%20Hidden%20Service)
+## ![Configuration du Hidden Service](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Configuration%20du%20Hidden%20Service)
 
 On configure Tor :
 
@@ -735,7 +735,7 @@ Redémarrer Tor va créer le répertoire **/var/lib/tor/hidden_service** ainsi q
 
 *Notez le contenu de **hostname** quelque part, on l’utilisera plus tard !*
 
-## ![Générer une adresse .onion personnalisée](https://830x100.pl/830x100/ffffff/2c96f3/?text=Générer%20une%20adresse%20.onion%20personnalisée)
+## ![Générer une adresse .onion personnalisée](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Générer%20une%20adresse%20.onion%20personnalisée)
 
 Si vous souhaitez une adresse .onion personnalisée, lisez la suite, sinon on passe directement à la [Partie Apache2](#-11).
 
@@ -934,7 +934,7 @@ Maintenant, lancez le [Navigateur Tor](https://www.torproject.org/download/) sur
 
 ![](https://i.ibb.co/M267kK8/onion.png)
 
-## ![Facultatif](https://fakeimg.pl/830x100/ffffff/2c96f3/?text=Facultatif)
+## ![Facultatif](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Facultatif)
 
 ### Configuration de la langue
 
