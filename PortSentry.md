@@ -138,4 +138,7 @@ Si vous rencontrez une erreur avec une IP qui a été bannie alors qu’elle ne 
 
 `route del -host IP-PROBLEMATIQUE reject`
 
-[Retour à l’accueil](README.md)
+<p align="center">
+  <a href="README.md">Retour à l’accueil</a>
+  <a href="#">Remonter la page</a>
+</p>
