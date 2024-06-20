@@ -21,9 +21,9 @@
   - [Réécrire la RAM avant un arrêt / redémarrage du serveur](#réécrire-la-ram-avant-un-arrêt--redémarrage-du-serveur)
   - [On supprime ses traces](#on-supprime-ses-traces)
   - [Alias utiles (*~/.bashrc*)](#alias-utiles-pour-le-serveur)
-  - [Désactiver le transfert IP et le multi-hébergement](#désactiver-le-transfert-ip-et-le-multi-hébergement)
   - [Désactiver IPv6](#désactiver-ipv6)
   - [Quelques tutoriels utiles](#quelques-tutoriels-utiles)
+  - [À faire](#à-faire))
 
 # Créer un Hidden Service sécurisé avec Tor sur Debian
 
@@ -39,18 +39,18 @@ Dans ce tutoriel, nous essayerons de garder les logiciels à jour avec leurs der
 
 *Dernière mise à jour le 7 juin 2024*
 
-Nous allons configurer notre serveur, qui sera basé sur Apache2, PHP et SQL. Ce type de serveur est plus communément appelé **LAMP**. LAMP est un acronyme désignant un ensemble de logiciels libres permettant de construire des serveurs de sites web. L'acronyme original se réfère aux logiciels suivants :
+Nous allons configurer notre serveur, qui sera basé sur Apache2, PHP et SQL. Ce type de serveur est plus communément appelé **LAMP**. LAMP est un acronyme désignant un ensemble de logiciels libres permettant de construire des serveurs de sites web. L’acronyme original se réfère aux logiciels suivants :
 
-- « **L**inux », le système d'exploitation ( GNU/Linux ) ;
+- « **L**inux », le système d’exploitation ( GNU/Linux ) ;
 - « **A**pache », le serveur Web ;
 - « **M**ySQL ou **M**ariaDB », le serveur de base de données ;
-- À l'origine, « **P**HP », « **P**erl » ou « **P**ython », les langages de script.
+- À l’origine, « **P**HP », « **P**erl » ou « **P**ython », les langages de script.
 
-Bien sûr, nous pourrions utiliser une [image Docker LAMP](https://hub.docker.com/r/mattrayner/lamp), mais le but est de se familiariser avec l'environnement Linux. Aussi, il existe d'autres logiciels pour le serveur web, comme [nginx](https://nginx.org/) ou [Caddy](https://caddyserver.com/). Cependant, j'ai choisi d'utiliser Apache2, mais vous êtes libre de changer.
+Bien sûr, nous pourrions utiliser une [image Docker LAMP](https://hub.docker.com/r/mattrayner/lamp), mais le but est de se familiariser avec l’environnement Linux. Aussi, il existe d’autres logiciels pour le serveur web, comme [nginx](https://nginx.org/) ou [Caddy](https://caddyserver.com/). Cependant, j’ai choisi d’utiliser Apache2, mais vous êtes libre de changer.
 
 ## ![Qu’est-ce que Tor et un Hidden Service ?](https://fakeimg.pl/500x100/ffffff/2c96f3/?text=Qu%27est-ce%20que%20Tor%20et%20un%20Hidden%20Service%20?)
 
-Tor (acronyme de “ **The Onion Router** ”) est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœuds** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme « onion » (oignon) qui fait référence aux multiples couches de protection.
+Tor (acronyme de « **The Onion Router** ») est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœuds** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme « onion » (oignon) qui fait référence aux multiples couches de protection.
 
 Un Hidden Service (ou service caché) est un service accessible uniquement via le réseau Tor. Ces services utilisent des adresses en « .onion » et permettent aux sites web, aux forums, aux messageries instantanées et à d’autres types de services de fonctionner de manière anonyme. Les utilisateurs peuvent accéder à ces services sans connaître l’emplacement physique du serveur, et le serveur ne connaît pas l’adresse IP des utilisateurs. Cela garantit une confidentialité et une sécurité accrues pour les deux parties. Les Hidden Services sont souvent utilisés pour protéger la vie privée des utilisateurs, mais ils peuvent aussi être utilisés à des fins malveillantes en raison de l’anonymat qu’ils offrent.
 
@@ -243,7 +243,7 @@ Une fois notre utilisateur créé, on l’ajoute au groupe « *sudo* », cela pe
 
 `adduser salameche sudo`
 
-Cela renverra :
+La sortie doit renvoyer :
 
 ```sh
 Adding user `salameche' to group `sudo' ...
@@ -618,7 +618,7 @@ Une fois connecté, on peut afficher les bases de données :
 
 `SHOW DATABASES;`
 
-On redémarre le VPS !
+On redémarre le serveur :
 
 `sudo reboot`
 
@@ -887,7 +887,6 @@ On ajoute en dessous : (*optionnel*)
 ```sh
 Header always append X-Frame-Options SAMEORIGIN
 Header set X-XSS-Protection "1; mode=block"
-Header always set Strict-Transport-Security "max-age=2592000; includeSubDomains; preload;"
 ```
 
 On active le VirtualHost par défaut :
@@ -945,7 +944,7 @@ On peut changer la langue pour brouiller un peu les pistes :
 
 Dans, la liste, on peut choisir les deux langues principales *en*, *en_US.UTF-8*, *fr*, *fr_FR.UTF-8* :
 
-Cela renverra :
+La sortie doit renvoyer :
 
 ```sh
 Generating locales (this might take a while)...
@@ -958,21 +957,21 @@ La langue française a été choisie, mais libre à vous de configurer celle que
 
 ### Configuration de la date et heure
 
-On peut changer la date et heure pour brouiller un peu les pisteurs :
+On peut changer la date et heure pour brouiller un peu les robots :
 
 `sudo dpkg-reconfigure tzdata`
 
-Dans la liste, on choisit le fuseau horaire que l’on souhaite, pour nous ça sera Paris : *8 - Europe* > *37 - Paris*
+Dans la liste, on choisit le fuseau horaire que l’on souhaite, pour nous ça sera Paris :
 
 Cela renverra :
 
 ```sh
 Current default time zone: 'Europe/Paris'
-Local time is now:      Mon Aug 22 17:11:16 CEST 2022.
-Universal Time is now:  Mon Aug 22 15:11:16 UTC 2022.
+Local time is now:      Thu Jun 20 15:51:54 CEST 2024.
+Universal Time is now:  Thu Jun 20 13:51:54 UTC 2024.
 ```
 
-Le fuseau horaire de Paris a été choisi, mais libre à vous de configurer celui que vous souhaitez, c’est d’ailleurs fortement recommandé de ne pas choisir celui où vous logez (pays ou ville), sinon laissez celui par défaut.
+Le fuseau horaire de Paris a été choisi, mais libre à vous de configurer celui que vous souhaitez, c’est d’ailleurs fortement recommandé de ne pas choisir celui où vous résider (pays ou ville), sinon laissez celui par défaut.
 
 ### Rediriger le trafic réseau du serveur vers Tor
 
@@ -985,23 +984,17 @@ On installe **Perl** :
 On télécharge et on installe le script :
 
 ```sh
-git clone https://github.com/htrgouvea/nipe && cd nipe/
-cpanm --installdeps .
-# doit être en root
-perl nipe.pl install
+git clone https://github.com/htrgouvea/nipe && cd nipe
+sudo cpanm --installdeps .
+sudo perl nipe.pl install
 ```
 
 Si erreur, on installe les dépendances **Perl** manquantes via **cpan** :
 
 `sudo cpan install Try::Tiny Config::Simple JSON`
 
-Pour lancer Nipe :
-
-`perl nipe.pl start`
-
-Pour arrêter Nipe :
-
-`perl nipe.pl stop`
+- Pour lancer Nipe : `perl nipe.pl start`
+- Pour arrêter Nipe : `perl nipe.pl stop`
 
 Commandes Nipe :
 
@@ -1014,7 +1007,7 @@ restart          Restart the Nipe circuit
 status           See status
 ```
 
-Examples :
+Exemples :
 
 ```sh
 perl nipe.pl install
@@ -1024,39 +1017,96 @@ perl nipe.pl restart
 perl nipe.pl status
 ```
 
-Démo : ![](https://heitorgouvea.me/images/projects/nipe/demo.gif)
+![](https://heitorgouvea.me/images/projects/nipe/demo.gif)
 
 - [Dépôt GitHub officiel du projet Nipe](https://github.com/GouveaHeitor/nipe)
 
 ### Réécrire la RAM avant un arrêt / redémarrage du serveur
 
-On va réécrire la RAM avant chaque arrêt / redémarrage serveur, pour éviter les attaques type [attaque par démarrage à froid](https://fr.wikipedia.org/wiki/Attaque_par_d%C3%A9marrage_%C3%A0_froid).
+On créé un fichier que l’exécutera à chaque arrête / redémarrage du serveur :
 
-On install **secure-delete** :
+`nano /home/salameche/ram.sh`
 
-`sudo apt install secure-delete`
-
-Pour le faire fonctionner à chaque arrêt, nous allons créer un fichier dans la partie **/etc/init** nommé **memory_wipe.conf** : (à copier / coller simplement dans le terminal)
+On y ajoute :
 
 ```sh
-echo '# upstart config - wipes memory on shutdown
+#!/bin/bash
 
-description "Wipes memory on shutdown"
+# Fonction pour purger la RAM
+purge_ram() {
+	echo "Purge de la RAM en cours..."
 
-start on (runlevel [016] and stopped gdm)
+	# Allouer et libérer de la mémoire
+	sudo dd if=/dev/urandom of=/dev/null bs=1M count=$(free -m | grep Mem | awk '{print $7}')
 
-script
-	sdmem
-end script' > sudo tee /etc/init/memory_wipe.conf
+	echo "RAM purgée."
+}
+
+# Vérifier les arguments
+if [ "$1" != "shutdown" ] && [ "$1" != "reboot" ]; then
+	echo "Usage: $0 <shutdown|reboot>"
+	exit 1
+fi
+
+# Purger la RAM
+purge_ram
+
+# Arrêter ou redémarrer le serveur en fonction de l’argument
+if [ "$1" == "shutdown" ]; then
+	echo "Arrêt du serveur..."
+	sudo shutdown -h now
+elif [ "$1" == "reboot" ]; then
+	echo "Redémarrage du serveur..."
+	sudo reboot
+fi
 ```
+
+On rend le script exécutable :
+
+`chmod +x ram.sh`
+
+- Redémarrer le serveur : `./ram.sh shutdown`
+- Arrêter le serveur : `./ram.sh reboot`
+
+Le script va lire des données aléatoires de `/dev/urandom` et les écrire dans `/dev/null`, ce qui force la mémoire RAM à être remplie avec des données aléatoires, réduisant ainsi la possibilité de récupération des données sensibles ou pour éviter les [attaque par démarrage à froid](https://fr.wikipedia.org/wiki/Attaque_par_d%C3%A9marrage_%C3%A0_froid).
 
 ### On supprime ses traces
 
-`sudo find /var/log -type f -print0 | sudo xargs -0 shred -fuzv -n 35`
-
-Le logiciel [shred](https://doc.ubuntu-fr.org/shred) est un utilitaire de ligne de commande sous Linux et Unix qui permet de supprimer définitivement des fichiers en écrivant de manière aléatoire des données sur les emplacements de stockage correspondants. Il est généralement utilisé pour supprimer des fichiers sensibles ou confidentiels de manière sécurisée afin de s’assurer qu’ils ne peuvent pas être récupérés.
+Nous allons utiliser [shred](https://doc.ubuntu-fr.org/shred) pour supprimer les fichiers logs sur le serveur. Le logiciel shred est un utilitaire de ligne de commande sous Linux et Unix qui permet de supprimer définitivement des fichiers en écrivant de manière aléatoire des données sur les emplacements de stockage correspondants. Il est généralement utilisé pour supprimer des fichiers sensibles ou confidentiels de manière sécurisée afin de s’assurer qu’ils ne peuvent pas être récupérés.
 
 Il est important de noter que l’utilisation de shred ne garantit pas à 100% que les données sont totalement irrécupérables, car il est toujours possible qu’une partie des données soit récupérée à l’aide de techniques de récupération avancées. Cependant, shred offre une méthode simple et efficace pour supprimer de manière sécurisée des fichiers sur un système Linux ou Unix.
+
+Vous pouvez utiliser shred sur tous les fichiers que vous souhaitez, j’utilise le dossier `/var/log` pour l’exemple.
+
+`sudo find /var/log -type f -print0 | sudo xargs -0 shred -fuzv -n 35`
+
+On peut aussi créer un fichier qui s’exécutera tous les jours à minuit :
+
+`nano /home/salameche/delete.sh`
+
+On y ajoute :
+
+```bash
+#!/bin/bash
+
+# Supprimer tous les fichiers dans /var/log de manière sécurisée
+sudo find /var/log -type f -print0 | sudo xargs -0 shred -fuzv -n 35
+
+# Supprimer tous les répertoires vides dans /var/log
+sudo find /var/log -type d -empty -exec rmdir {} \;
+```
+
+On rend le script exécutable :
+
+`chmod +x /home/salameche/delete.sh`
+
+On crée la tâche cron :
+
+`crontab -e`
+
+On y ajoute la ligne de commande :
+
+`0 0 * * * /home/salameche/delete.sh`
 
 ### Alias utiles pour le serveur
 
@@ -1064,101 +1114,90 @@ On édite notre fichier **~/.bashrc** :
 
 `sudo nano ~/.bashrc`
 
-*alias “ cleany ”*, il servira à nettoyer les connexions et les logs :
+On y ajoute :
 
-`alias cleany="sudo truncate -s 0 /var/run/utmp && sudo truncate -s 0 /var/log/btmp && sudo truncate -s 0 /var/log/wtmp && sudo truncate -s 0 /var/log/lastlog"`
+```sh
+alias cleany="sudo truncate -s 0 /var/run/utmp && sudo truncate -s 0 /var/log/btmp && sudo truncate -s 0 /var/log/wtmp && sudo truncate -s 0 /var/log/lastlog"
+alias clog="find /var/log -type f -print0 | sudo xargs -0 shred -fuzv -n 35"
+alias update="sudo apt update && sudo apt upgrade && sudo apt full-upgrade && sudo apt dist-upgrade && sudo apt clean && sudo apt autoclean && sudo apt autoremove && sudo updatedb && sudo ldconfig && sudo chown www-data:www-data /var/www -R"
+```
 
-*alias “ clog ”*, il servira à nettoyer tous les fichiers contenus dans le dossier /var/log :
-
-`alias clog="find /var/log -type f -print0 | sudo xargs -0 shred -fuzv -n 35"`
-
-*alias "update"*, il servira à mettre à jour et nettoyer votre serveur, mettre à jour le cache de recherche et la régénération des liens symboliques :
-
-`alias update="sudo apt update && sudo apt upgrade && sudo apt full-upgrade && sudo apt dist-upgrade && sudo apt clean && sudo apt autoclean && sudo apt autoremove && sudo updatedb && sudo ldconfig && sudo chown www-data:www-data /var/www -R"`
+- *cleany*, : sert à nettoyer les connexions et les logs
+- *clog* : sert à nettoyer tous les fichiers contenus dans le dossier /var/log
+- *update* : sert à mettre à jour et nettoyer votre serveur, mettre à jour le cache de recherche et la régénération des liens symboliques
 
 On recharge le fichier **~/.bashrc** :
 
 `source ~/.bashrc`
 
-### Désactiver le transfert IP et le multi-hébergement
+### Désactiver IPv6
 
-`sudo nano /etc/sysctl.conf`
+#### Méthode N°1 : désactiver IPv6 via le fichier de configuration GRUB
 
-On modifie :
+On modifie le fichier de configuration GRUB :
 
-```sh
-net.ipv4.ip_forward=0
-net.ipv6.conf.all.forwarding=0
-```
+`sudo nano /etc/default/grub`
 
-On dé-commente :
+On modifie la ligne GRUB_CMDLINE_LINUX :
 
-```sh
-net.ipv4.conf.default.rp_filter=1
-net.ipv4.conf.all.rp_filter=1
-```
+`GRUB_CMDLINE_LINUX="ipv6.disable=1"`
+
+Si la ligne existe déjà avec d’autres paramètres, ajoutez simplement *ipv6.disable=1* à la liste, en **séparant chaque paramètre par un espace**. Par exemple :
+
+`GRUB_CMDLINE_LINUX="quiet splash ipv6.disable=1"`
+
+On met à jour la configuration GRUB :
+
+`sudo update-grub`
 
 On redémarre le serveur :
 
 `sudo reboot`
 
-### Désactiver IPv6
+Une fois redémarrer, on vérifie qu’IPv6 est désactivé ;
 
-Si vous souhaitez désactiver l’IPv6, on procède comme cela :
+`cat /proc/sys/net/ipv6/conf/all/disable_ipv6`
 
-Dans la console, on tape :
+La sortie doit renvoyer **1**, indiquant que IPv6 est désactivé.
 
-```sh
-sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
-sudo sysctl -w net.ipv6.conf.all.autoconf=0
-sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
-sudo sysctl -w net.ipv6.conf.default.autoconf=0
-```
+#### Méthode N°2 : désactiver IPv6 via le fichier sysctl
 
-On modifie les options du kernel : (prudence !)
+On modifie le fichier de configuration **sysctl** :
 
 `sudo nano /etc/sysctl.conf`
 
-On change comme suit :
+On y ajoute :
 
 ```sh
-# Désactivation de IPv6 pour toutes les interfaces
 net.ipv6.conf.all.disable_ipv6 = 1
-
-# Désactivation de l’auto configuration pour toutes les interfaces
-net.ipv6.conf.all.autoconf = 0
-
-# Désactivation de ipv6 pour les nouvelles interfaces (ex : si ajout de carte réseau)
 net.ipv6.conf.default.disable_ipv6 = 1
-
-# Désactivation de l’auto configuration pour les nouvelles interfaces
+net.ipv6.conf.lo.disable_ipv6 = 0
+net.bridge.bridge-nf-call-ip6tables = 0
+net.bridge.bridge-nf-call-iptables = 0
+net.bridge.bridge-nf-call-arptables = 0
+net.ipv4.ip_forward = 1
+net.ipv6.conf.all.autoconf = 0
 net.ipv6.conf.default.autoconf = 0
 ```
 
-On charge les paramètres **sysctl** :
+- `net.ipv6.conf.all.disable_ipv6 = 1` : désactive IPv6 pour toutes les interfaces réseau
+- `net.ipv6.conf.default.disable_ipv6 = 1` : désactive IPv6 par défaut pour toutes les nouvelles interfaces réseau qui seront créées
+- `net.ipv6.conf.lo.disable_ipv6 = 0` : active IPv6 sur l'interface de bouclage (loopback, généralement lo), même si IPv6 est désactivé sur les autres interfaces
+- `net.bridge.bridge-nf-call-ip6tables = 0` : désactive le passage des paquets IPv6 aux tables de filtrage (ip6tables) sur les interfaces bridge
+- `net.bridge.bridge-nf-call-iptables = 0` : désactive le passage des paquets IPv4 aux tables de filtrage (iptables) sur les interfaces bridge
+- `net.bridge.bridge-nf-call-arptables = 0` : désactive le passage des paquets ARP aux tables de filtrage (arptables) sur les interfaces bridge
+- `net.ipv4.ip_forward=1` : active le routage des paquets IPv4 entre les interfaces réseau, permettant à la machine de faire office de routeur
+- `net.ipv6.conf.all.autoconf = 0` : désactive la configuration automatique des adresses IPv6 (stateless autoconfiguration) sur toutes les interfaces réseau. Cela signifie que les interfaces réseau ne tenteront pas d'auto-configurer leurs adresses IPv6 basées sur les annonces de routeurs IPv6
+- `net.ipv6.conf.default.autoconf = 0**` : désactive la configuration automatique des adresses IPv6 par défaut pour toutes les nouvelles interfaces réseau qui seront créées. Cela s'applique aux interfaces réseau qui n'existent pas encore mais qui seront ajoutées ultérieurement
+
+On applique les modifications :
 
 `sudo sysctl -p`
 
-On modifie le fichier de l’interface réseau :
+On redémarre le serveur :
 
-`sudo nano /etc/network/interfaces`
+`sudo reboot`
 
-On commente ces lignes :
-
-```sh
-#iface eth0 inet6 static
-#    address 2001:41D0:1:CD6b::1
-#    netmask 128
-#    post-up /sbin/ip -f inet6 route add _adresse_ip_v6_ dev eth0
-```
-
-Suppression de la ligne IPv6 dans /etc/hosts :
-
-`sudo nano /etc/hosts`
-
-On commente cette ligne :
-
-`#::1 localhost ip6-localhost ip6-loopback`
 
 On rejette tout le trafic IPv6 en éditant le fichier /etc/iptables/rules.v6, il doit contenir :
 
@@ -1180,23 +1219,40 @@ Une fois que toutes ces opérations sont effectuées, on redémarre le serveur :
 
 `sudo reboot`
 
-### Quelques tutoriels utiles
+### Quelques liens / tutoriels utiles
 
-Je vous recommande ces tutoriels :
+#### Aide-mémoires / turoriels
 
-- [Bien débuter sur Debian](https://mondedie.fr/d/5438) [ Tutoriel réalisé par [Meister](https://mondedie.fr/u/Meister) ] 🇫🇷
-- [Installation et configuration de Fail2ban](https://mondedie.fr/d/5318/2) [ Tutoriel réalisé par [ex_rat](https://mondedie.fr/u/ex_rat) ] 🇫🇷
-- [How To Secure A Linux Server](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server) 🇺🇸
+- [Aide-mémoire Bash](https://devhints.io/bash) 🇺🇸
+- [Aide-mémoire du mode d’édition Bash Emacs](https://catonmat.net/bash-emacs-editing-mode-cheat-sheet) 🇺🇸
+- [Awesome Bash Awesome](https://github.com/awesome-lists/awesome-bash) 🇺🇸
+- [Awesome Linux Software](https://github.com/luong-komorebi/Awesome-Linux-Software) 🇺🇸
+- [Bien débuter sur Debian](https://mondedie.fr/d/5438) 🇫🇷
+- [Installation et configuration de Fail2ban](https://mondedie.fr/d/5318/2) 🇫🇷
+- [How To  A Linux Server](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server) 🇺🇸
 - [The Onion Diaries](https://github.com/alecmuffett/the-onion-diaries/tree/master) 🇺🇸
 
-> À faire :
+#### Documentations
+
+- [FAQ Debian GNU/Linux](https://www.debian.org/doc/manuals/debian-faq/) 🇫🇷
+- [Documentation officielle Debian](https://www.debian.org/releases/stable/amd64/index.fr.html) 🇫🇷
+- [Documentation officielle Ubuntu](https://help.ubuntu.com/lts/ubuntu-help/index.html) 🇫🇷
+
+#### Autres
+
+- [Commande : sudo](https://wiki.debian.org/fr/sudo) 🇫🇷
+- [Générateur de couleur : .bashrc & PS1](https://robotmoon.com/bash-prompt-generator/) 🇺🇸
+- [vim pour les humains](https://vimebook.com/fr) 🇫🇷
+
+### À faire
+
 > - ajouter nginx pour créer un proxy inverser
 > - heberger le site directement dans la ram
 > - bloquer les ports inutiles
 > - chiffrer le disque dur
 > - stocker les clés dans le CPU plutôt que dans la RAM (qui peut être copiée) par exemple via TRESOR
 > - SSH par clé avec accès selon IP ou par PortKnocking
-> Concernant les logs, 2 solutions, sur des machines dites “ sécurisées ” :
+> Concernant les logs, 2 solutions, sur des machines dites « sécurisées » :
 > - soit de ne pas en émettre
 > - soit de les traiter avec logrotate (et le paramètre shred — 3 max.)
 
