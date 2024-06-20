@@ -1,7 +1,7 @@
 **Sommaire**
 
 - [Créer un Hidden Service sécurisé avec Tor sur Debian](#créer-un-hidden-service-sécurisé-avec-tor-sur-debian)
-- [Liste des logiciels](#liste-des-logiciel)
+- [Liste des logiciels](#liste-des-logiciels)
 - Qu’est-ce que Tor et un Hidden Service ?
   - [Quelques règles importantes](#quelques-règles-importantes)
 - [Configuration du serveur](#-1)
