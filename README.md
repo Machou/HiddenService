@@ -14,7 +14,7 @@
   - [Configuration du Hidden Service](#-9)
   - [Générer une adresse .onion personnalisée](#-10)
   - [FAQ Debug Tor](#faq-debug-tor)
-- [Facultatif](#-12)
+- [Facultatif](#-11)
   - [Configuration de la langue](#configuration-de-la-langue)
   - [Configuration de la date et heure](#configuration-de-la-date-et-heure)
   - [Rediriger le trafic réseau du serveur vers Tor](#rediriger-le-trafic-réseau-du-serveur-vers-tor)
