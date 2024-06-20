@@ -1198,24 +1198,54 @@ On redémarre le serveur :
 
 `sudo reboot`
 
+#### Méthode N°3 : rejetter tout le trafic IPv6
 
-On rejette tout le trafic IPv6 en éditant le fichier /etc/iptables/rules.v6, il doit contenir :
+On créé la rêgle de blocage :
+
+`sudo nano /etc/ipv6-iptables-rules`
+
+On y ajoute :
 
 ```sh
 *filter
 
--A INPUT -j REJECT
--A FORWARD -j REJECT
--A OUTPUT -j REJECT
+# Politique par défaut pour la chaîne INPUT : DROP
+:INPUT DROP [0:0]
+# Politique par défaut pour la chaîne FORWARD : DROP
+:FORWARD DROP [0:0]
+# Politique par défaut pour la chaîne OUTPUT : ACCEPT
+:OUTPUT ACCEPT [0:0]
+
+# Bloquer tout le trafic entrant
+-A INPUT -j DROP
+
+# Bloquer tout le trafic forward
+-A FORWARD -j DROP
 
 COMMIT
 ```
 
-On applique :
+On applique la règle :
 
-`sudo ip6tables-restore < /etc/iptables/rules.v6`
+`sudo ip6tables-restore < /etc/ipv6-iptables-rules`
 
-Une fois que toutes ces opérations sont effectuées, on redémarre le serveur :
+Pour persister cette règle à chaque redémarrage du serveur, on peut installer `netfilter-persistent` :
+
+`sudo apt install netfilter-persistent`
+
+On y sauvegarde la règle :
+
+`sudo netfilter-persistent save`
+
+On active le service pour qu’il démarre automatiquement :
+
+`sudo systemctl enable netfilter-persistent`
+
+On peut vérifier les règles IPv6 pour voir si elle a été prise en compte :
+
+`sudo ip6tables -L -v`
+
+On redémarre le serveur :
 
 `sudo reboot`
 
