@@ -135,7 +135,7 @@ passwd
 
 ----------
 
-> **Solution n°1 : Clés SSH**
+#### Méthode N°1 : Clés SSH
 
 On génère les clés SSH avec l’algorithme de chiffrement [ed25519](https://fr.wikipedia.org/wiki/EdDSA) :
 
@@ -202,7 +202,7 @@ Source : [LeCrabe.info](https://lecrabeinfo.net/se-connecter-en-ssh-par-echange-
 
 ----------
 
-> **Solution n°2 : Mot de passe**
+#### Méthode N°2 : Mot de passe
 
 Je vous conseille de lire le début du [tutoriel pour apprendre à vous connecter à SSH]([https://mondedie.fr/d/11708).
 
