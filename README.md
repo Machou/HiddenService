@@ -22,8 +22,8 @@
   - [On supprime ses traces](#on-supprime-ses-traces)
   - [Alias utiles (*~/.bashrc*)](#alias-utiles-pour-le-serveur)
   - [Désactiver IPv6](#désactiver-ipv6)
-  - [Quelques tutoriels utiles](#quelques-tutoriels-utiles)
-  - [À faire](#à-faire))
+  - [Quelques tutoriels utiles](#quelques-liens--tutoriels-utiles)
+  - [À faire](#à-faire)
 
 # Créer un Hidden Service sécurisé avec Tor sur Debian
 
