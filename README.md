@@ -135,7 +135,7 @@ passwd
 
 ----------
 
-#### Méthode N°1 : Clés SSH
+#### Méthode N°1 : clés SSH
 
 On génère les clés SSH avec l’algorithme de chiffrement [ed25519](https://fr.wikipedia.org/wiki/EdDSA) :
 
@@ -202,7 +202,7 @@ Source : [LeCrabe.info](https://lecrabeinfo.net/se-connecter-en-ssh-par-echange-
 
 ----------
 
-#### Méthode N°2 : Mot de passe
+#### Méthode N°2 : mot de passe
 
 Je vous conseille de lire le début du [tutoriel pour apprendre à vous connecter à SSH]([https://mondedie.fr/d/11708).
 
@@ -1198,7 +1198,7 @@ On redémarre le serveur :
 
 `sudo reboot`
 
-#### Méthode N°3 : rejetter tout le trafic IPv6
+#### Méthode N°3 : rejeter tout le trafic IPv6
 
 On créé la rêgle de blocage :
 
