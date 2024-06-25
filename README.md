@@ -243,7 +243,7 @@ Une fois notre utilisateur créé, on l’ajoute au groupe « *sudo* », cela pe
 
 `adduser salameche sudo`
 
-La sortie doit renvoyer :
+La sortie renverra :
 
 ```sh
 Adding user `salameche' to group `sudo' ...
@@ -942,7 +942,7 @@ On peut changer la langue pour brouiller un peu les pistes :
 
 Dans, la liste, on peut choisir les deux langues principales *en*, *en_US.UTF-8*, *fr*, *fr_FR.UTF-8* :
 
-La sortie doit renvoyer :
+La sortie renverra :
 
 ```sh
 Generating locales (this might take a while)...
@@ -1180,13 +1180,13 @@ net.ipv6.conf.default.autoconf = 0
 
 - `net.ipv6.conf.all.disable_ipv6 = 1` : désactive IPv6 pour toutes les interfaces réseau
 - `net.ipv6.conf.default.disable_ipv6 = 1` : désactive IPv6 par défaut pour toutes les nouvelles interfaces réseau qui seront créées
-- `net.ipv6.conf.lo.disable_ipv6 = 0` : active IPv6 sur l'interface de bouclage (loopback, généralement lo), même si IPv6 est désactivé sur les autres interfaces
+- `net.ipv6.conf.lo.disable_ipv6 = 0` : active IPv6 sur l’interface de bouclage (loopback, généralement lo), même si IPv6 est désactivé sur les autres interfaces
 - `net.bridge.bridge-nf-call-ip6tables = 0` : désactive le passage des paquets IPv6 aux tables de filtrage (ip6tables) sur les interfaces bridge
 - `net.bridge.bridge-nf-call-iptables = 0` : désactive le passage des paquets IPv4 aux tables de filtrage (iptables) sur les interfaces bridge
 - `net.bridge.bridge-nf-call-arptables = 0` : désactive le passage des paquets ARP aux tables de filtrage (arptables) sur les interfaces bridge
 - `net.ipv4.ip_forward=1` : active le routage des paquets IPv4 entre les interfaces réseau, permettant à la machine de faire office de routeur
-- `net.ipv6.conf.all.autoconf = 0` : désactive la configuration automatique des adresses IPv6 (stateless autoconfiguration) sur toutes les interfaces réseau. Cela signifie que les interfaces réseau ne tenteront pas d'auto-configurer leurs adresses IPv6 basées sur les annonces de routeurs IPv6
-- `net.ipv6.conf.default.autoconf = 0**` : désactive la configuration automatique des adresses IPv6 par défaut pour toutes les nouvelles interfaces réseau qui seront créées. Cela s'applique aux interfaces réseau qui n'existent pas encore mais qui seront ajoutées ultérieurement
+- `net.ipv6.conf.all.autoconf = 0` : désactive la configuration automatique des adresses IPv6 (stateless autoconfiguration) sur toutes les interfaces réseau. Cela signifie que les interfaces réseau ne tenteront pas d’auto-configurer leurs adresses IPv6 basées sur les annonces de routeurs IPv6
+- `net.ipv6.conf.default.autoconf = 0**` : désactive la configuration automatique des adresses IPv6 par défaut pour toutes les nouvelles interfaces réseau qui seront créées. Cela s’applique aux interfaces réseau qui n’existent pas encore mais qui seront ajoutées ultérieurement
 
 On applique les modifications :
 
