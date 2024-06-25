@@ -14,6 +14,8 @@
   - [Configuration du Hidden Service](#-9)
   - [Générer une adresse .onion personnalisée](#-10)
   - [FAQ Debug Tor](#faq-debug-tor)
+- [PortSentry](PortSentry.md)
+- [Fail2ban](Fail2ban.md)
 - [Facultatif](#-11)
   - [Configuration de la langue](#configuration-de-la-langue)
   - [Configuration de la date et heure](#configuration-de-la-date-et-heure)
