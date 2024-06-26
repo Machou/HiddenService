@@ -7,9 +7,9 @@
 
 ## Qu’est ce que Fail2ban ?
 
-<p align="center">
+<p align="center"></p>
 	![](https://upload.wikimedia.org/wikipedia/commons/7/7b/Fail2ban_screenshot.jpg)
-</p>
+
 
 [Fail2ban](https://github.com/fail2ban/fail2ban) est un logiciel de sécurité destiné à prévenir les attaques par force brute en bloquant temporairement les adresses IP suspectes. Il analyse les journaux des services pour détecter des motifs d’échecs d’authentification répétés et autres comportements suspects, puis utilise des règles iptables pour bannir temporairement ces adresses IP.
 
