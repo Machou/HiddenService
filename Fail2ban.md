@@ -22,7 +22,7 @@
 
 #### Méthode N°1
 
-On installe Fail2ban via les paquets officiels :
+On installe **Fail2ban** via les paquets officiels :
 
 `sudo apt install fail2ban`
 
@@ -30,7 +30,7 @@ On installe Fail2ban via les paquets officiels :
 
 #### Méthode N°2 : via les sources
 
-On installe Fail2ban via les sources du dépôt GitHub :
+On installe **Fail2ban** via les sources du dépôt GitHub :
 
 ```sh
 git clone https://github.com/fail2ban/fail2ban.git
@@ -60,44 +60,75 @@ Nous allons créer et modifier les fichiers de configuration de Fail2ban, mais c
 
 Le fichier `/etc/fail2ban/jail.conf` peut servir de documentation et les paramètres par défaut sont écrits à l’intérieur.
 
-`sudo nano /etc/fail2ban/jail.d/prisonspersos.conf`
+`sudo nano /etc/fail2ban/jail.d/prisons.conf`
 
-On va créer un filtre pour gérer la configuration globale :
+On va créer un filtre pour gérer la configuration par défaut de tous les filtres actifs et à venir :
 
 ```sh
 [DEFAULT]
-ignoreip = 127.0.0.1 ip-du-serveur mon-ip
+ignoreip = 127.0.0.1 192.168.1.0/24 ip-du-serveur mon-ip
 findtime = 10m
-bantime = 24h
+bantime = 72h
 maxretry = 3
 ```
 
-* **ignoreip** : liste des adresses ip ignorées
-  * Fail2ban prends en charge les plages IP, pour le filtre **ignoreip** : `ignoreip = 192.168.1.0/24` ou `ignoreip = 192.168.1.0/24 10.0.0.1 172.16.0.0/16`
+* **ignoreip** : liste des adresses IP ignorées
+  * **ignoreip** : plages IP ; exemples : `ignoreip = 192.168.1.0/24` ou `ignoreip = 192.168.1.0/24 10.0.0.1 172.16.0.0/16`
 * **findtime** : spécifie la fenêtre de temps pendant laquelle Fail2ban recherche des tentatives de connexion répétées
 * **bantime** : définit la durée pendant laquelle une adresse IP est bannie après avoir dépassé le nombre de tentatives de connexion échouées
 * **maxretry** : définit le nombre maximal de tentatives de connexion échouées autorisées dans la période définie par `findtime` avant que Fail2ban ne déclenche un bannissement
 
-On va prendre pour exemple le filtre pour le service *SSH*.
-
-`sudo nano /etc/fail2ban/jail.d/prisonspersos.conf`
-
-On y ajoute :
+On modifie le filtre du service *SSH* :
 
 ```sh
 [sshd]
 enabled = true
+filter = sshd
 port = 22
 logpath = /var/log/auth.log
-maxretry = 3
 ```
 
 * **enabled** : *true* = activé | *false* = désactivé
-* **port** : spécifie le port du service
+* **filter** : ensemble de règles et de motifs (patterns) utilisés pour identifier les tentatives de connexion infructueuses ou malveillantes
+  * **filter** de **sshd** renverra vers `/etc/fail2ban/filter.d/sshd.conf`
+* **port** : spécifie le port du service (si vous avez modifié votre port d’origine, pensez à le faire ici aussi)
 * **logpath** : cherche dans le fichier log du service
 * **maxretry** : définit le nombre maximal de tentatives de connexion échouées autorisées
 
-On redémarre Fail2ban pour activer les modifications :
+
+Si le fichier `/var/log/auth.log` n’existe pas, on vérifie si **rsyslog** est installé et en cours d’exécution :
+
+`sudo systemctl status rsyslog`
+
+Si **rsyslog** n’est pas installé, on l’installe :
+
+```sh
+sudo apt update
+sudo apt install rsyslog
+```
+
+On vérifie la configuration de **rsyslog** pour les logs d’authentification :
+Ouvrez le fichier de configuration de rsyslog :
+
+`sudo nano /etc/rsyslog.conf`
+
+On s’assure que les lignes suivantes ne sont pas commentées (pas de # au début) :
+
+`auth,authpriv.*                 /var/log/auth.log`
+
+On redémarre **rsyslog** :
+
+`sudo systemctl restart rsyslog`
+
+Debian utilise **systemd** et ses logs peuvent être consultés via **journald**. On peut afficher les logs SSH avec la commande suivante :
+
+`sudo journalctl -u ssh`
+
+ou
+
+`sudo cat /var/log/auth.log`
+
+On redémarre Fail2ban pour appliquer les modifications :
 
 `sudo systemctl restart fail2ban`
 
@@ -119,13 +150,40 @@ Vous allez probablement créer différents filtres, si vous souhaitez en activer
 
 Fail2ban est un outil indispensable pour renforcer la sécurité de votre serveur. Facile à configurer et hautement personnalisable, Fail2ban vous offre une tranquillité d’esprit en sécurisant vos applications web, SSH, et bien plus encore. Adoptez Fail2ban pour une défense proactive et efficace contre les cybermenaces.
 
+Quelques exemples de filtres :
+
+```sh
+[apache-auth]
+enabled = true
+bantime = 744h
+maxretry = 1
+
+[apache-badbots]
+enabled = true
+bantime = 744h
+maxretry = 1
+
+[apache-fakegooglebot]
+enabled = true
+bantime = 744h
+maxretry = 1
+
+[apache-overflows]
+enabled = true
+bantime = 744h
+maxretry = 1
+```
+
+- **apache-auth** : détecte les tentatives de connexion échouées à des zones protégées par mot de passe sur un serveur web Apache. Cela inclut les échecs d’authentification HTTP basique ou digest
+- **apache-badbots** : détecte les accès par des robots malveillants connus sur un serveur web Apache. Les « mauvais robots »sont des scripts automatisés qui tentent d’exploiter des vulnérabilités ou de surcharger le serveur
+- **apache-fakegooglebot** : détecte les faux robots se faisant passer pour les Robots de Google (Googlebot) mais qui ne proviennent pas des plages d’adresses IP légitimes de Google
+- **apache-overflows** : détecte les tentatives d’attaque par débordement de tampon (buffer overflow) sur un serveur web Apache. Ces attaques exploitent des failles de sécurité en envoyant des données excessivement longues pour causer des erreurs de dépassement de mémoire
+
 ## Configuration avancée
 
-Si vous souhaitez être averti par courriel lorsque Fail2ban banni une IP, vous pouvez !
+Pour être averti par courriel lorsque Fail2ban banni une IP, on modifie la configuration globale :
 
-On modifie la configuration globale :
-
-`sudo nano /etc/fail2ban/jail.d/prisonspersos.conf`
+`sudo nano /etc/fail2ban/jail.d/prisons.conf`
 
 On y ajoute, dans la partie *[DEFAULT]* :
 
@@ -182,13 +240,11 @@ Status for the jail: sshd
    `- Banned IP list:   37.156.*.* 183.81.*.* 121.233.*.* 45.148.*.* …etc
 ```
 
-*Note : cette prison est active depuis environ 24 heures, 70 IP ont déjà été bannies.*
-
 Si votre adresse IP se retrouve dans la liste des IP bannies, pas de panique, nous pouvons la retirer !
 
 On tape :
 
-`sudo fail2ban-client set nom-du-service  mon-ip`
+`sudo fail2ban-client set nom-du-service mon-ip`
 
 On peut aussi bannir une IP manuellement :
 
