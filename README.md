@@ -33,9 +33,9 @@
 
 Dans ce tutoriel, nous tenterons de garder les logiciels à jour avec leurs dernières versions. Voici la liste actuelle :
 
-- [Debian](https://www.debian.org/) — [version 12.5, liste des changements](https://www.debian.org/News/2024/20240210)
+- [Debian](https://www.debian.org/) — [version 12.6, liste des changements](https://www.debian.org/News/2024/20240629)
 - [Apache2](https://httpd.apache.org/) — [version 2.4.59, liste des changements](https://httpd.apache.org/security/vulnerabilities_24.html#2.4.59)
-- [PHP](https://www.php.net/) — [version 8.3.7, liste des changements](https://www.php.net/ChangeLog-8.php#8.3.7)
+- [PHP](https://www.php.net/) — [version 8.3.9, liste des changements](https://www.php.net/ChangeLog-8.php#8.3.9)
 - [MariaDB](https://mariadb.org/) — [version 10.11.6, liste des changements](https://mariadb.com/kb/en/mariadb-10-11-6-release-notes/)
 - [Tor](https://www.torproject.org/) — [version 0.4.8.12, liste des changements](https://gitlab.torproject.org/tpo/core/tor/-/commits/tor-0.4.8.12)
 
