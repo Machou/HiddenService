@@ -56,13 +56,15 @@ On vérifie que le service fonctionne :
 
 `systemctl status fail2ban`
 
-Nous allons créer et modifier les fichiers de configuration de Fail2ban, mais comme indiqué dans le fichier `/etc/fail2ban/fail2ban.conf`, *It will probably be overwritten or improved in a distribution update.*, donc ce fichier sera probablement remplacé ou amélioré lors d’une mise à jour de la distribution. De ce fait, nous allons créé des « prisons » dans les fichiers placés dans le dossier `/etc/fail2ban/jail.d`.
+Nous allons créer et modifier les fichiers de configuration de Fail2ban, mais comme indiqué dans le fichier `/etc/fail2ban/fail2ban.conf`, ce fichier sera probablement remplacé ou amélioré lors d’une mise à jour. De ce fait, nous allons créé des « prisons » dans les fichiers placés dans le dossier `/etc/fail2ban/jail.d`.
 
 Le fichier `/etc/fail2ban/jail.conf` peut servir de documentation et les paramètres par défaut sont écrits à l’intérieur.
 
+On va créer un filtre pour gérer la configuration par défaut de tous les filtres actifs et à venir :
+
 `sudo nano /etc/fail2ban/jail.d/prisons.conf`
 
-On va créer un filtre pour gérer la configuration par défaut de tous les filtres actifs et à venir :
+On y ajoute :
 
 ```sh
 [DEFAULT]
@@ -78,7 +80,7 @@ maxretry = 3
 * **bantime** : définit la durée pendant laquelle une adresse IP est bannie après avoir dépassé le nombre de tentatives de connexion échouées
 * **maxretry** : définit le nombre maximal de tentatives de connexion échouées autorisées dans la période définie par `findtime` avant que Fail2ban ne déclenche un bannissement
 
-On modifie le filtre du service *SSH* :
+On y ajoute le filtre pour le service *SSH* :
 
 ```sh
 [sshd]
@@ -93,8 +95,6 @@ logpath = /var/log/auth.log
   * **filter** de **sshd** renverra vers `/etc/fail2ban/filter.d/sshd.conf`
 * **port** : spécifie le port du service (si vous avez modifié votre port d’origine, pensez à le faire ici aussi)
 * **logpath** : cherche dans le fichier log du service
-* **maxretry** : définit le nombre maximal de tentatives de connexion échouées autorisées
-
 
 Si le fichier `/var/log/auth.log` n’existe pas, on vérifie si **rsyslog** est installé et en cours d’exécution :
 
@@ -107,12 +107,11 @@ sudo apt update
 sudo apt install rsyslog
 ```
 
-On vérifie la configuration de **rsyslog** pour les logs d’authentification :
-Ouvrez le fichier de configuration de rsyslog :
+On vérifie la configuration de **rsyslog** :
 
 `sudo nano /etc/rsyslog.conf`
 
-On s’assure que les lignes suivantes ne sont pas commentées (pas de # au début) :
+On s’assure que l ligne suivante n’est pas commentée (pas de # au début) :
 
 `auth,authpriv.*                 /var/log/auth.log`
 
@@ -148,9 +147,11 @@ Vous allez probablement créer différents filtres, si vous souhaitez en activer
 
 `sudo fail2ban-client start|stop|status sshd`
 
-Fail2ban est un outil indispensable pour renforcer la sécurité de votre serveur. Facile à configurer et hautement personnalisable, Fail2ban vous offre une tranquillité d’esprit en sécurisant vos applications web, SSH, et bien plus encore. Adoptez Fail2ban pour une défense proactive et efficace contre les cybermenaces.
+Quelques exemples de filtres, à ajouter dans le fichier :
 
-Quelques exemples de filtres :
+`sudo nano /etc/fail2ban/jail.d/prisons.conf`
+
+On y ajoute :
 
 ```sh
 [apache-auth]
