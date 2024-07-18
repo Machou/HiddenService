@@ -5,6 +5,14 @@
 - Qu’est-ce que Tor et un Hidden Service ?
   - [Quelques règles importantes](#quelques-règles-importantes)
 - [Configuration du serveur](#-1)
+  - [Configuration de SSH](#configuration-de-ssh)
+    - [Authentification SSH](#authentification-ssh)
+      - [Méthode N°1 : clés SSH](#méthode-n1--clés-ssh)
+      - [Méthode N°2 : mot de passe](#méthode-n2--mot-de-passe)
+    - [Configuration SSH](#configuration-ssh)
+    - [Utilisation de la 2FA avec Google Authenticator PAM module](#utilisation-de-la-2fa-avec-google-authenticator-pam--module)
+      - [Installation de Google Authenticator PAM module](#installation-de-google-authenticator-pam-module)
+    - [Logiciels Debian](#utilisation-de-google-authenticator-pam-module)
 - [Installation d’un serveur LAMP](#-3)
   - [Apache](#-4)
   - [PHP](#-5)
@@ -34,7 +42,7 @@
 Dans ce tutoriel, nous tenterons de garder les logiciels à jour avec leurs dernières versions. Voici la liste actuelle :
 
 - [Debian](https://www.debian.org/) — [version 12.6, liste des changements](https://www.debian.org/News/2024/20240629)
-- [Apache2](https://httpd.apache.org/) — [version 2.4.59, liste des changements](https://httpd.apache.org/security/vulnerabilities_24.html#2.4.59)
+- [Apache2](https://httpd.apache.org/) — [version 2.4.61, liste des changements](https://httpd.apache.org/security/vulnerabilities_24.html#2.4.61)
 - [PHP](https://www.php.net/) — [version 8.3.9, liste des changements](https://www.php.net/ChangeLog-8.php#8.3.9)
 - [MariaDB](https://mariadb.org/) — [version 10.11.6, liste des changements](https://mariadb.com/kb/en/mariadb-10-11-6-release-notes/)
 - [Tor](https://www.torproject.org/) — [version 0.4.8.12, liste des changements](https://gitlab.torproject.org/tpo/core/tor/-/commits/tor-0.4.8.12)
@@ -135,7 +143,9 @@ sudo su
 passwd
 ```
 
-----------
+## SSH
+
+### Authentification SSH
 
 #### Méthode N°1 : clés SSH
 
@@ -202,11 +212,11 @@ Source : [LeCrabe.info](https://lecrabeinfo.net/se-connecter-en-ssh-par-echange-
 
 *Vous y trouverez comment se connecter avec des clés SSH pour Windows, Mac et Linux*
 
-----------
-
 #### Méthode N°2 : mot de passe
 
 Je vous conseille de lire le début du [tutoriel pour apprendre à vous connecter à SSH]([https://mondedie.fr/d/11708).
+
+### Configuration SSH
 
 On met à jour notre fichier *sources.list* :
 
@@ -309,6 +319,121 @@ AllowUsers salameche
 On quitte et on redémarre SSH :
 
 `sudo /etc/init.d/ssh restart`
+
+### Utilisation de la 2FA avec Google Authenticator PAM module
+
+#### Installation de Google Authenticator PAM module
+
+On peut ajouter une sécurité complémentaire en ajoutant la **double authentification de Google pour SSH**.
+
+On installe le module PAM Google Authenticator :
+
+`sudo apt install libpam-google-authenticator`
+
+On configure le fichier :
+
+`sudo nano /etc/pam.d/sshd`
+
+On y ajoute à la fin du fichier :
+
+```sh
+# Google Authenticator PAM module
+auth required pam_google_authenticator.so
+```
+
+On change la ligne dans le fichier SSH :
+
+`sudo nano /etc/ssh/sshd_config`
+
+`ChallengeResponseAuthentication no`
+
+par
+
+**Si la ligne n’existe pas, on l’ajoutera à la fin du fichier**
+
+`ChallengeResponseAuthentication yes`
+
+On quitte et on redémarre SSH :
+
+`sudo /etc/init.d/ssh restart`
+
+On initialise la double authentification :
+
+*Vous devez être connecté sur le compte avec lequel on va activer la 2FA*
+
+On lance **Google Authenticator PAM module** :
+
+`google-authenticator`
+
+On réponds Questions :
+
+> Cette question demande si on utilisera les jetons d’authentification basés sur la durée, on répondra « Oui »
+
+`Do you want authentication tokens to be time-based (y/n) y`
+
+Un code QR apparait et pour éviter un soucis avec les petits écrans, je vous recommande d’ajouter le code via la phrase `Your new secret key is: **********`
+
+Ou on peut scanner le code QR avec une application. Voici une liste :
+
+- [Bitwarden](https://bitwarden.com/) :+1: :+1: :+1:
+- [Authy](https://authy.com/) :+1: :+1:
+- [Google Authenticator Android](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=fr) :+1:
+- [Google Authenticator iOS](https://apps.apple.com/fr/app/google-authenticator/id388497605) :+1:
+
+Une fois le code actif, on entre le code :
+
+```sh
+Enter code from app (-1 to skip): 679799
+Code confirmed
+Your emergency scratch codes are:
+  47404912
+  90525741
+  35213552
+  20322264
+  14217945
+```
+
+**Notez vos codes de secours quelques part**
+
+`Do you want me to update your "/home/freebox/.google_authenticator" file? (y/n) y`
+
+> Cette question sert à bloquer l’utilisation du même code sur une durée de 30 secondes, on répondra « Non »
+
+```sh
+Do you want to disallow multiple uses of the same authentication
+token? This restricts you to one login about every 30s, but it increases
+your chances to notice or even prevent man-in-the-middle attacks (y/n) n
+```
+
+> Cette question permet d’utiliser un code 4 minutes après avoir lancé l’authentification, augemente les vecteurs d’attaque, donc on répondra « Non »
+
+```sh
+By default, a new token is generated every 30 seconds by the mobile app.
+In order to compensate for possible time-skew between the client and the server,
+we allow an extra token before and after the current time. This allows for a
+time skew of up to 30 seconds between authentication server and client. If you
+experience problems with poor time synchronization, you can increase the window
+from its default size of 3 permitted codes (one previous code, the current
+code, the next code) to 17 permitted codes (the 8 previous codes, the current
+code, and the 8 next codes). This will permit for a time skew of up to 4 minutes
+between client and server.
+Do you want to do so? (y/n) n
+```
+
+> Cette question permet d’activer une limitation des tentatives de connexion toutes les 30 secondes, qui sera limitée à 3. On répondra « Oui »
+
+```sh
+If the computer that you are logging into isn't hardened against brute-force
+login attempts, you can enable rate-limiting for the authentication module.
+By default, this limits attackers to no more than 3 login attempts every 30s.
+Do you want to enable rate-limiting? (y/n) y
+```
+
+On quitte et on redémarre SSH :
+
+`sudo /etc/init.d/ssh restart`
+
+### Logiciels Debian
 
 On installe / désinstalle quelques logiciels pour la pratique et la sécurité, on recharge le cache de recherche et on met les liens symboliques à jour :
 
