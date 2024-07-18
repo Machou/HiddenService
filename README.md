@@ -10,8 +10,7 @@
       - [Méthode N°1 : clés SSH](#méthode-n1--clés-ssh)
       - [Méthode N°2 : mot de passe](#méthode-n2--mot-de-passe)
     - [Configuration SSH](#configuration-ssh)
-    - [Utilisation de la 2FA avec Google Authenticator PAM module](#utilisation-de-la-2fa-avec-google-authenticator-pam-module)
-      - [Installation de Google Authenticator PAM module](#installation-de-google-authenticator-pam-module)
+    - [Double Authentification avec Google Authenticator PAM module](#double-authentification-avec-google-authenticator-pam-module)
     - [Logiciels Debian](#utilisation-de-google-authenticator-pam-module)
 - [Installation d’un serveur LAMP](#-3)
   - [Apache](#-4)
@@ -350,9 +349,9 @@ On change la ligne dans le fichier SSH :
 
 par
 
-**Si la ligne n’existe pas, on l’ajoutera à la fin du fichier**
-
 `ChallengeResponseAuthentication yes`
+
+**Si la ligne n’existe pas, on l’ajoutera à la fin du fichier.**
 
 On quitte et on redémarre SSH :
 
@@ -360,17 +359,16 @@ On quitte et on redémarre SSH :
 
 On initialise la double authentification :
 
-*Vous devez être connecté sur le compte avec lequel on va activer la 2FA*
+*Vous devez être connecté sur le compte avec lequel on va activer la 2FA.*
 
 On lance **Google Authenticator PAM module** :
 
 `google-authenticator`
 
-On réponds Questions :
-
-> Cette question demande si on utilisera les jetons d’authentification basés sur la durée, on répondra « Oui »
+On réponds aux questions :
 
 `Do you want authentication tokens to be time-based (y/n) y`
+> Cette question demande si on utilisera les jetons d’authentification basés sur la durée, on répondra « Oui »
 
 Un code QR apparait et pour éviter un soucis avec les petits écrans, je vous recommande d’ajouter le code via la phrase `Your new secret key is: **********`
 
