@@ -5,13 +5,13 @@
 - Qu’est-ce que Tor et un Hidden Service ?
   - [Quelques règles importantes](#quelques-règles-importantes)
 - [Configuration du serveur](#-1)
-  - [Configuration de SSH](#ssh)
-    - [Authentification SSH](#authentification-ssh)
-      - [Méthode N°1 : clés SSH](#méthode-n1--clés-ssh)
-      - [Méthode N°2 : mot de passe](#méthode-n2--mot-de-passe)
-    - [Configuration SSH](#configuration-ssh)
-    - [Double Authentification avec Google Authenticator PAM module](#double-authentification-avec-google-authenticator-pam-module)
-    - [Logiciels Debian](#utilisation-de-google-authenticator-pam-module)
+  - [SSH](#ssh)
+  - [Authentification SSH](#authentification-ssh)
+    - [Méthode N°1 : clés SSH](#méthode-n1--clés-ssh)
+    - [Méthode N°2 : mot de passe](#méthode-n2--mot-de-passe)
+  - [Autre configuration](#autre-configuration)
+  - [Double Authentification avec Google Authenticator PAM module](#double-authentification-avec-google-authenticator-pam-module)
+  - [Logiciels Debian](#logiciels-debian)
 - [Installation d’un serveur LAMP](#-3)
   - [Apache](#-4)
   - [PHP](#-5)
@@ -218,7 +218,7 @@ Source : [LeCrabe.info](https://lecrabeinfo.net/se-connecter-en-ssh-par-echange-
 
 Je vous conseille de lire le début du [tutoriel pour apprendre à vous connecter à SSH]([https://mondedie.fr/d/11708).
 
-### Configuration SSH
+### Autre configuration
 
 On met à jour notre fichier *sources.list* :
 
@@ -370,7 +370,11 @@ On réponds aux questions :
 `Do you want authentication tokens to be time-based (y/n) y`
 > Cette question demande si on utilisera les jetons d’authentification basés sur la durée, on répondra « Oui »
 
-Un code QR apparait et pour éviter un soucis avec les petits écrans, je vous recommande d’ajouter le code via la phrase `Your new secret key is: **********`
+Ici, on doit ajouter le **code de vérification TOTP**, 2 options, soit on ajoute le code directement dans notre application ou on scan le code QR.
+
+Si vous souhaitez ajouter le code TOTP directement, on copie / colle le code généré par **Google Authenticator PAM module** :
+
+`Your new secret key is: **********`
 
 Ou on peut scanner le code QR avec une application. Voici une liste :
 
@@ -384,27 +388,27 @@ Une fois le code actif, on entre le code :
 ```sh
 Enter code from app (-1 to skip): 679799
 Code confirmed
-Your emergency scratch codes are:
-  47404912
-  90525741
-  35213552
-  20322264
-  14217945
 ```
 
-**Notez vos codes de secours quelques part**
+Ensuite on enregistre les codes de secours quelques part :
+
+```sh
+Your emergency scratch codes are:
+  47404***
+  90525***
+  35213***
+  20322***
+  14217***
+```
 
 `Do you want me to update your "/home/freebox/.google_authenticator" file? (y/n) y`
-
-> Cette question sert à bloquer l’utilisation du même code sur une durée de 30 secondes, on répondra « Non »
 
 ```sh
 Do you want to disallow multiple uses of the same authentication
 token? This restricts you to one login about every 30s, but it increases
 your chances to notice or even prevent man-in-the-middle attacks (y/n) n
 ```
-
-> Cette question permet d’utiliser un code 4 minutes après avoir lancé l’authentification, augemente les vecteurs d’attaque, donc on répondra « Non »
+> Cette question sert à bloquer l’utilisation du même code sur une durée de 30 secondes, on répondra « Non »
 
 ```sh
 By default, a new token is generated every 30 seconds by the mobile app.
@@ -418,8 +422,7 @@ code, and the 8 next codes). This will permit for a time skew of up to 4 minutes
 between client and server.
 Do you want to do so? (y/n) n
 ```
-
-> Cette question permet d’activer une limitation des tentatives de connexion toutes les 30 secondes, qui sera limitée à 3. On répondra « Oui »
+> Cette question permet d’utiliser un code 4 minutes après avoir lancé l’authentification, augemente les vecteurs d’attaque, donc on répondra « Non »
 
 ```sh
 If the computer that you are logging into isn't hardened against brute-force
@@ -427,6 +430,7 @@ login attempts, you can enable rate-limiting for the authentication module.
 By default, this limits attackers to no more than 3 login attempts every 30s.
 Do you want to enable rate-limiting? (y/n) y
 ```
+> Cette question permet d’activer une limitation des tentatives de connexion toutes les 30 secondes, qui sera limitée à 3. On répondra « Oui »
 
 On quitte et on redémarre SSH :
 
