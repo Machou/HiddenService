@@ -422,7 +422,7 @@ code, and the 8 next codes). This will permit for a time skew of up to 4 minutes
 between client and server.
 Do you want to do so? (y/n) n
 ```
-> Cette question permet d’utiliser un code 4 minutes après avoir lancé l’authentification, augemente les vecteurs d’attaque, donc on répondra « Non »
+> Cette question permet d’utiliser un code 4 minutes après avoir lancé l’authentification, augemente les vecteurs d’attaque, on répondra « Non »
 
 ```sh
 If the computer that you are logging into isn't hardened against brute-force
@@ -430,7 +430,7 @@ login attempts, you can enable rate-limiting for the authentication module.
 By default, this limits attackers to no more than 3 login attempts every 30s.
 Do you want to enable rate-limiting? (y/n) y
 ```
-> Cette question permet d’activer une limitation des tentatives de connexion toutes les 30 secondes, qui sera limitée à 3. On répondra « Oui »
+> Cette question permet d’activer une limitation des tentatives de connexion toutes les 30 secondes, qui sera limitée à 3, on répondra « Oui »
 
 On quitte et on redémarre SSH :
 
