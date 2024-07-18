@@ -10,7 +10,7 @@
       - [Méthode N°1 : clés SSH](#méthode-n1--clés-ssh)
       - [Méthode N°2 : mot de passe](#méthode-n2--mot-de-passe)
     - [Configuration SSH](#configuration-ssh)
-    - [Utilisation de la 2FA avec Google Authenticator PAM module](#utilisation-de-la-2fa-avec-google-authenticator-pam--module)
+    - [Utilisation de la 2FA avec Google Authenticator PAM module](#utilisation-de-la-2fa-avec-google-authenticator-pam-module)
       - [Installation de Google Authenticator PAM module](#installation-de-google-authenticator-pam-module)
     - [Logiciels Debian](#utilisation-de-google-authenticator-pam-module)
 - [Installation d’un serveur LAMP](#-3)
@@ -323,11 +323,9 @@ On quitte et on redémarre SSH :
 
 `sudo /etc/init.d/ssh restart`
 
-### Utilisation de la 2FA avec Google Authenticator PAM module
+### Double Authentification avec Google Authenticator PAM module
 
-#### Installation de Google Authenticator PAM module
-
-On peut ajouter une sécurité complémentaire en ajoutant la **double authentification de Google pour SSH**.
+On peut ajouter une sécurité complémentaire en ajoutant la **double authentification** grâce au logiciel [Google Authenticator PAM module](https://github.com/google/google-authenticator-libpam) spécialement conçu pour SSH.
 
 On installe le module PAM Google Authenticator :
 
