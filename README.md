@@ -2,9 +2,9 @@
 
 - [Créer un Hidden Service sécurisé avec Tor sur Debian](#créer-un-hidden-service-sécurisé-avec-tor-sur-debian)
 - [Liste des logiciels](#liste-des-logiciels)
-- Qu’est-ce que Tor et un Hidden Service ?
+- [Qu’est-ce que Tor et un Hidden Service ?](#quest-ce-que-tor-et-un-hidden-service-)
   - [Quelques règles importantes](#quelques-règles-importantes)
-- [Configuration du serveur](#-1)
+- [Configuration du serveur](#configuration-du-serveur)
   - [SSH](#ssh)
   - [Authentification SSH](#authentification-ssh)
     - [Méthode N°1 : clés SSH](#méthode-n1--clés-ssh)
@@ -12,18 +12,18 @@
   - [Autre configuration](#autre-configuration)
   - [Double Authentification avec Google Authenticator PAM module](#double-authentification-avec-google-authenticator-pam-module)
   - [Logiciels Debian](#logiciels-debian)
-- [Installation d’un serveur LAMP](#-3)
-  - [Apache](#-4)
-  - [PHP](#-5)
-  - [MariaDB](#-6)
-  - [Accéder aux tables SQL](#-7)
-  - [Installation et configuration de Tor](#-8)
-  - [Configuration du Hidden Service](#-9)
-  - [Générer une adresse .onion personnalisée](#-10)
+- [Installation d’un serveur LAMP](#installation-dun-serveur-lamp)
+  - [Apache](#installation-et-configuration-dapache2)
+  - [PHP](#installation-et-configuration-de-php)
+  - [MariaDB](#installation-et-configuration-de-mysql)
+  - [Accéder aux tables SQL](#accéder-aux-tables-sql)
+  - [Installation et configuration de Tor](#installation-et-configuration-de-tor)
+  - [Configuration du Hidden Service](#configuration-du-hidden-service)
+  - [Générer une adresse .onion personnalisée](#générer-une-adresse-onion-personnalisée)
   - [FAQ Debug Tor](#faq-debug-tor)
 - [PortSentry](PortSentry.md)
 - [Fail2ban](Fail2ban.md)
-- [Facultatif](#-10)
+- [Facultatif]()
   - [Configuration de la langue](#configuration-de-la-langue)
   - [Configuration de la date et heure](#configuration-de-la-date-et-heure)
   - [Rediriger le trafic réseau du serveur vers Tor](#rediriger-le-trafic-réseau-du-serveur-vers-tor)
@@ -1196,7 +1196,7 @@ On rend le script exécutable :
 - Redémarrer le serveur : `./ram.sh shutdown`
 - Arrêter le serveur : `./ram.sh reboot`
 
-Le script va lire des données aléatoires de `/dev/urandom` et les écrire dans `/dev/null`, ce qui force la mémoire RAM à être remplie avec des données aléatoires, réduisant ainsi la possibilité de récupération des données sensibles ou pour éviter les [attaque par démarrage à froid](https://fr.wikipedia.org/wiki/Attaque_par_d%C3%A9marrage_%C3%A0_froid).
+Le script va lire des données aléatoires de `/dev/urandom` et les écrire dans `/dev/null`, ce qui force la mémoire RAM à être remplie avec des données aléatoires, réduisant ainsi la possibilité de récupération des données sensibles ou pour éviter les [attaque par démarrage à froid](https://fr.wikipedia.org/wiki/Attaque_par_démarrage_%C3%A0_froid).
 
 ### Supprimez ses traces
 
