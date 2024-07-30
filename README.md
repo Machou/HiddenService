@@ -34,7 +34,7 @@
     - [Méthode N°1 : désactiver IPv6 via le fichier de configuration GRUB](#méthode-n1--désactiver-ipv6-via-le-fichier-de-configuration-grub)
     - [Méthode N°2 : désactiver IPv6 via le fichier sysctl](#méthode-n2--désactiver-ipv6-via-le-fichier-sysctl)
     - [Méthode N°3 : rejeter tout le trafic IPv6](#méthode-n3--rejeter-tout-le-trafic-ipv6)
-  - [Quelques tutoriels utiles](#quelques-liens--tutoriels-utiles)
+  - [Quelques liens / tutoriels utiles](#quelques-liens--tutoriels-utiles)
   - [À faire](#à-faire)
 
 # Créer un Hidden Service sécurisé avec Tor sur Debian
@@ -60,7 +60,7 @@ Nous allons configurer notre serveur, qui sera basé sur Apache2, PHP et SQL. Ce
 
 Bien sûr, nous pourrions utiliser une [image Docker LAMP](https://hub.docker.com/r/mattrayner/lamp), mais le but est de se familiariser avec l’environnement Linux. Aussi, il existe d’autres logiciels pour le serveur web, comme [nginx](https://nginx.org/) ou [Caddy](https://caddyserver.com/). Cependant, j’ai choisi d’utiliser Apache2, mais vous êtes libre de changer.
 
-## ![Qu’est-ce que Tor et un Hidden Service ?](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Qu%27est-ce%20que%20Tor%20et%20un%20Hidden%20Service%20?)
+## Qu’est-ce que Tor et un Hidden Service ?
 
 Tor (acronyme de « **The Onion Router** ») est un réseau de communication anonyme. Il permet aux utilisateurs de naviguer sur Internet de manière anonyme en dirigeant le trafic à travers une série de serveurs (appelés nœuds) gérés par des bénévoles. Chaque **nœud** ne connaît que les informations du nœud précédent et du nœud suivant, ce qui rend difficile pour quelqu’un de surveiller le chemin complet des données. Tor utilise un système de couches de chiffrage, d’où le terme « onion » (oignon) qui fait référence aux multiples couches de protection.
 
@@ -136,7 +136,7 @@ Dans l’ensemble, l’utilisation de Tor est considérée comme la solution la 
 
 **VPNs recommandés :** [Mullvad](https://mullvad.net/) ou [ProtonVPN](https://protonvpn.com/)
 
-## ![Configuration du serveur](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Configuration%20du%20serveur)
+## Configuration du serveur
 
 On se connecte au serveur via SSH et on change directement le mot de passe root :
 
@@ -458,9 +458,9 @@ On installe / désinstalle quelques logiciels pour la pratique et la sécurité,
 - [sendmail](https://packages.debian.org/fr/bookworm/sendmail) : sendmail est un agent de transmission de courriels (MTA) alternatif pour Debian. Il est adapté pour le traitement des configurations de messagerie sophistiquées, quoique cela signifie aussi que sa configuration peut être complexe.
 - [samba](https://packages.debian.org/fr/bookworm/samba) : samba est une implémentation du protocole SMB/CIFS pour les systèmes Unix, offrant la prise en charge du partage de fichiers et d’imprimantes multiplateforme avec Microsoft Windows, OS X et d’autres systèmes Unix. Samba peut également fonctionner comme un contrôleur de domaine de style Active Directory ou NT4 et peut s’intégrer aux domaines Active Directory ou aux domaines NT4 en tant que serveur membre.
 
-## ![Installation d’un serveur LAMP](https://i.postimg.cc/xjBJH57k/Installation-d-un-serveur-LAMP.png)
+## Installation d’un serveur LAMP
 
-## ![Installation et configuration d’Apache2](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20d’Apache2)
+### Installation et configuration d’Apache2
 
 On installe Apache2 :
 
@@ -573,7 +573,7 @@ On quitte et on redémarre Apache2 :
 - [Site officiel d’Apache2](https://httpd.apache.org/)
 - [Dépôt GitHub officiel](https://github.com/apache/httpd)
 
-## ![Installation et configuration de PHP](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20de%20PHP)
+### Installation et configuration de PHP
 
 On va installer PHP 8 via le dépôt d’[Ondřej Surý](https://deb.sury.org/) car les dernières versions de PHP ne sont pas disponibles sur Debian.
 
@@ -689,7 +689,7 @@ On sauvegarde le fichier **php.ini** et on redémarre Apache2 :
 
 `sudo service apache2 restart`
 
-## ![Installation et configuration de MySQL](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20de%20MySQL)
+### Installation et configuration de MySQL
 
 MariaDB est un système de gestion de base de données édité sous licence GPL. Il s’agit d’un embranchement communautaire de MySQL : la gouvernance du projet est assurée par la fondation MariaDB, et sa maintenance par la société Monty Program AB, créateur du projet. Cette gouvernance confère au logiciel l’assurance de rester libre.
 
@@ -750,7 +750,7 @@ On redémarre le serveur :
 
 `sudo reboot`
 
-## ![Accéder aux tables SQL](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Accéder%20aux%20tables%20SQL)
+### Accéder aux tables SQL
 
 Pour accéder à votre base de données SQL, je vous propose d’utiliser le puissant [AdminEvo](https://docs.adminerevo.org/).
 
@@ -784,7 +784,7 @@ On renomme logiquement le fichier aléatoirement, pour éviter, si vous oubliez 
 - [Site officiel d’AdminerEvo](https://docs.adminerevo.org/)
 - [Dépôt GitHub officiel](https://github.com/adminerevo/adminerevo)
 
-## ![Installation et configuration de Tor](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Installation%20et%20configuration%20de%20Tor)
+### Installation et configuration de Tor
 
 Tor est un réseau informatique superposé mondial et décentralisé. Il se compose de serveurs, appelés nœuds du réseau et dont la liste est publique. Ce réseau permet d’anonymiser l’origine de connexions TCP. Cela peut entre autres servir à anonymiser la source d’une session de navigation Web ou de messagerie instantanée. Cependant, l’anonymisation du flux n’est pas totale, car l’application peut transmettre des informations annexes permettant d’identifier la personne, c’est pourquoi le projet Tor développe également un navigateur Web fondé sur Firefox, Tor Browser, ainsi que d’autres applications spécialement modifiées pour préserver l’anonymat de leurs usagers. L’implémentation de référence du protocole s’appelle « tor », c’est un logiciel libre sous licence BSD révisée.
 
@@ -825,7 +825,7 @@ On active Tor au démarrage :
 
 `sudo systemctl enable tor`
 
-## ![Configuration du Hidden Service](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Configuration%20du%20Hidden%20Service)
+### Configuration du Hidden Service
 
 On configure Tor :
 
@@ -863,7 +863,7 @@ Redémarrer Tor va créer le répertoire **/var/lib/tor/hidden_service** ainsi q
 
 *Notez le contenu de **hostname** quelque part, on l’utilisera plus tard !*
 
-## ![Générer une adresse .onion personnalisée](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Générer%20une%20adresse%20.onion%20personnalisée)
+### Générer une adresse .onion personnalisée
 
 Si vous souhaitez une adresse .onion personnalisée, lisez la suite, sinon on passe directement à la [Partie Apache2](#-11).
 
@@ -911,7 +911,7 @@ sudo chown -R tor: /var/lib/tor/hidden_service
 sudo chmod -R u+rwX,og-rwx /var/lib/tor/hidden_service
 ```
 
-## FAQ Debug Tor
+### FAQ Debug Tor
 
 On vérifie l’état du service Tor :
 
@@ -1062,7 +1062,7 @@ Maintenant, lancez le [Navigateur Tor](https://www.torproject.org/download/) sur
 
 ![](https://i.ibb.co/M267kK8/onion.png)
 
-## ![Facultatif](https://fakeimg.pl/850x100/ffffff/2c96f3/?text=Facultatif)
+## Facultatif
 
 ### Configuration de la langue
 
@@ -1236,7 +1236,7 @@ On y ajoute la ligne de commande :
 
 `0 0 * * * /home/salameche/delete.sh`
 
-### Alias utiles pour le serveur
+#### Alias utiles pour le serveur
 
 On édite notre fichier **~/.bashrc** :
 
@@ -1377,9 +1377,9 @@ On redémarre le serveur :
 
 `sudo reboot`
 
-### Quelques liens / tutoriels utiles
+## Quelques liens / tutoriels utiles
 
-#### Aide-mémoires / turoriels
+### Aide-mémoires / turoriels
 
 - [Aide-mémoire Bash](https://devhints.io/bash) 🇺🇸
 - [Aide-mémoire du mode d’édition Bash Emacs](https://catonmat.net/bash-emacs-editing-mode-cheat-sheet) 🇺🇸
@@ -1390,19 +1390,19 @@ On redémarre le serveur :
 - [How To  A Linux Server](https://github.com/imthenachoman/How-To-Secure-A-Linux-Server) 🇺🇸
 - [The Onion Diaries](https://github.com/alecmuffett/the-onion-diaries/tree/master) 🇺🇸
 
-#### Documentations
+### Documentations
 
 - [FAQ Debian GNU/Linux](https://www.debian.org/doc/manuals/debian-faq/) 🇫🇷
 - [Documentation officielle Debian](https://www.debian.org/releases/stable/amd64/index.fr.html) 🇫🇷
 - [Documentation officielle Ubuntu](https://help.ubuntu.com/lts/ubuntu-help/index.html) 🇫🇷
 
-#### Autres
+### Autres
 
 - [Commande : sudo](https://wiki.debian.org/fr/sudo) 🇫🇷
 - [Générateur de couleur : .bashrc & PS1](https://robotmoon.com/bash-prompt-generator/) 🇺🇸
 - [vim pour les humains](https://vimebook.com/fr) 🇫🇷
 
-### À faire
+## À faire
 
 > - ajouter nginx pour créer un proxy inverser
 > - heberger le site directement dans la ram
